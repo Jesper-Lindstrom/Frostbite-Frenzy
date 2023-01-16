@@ -30,7 +30,7 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  game.update();
+  // game.update(); What is the difference between update and draw?
   game.draw();
 }
 
