@@ -1,42 +1,98 @@
 class Game {
-  private position: p5.Vector;
-  private isCircleVisible: boolean;
 
   constructor() {
-    this.position = createVector(width * 0.5, height * 0.5);
-    this.isCircleVisible = false;
   }
 
   public update() {
-    this.position.set(mouseX, mouseY);
-    this.isCircleVisible = mouseIsPressed;
   }
 
   public draw() {
-    background('black');
-    this.drawText();
-
-    if (this.isCircleVisible) {
-      this.drawCircle();
-    }
+    drawMapFromArray();
   }
 
-  public drawText() {
-    push();
-    fill('white');
-    textSize(width * 0.1);
-    textStyle('bold');
-    textAlign('center');
-    text('Click & Drag', width * 0.5, height * 0.5);
-    pop();
+}
+
+
+class Wall {
+
+  color: string
+  constructor() {
+    this.color = 'blue';
   }
 
-  public drawCircle() {
-    push();
-    fill('green');
-    stroke('white');
-    strokeWeight(width * 0.01);
-    circle(this.position.x, this.position.y, width * 0.2);
-    pop();
+  draw(x: number, y: number) {
+    fill(this.color);
+    rect(x * 100, y * 100, 100, 100);
   }
 }
+
+class LShape {
+  color: string
+  constructor() {
+    this.color = 'blue';
+  }
+
+  draw(x: number, y: number) {
+    fill(this.color);
+    rect(x * 100, y * 100, 100, 100);
+  }
+}
+
+class Circle {
+  color: string
+  constructor() {
+    this.color = 'blue';
+  }
+
+  draw(x: number, y: number) {
+    fill(this.color);
+    rect(x * 100, y * 100, 100, 100);
+  }
+}
+
+let FrozenFrenzyMap = [  
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 1],
+  [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 1],
+  [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1 ,1, 1, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 1],
+  [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ,1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 1, 0, 1],
+  [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1 ,1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 1],
+  [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1],
+
+];
+
+function drawMapFromArray() {
+  background(0, 180, 255);
+
+  for (let y = 0; y < FrozenFrenzyMap.length; y++) {
+    for (let x = 0; x < FrozenFrenzyMap[y].length; x++) {
+      if (FrozenFrenzyMap[y][x] === 1) {
+        new Wall().draw(x, y);
+      } else if (FrozenFrenzyMap[y][x] === 2) {
+        new LShape().draw(x, y);
+      } else if (FrozenFrenzyMap[y][x] === 3) {
+        new Circle().draw(x, y);
+      } else {
+        fill(0, 180, 255);
+        rect(x * 100, y * 100, 100, 100);
+      }
+    }
+  }
+}
+
+
+
