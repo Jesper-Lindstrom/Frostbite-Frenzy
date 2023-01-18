@@ -28,8 +28,8 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  game.update(); // What is the difference between update and draw?
-  game.draw();
+  gameFrame.update(); // What is the difference between update and draw?
+  gameFrame.draw();
 }
 
 /**
