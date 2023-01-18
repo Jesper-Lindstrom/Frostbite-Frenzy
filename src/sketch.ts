@@ -1,7 +1,6 @@
 //---- GLOBAL VARIABLES ----//
-let game: Game;
 // let sound: p5.SoundFile
-
+let gameFrame: GameFrame;
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -20,8 +19,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-
-  game = new Game();
+  gameFrame = new GameFrame();
 }
 
 /**
