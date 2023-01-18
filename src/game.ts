@@ -1,4 +1,9 @@
 class Game {
+    /**
+     * The arena object is the square upon which the game will be rendered.
+     * It will have a position desribed by a Vector and a height and width relative to the height of the canvas.
+     * The arena's properties are sent to the spawnController's constructor in order for spawnController to place objects within it.
+     */
     private arena: Arena;
     private wallBlocks: WallBlock[];
     private players: Player [];
@@ -7,6 +12,9 @@ class Game {
     private powerups: Powerup[];
     private timer: Timer;
     private scoreTable: ScoreTable;
+    /**
+     * SpawnController handles spawn/creation of every entity and where they will be spawned on the map layout.
+     */
     private spawnController: SpawnController;
 
   constructor() {
