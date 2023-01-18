@@ -19,7 +19,6 @@ class Game {
     this.powerups = this.spawnController.createPowerups();
     this.timer = new Timer();
     this.scoreTable = new ScoreTable();
-    // this.countdown();
   }
 
   public update() {
@@ -27,6 +26,7 @@ class Game {
     this.updateMonsters();
     this.updateKeys();
     this.updatePowerups();
+    this.checkCollision();
   }
 
   public draw() {
@@ -50,4 +50,33 @@ class Game {
   private drawKeys() {};
   private drawPowerups() {};
 
+  /**
+   * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
+   * Calls collisionHandler sending which entities have collided as arguments.
+   */
+  checkCollision() {};
+
+  /**
+   * Takes colliding entities as arguments and calls appropriate function of collision.
+   * Probably an if statement or switch/break.
+   */
+  collisionHandler() {};
+
+  /**
+   * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
+   * This function will also need to send the players' scores to the GameOver constructor.
+   */
+  gameEnd() {};
+  
+  /**
+   * Called by collisionHandler when a collision is detected between a player and a key.
+   * Calls functions that spawn a new key (in spawnController) and that update the player's score (in scoreTable).
+   */
+  keyCollection() {};
+
+  /**
+   * Chcecks elapsed time using a getTime method in the timer object.
+   * According to the time, timeCheck will call functions that spawn powerups (in spawnController) and end the game.
+   */
+  timeCheck() {};
 }
