@@ -11,11 +11,12 @@ class GameFrame{
     this.newGame(); // Testing purposes. Remove this when menu is incorporated.
    }
 
-   public update(){
+   public update() {
     this.activeState.update()
    }
 
-   public draw(){
+   public draw() {
+    background('black')
     this.activeState.draw()
    }
 

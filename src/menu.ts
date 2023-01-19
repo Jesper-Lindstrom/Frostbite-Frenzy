@@ -1,0 +1,4 @@
+class Menu {
+  update() {}
+  draw() {}
+}

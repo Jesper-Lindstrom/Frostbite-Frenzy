@@ -1,16 +1,9 @@
-import {WallBlock} from "./wallblock"
-
-
-class SpawnController{
-
+class SpawnController {
   private mapSize: number;
-
   private startPoint: p5.Vector;
-
   private mapArray: number[][]
   private gridCols: number;
   private gridRows: number;
-  private wallBlocks: WallBlock[] = [];
   private cellWidth: number;
   private cellHeight: number;
 
@@ -43,19 +36,41 @@ class SpawnController{
   }
  
   public createWalls() {
+    const wallBlocks: WallBlock[] = [];
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
         if (cell === 1) {
-          this.wallBlocks.push(new WallBlock(j, i, this.startPoint, this.cellWidth, this.cellHeight));
+          wallBlocks.push(new WallBlock(j, i, this.startPoint, this.cellWidth, this.cellHeight));
         }
       });
     });
+
+    return wallBlocks;
   }
 
-  public createPlayers() {};
-  public createMonsters() {};
-  public createKeys() {} ;
-  public createPowerups(){}
+  public createPlayers(): Player[] {
+    return [];
+  }
+  public createMonsters() {
+    return [];
+  }
+  public createKeys() {
+    return [];
+  }
+  public createEntities() {
+    const entities: GameEntity[] = [];
+    this.mapArray.forEach((row, i) => {
+      row.forEach((cell, j) => {
+        if (cell === 1) {
+          entities.push(new WallBlock(j, i, this.startPoint, this.cellWidth, this.cellHeight));
+        } else if (cell == 2) {
+
+        }
+      });
+    });
+
+    return entities;
+  }
 }
 
 

@@ -1,7 +1,8 @@
 
-class WallBlock {
+class WallBlock extends GameEntity {
   public position: p5.Vector;
-  private wallBlocks: WallBlock[] = [];
+  private size: p5.Vector;
+  
   public constructor(
     x: number,
     y: number,
@@ -9,14 +10,15 @@ class WallBlock {
     cellWidth: number,
     cellHeight: number
   ) {
+    super();
     this.position = new p5.Vector((x * cellWidth) + startPoint.x, (y * cellHeight) + startPoint.y);
+    this.size = createVector(cellWidth, cellHeight);
   }
-  public draw(cellWidth: number, cellHeight: number) {
+  
+  public draw() {
     push();
     fill("red");
-    rect(this.position.x, this.position.y, cellWidth, cellHeight);
+    rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
   }
 }
-
-export {WallBlock};
