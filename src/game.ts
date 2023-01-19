@@ -1,4 +1,5 @@
 
+
 class Game {
     /**
      * The arena object is the square upon which the game will be rendered.
@@ -73,7 +74,11 @@ class Game {
   private updatePowerups() {};
   
   private drawArena() {};
-  private drawWalls() {};
+  private drawWalls() {
+    for (const wallBlock of this.wallBlocks) {
+      wallBlock.draw();
+    }
+  };
   private drawPlayers() {};
   private drawMonsters() {};
   private drawKeys() {};
