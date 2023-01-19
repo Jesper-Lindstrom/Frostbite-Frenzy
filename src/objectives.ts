@@ -1,4 +1,4 @@
-import { MenuPage } from '../src/menupage';
+/* import { MenuPage } from '../src/menupage';
 
 class Objectives extends MenuPage {
     
@@ -7,4 +7,4 @@ public constructor(content: PageContent) {
 } 
     
     
-}
+} */

@@ -1,6 +1,10 @@
+
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
-let gameFrame: GameFrame;
+// let gameFrame: GameFrame;
+let controls: Controls;
+let img: p5.Image;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -8,6 +12,7 @@ let gameFrame: GameFrame;
  */
 function preload() {
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
+  img = loadImage('/assets/images/ice1.png');
 }
 
 /**
@@ -19,7 +24,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-  gameFrame = new GameFrame();
+  //gameFrame = new GameFrame();
+  controls = new Controls(img);
 }
 
 /**
@@ -28,8 +34,9 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  game.update(); // What is the difference between update and draw?
-  game.draw();
+  //game.update(); // What is the difference between update and draw?
+  //game.draw();
+  controls.draw();
 }
 
 /**

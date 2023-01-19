@@ -1,4 +1,4 @@
-class Game {
+/* class Game {
   // private position: p5.Vector;
   private mapArray: number[][] = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -188,3 +188,4 @@ class Player {
     });
   }
 }
+ */
