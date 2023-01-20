@@ -29,9 +29,27 @@ class SpawnController {
   public draw(){
   }
 
+  /**
+   * Loops through the mapArray and create a Player object for each 2.
+   * Reads indices of 2D array to write player position.
+   * @returns {Player[]}
+   */
   public createPlayers(): Player[] {
-    return [];
+    const players:  Player[] = [];
+    this.mapArray.forEach((row, i) => {
+      row.forEach((cell, j) => {
+        const position = new p5.Vector(
+          j * this.cellSize + this.startPoint.x,
+          i * this.cellSize + this.startPoint.y
+        )
+        if (cell === 2) {
+          players.push(new Player(position, this.cellSize, 1));
+        }
+      });
+    });
+    return players;
   }
+  
 
   public createEntities() {
     const entities: GameEntity[] = [];

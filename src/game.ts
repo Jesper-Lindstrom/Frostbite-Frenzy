@@ -16,7 +16,7 @@ class Game {
   constructor() {
     this.spawnController = new SpawnController([
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
@@ -37,7 +37,7 @@ class Game {
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]);
-    this.players = [];
+    this.players = this.spawnController.createPlayers();
     this.entities = this.spawnController.createEntities();
     this.timer = new Timer();
     this.scoreTable = new ScoreTable();
@@ -68,7 +68,11 @@ class Game {
       entity.draw();
     }
   };
-  private drawPlayers() {};
+  private drawPlayers() {
+    for (const player of this.players) {
+      player.draw();
+    }
+  };
   private drawMonsters() {};
   private drawKeys() {};
   private drawPowerups() {};
