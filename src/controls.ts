@@ -3,19 +3,27 @@ class Controls {
   private img1: p5.Image;
   private img2: p5.Image;
   private img3: p5.Image;
-  constructor(img: p5.Image, img1: p5.Image, img2: p5.Image, img3: p5.Image) {
-    this.img = img;
-    this.img1 = img1;
-    this.img2 = img2;
-    this.img3 = img3;
+  
+  constructor() {
+    this.img = images.iceLower;
+    this.img1 = images.iceUpper;
+    this.img2 = images.wsadButtons;
+    this.img3 = images.arrowButtons;
   }
 
   public draw() {
+    this.drawShape();
+    this.drawText();
+    this.drawImages();
+  }
+  
+  private drawShape() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(74, 122, 167);
     rect(width / 2, height / 2, 400, 325); // larger rect
     pop();
+
     push();
     strokeWeight(5); // frame thickness
     stroke(255, 255, 255); // set the "frame" color
@@ -23,13 +31,10 @@ class Controls {
     rectMode(CENTER);
     rect(width / 2, height / 2, 200, 270); // "frame"
     pop(); // restore previous styles and transformations
-
-    textFont("Sansita");
-    this.drawText();
-    this.drawImages();
   }
 
-  public drawText() {
+
+  private drawText() {
     push(); // save current styles and transformations
     fill(255);
     textSize(28);
@@ -64,7 +69,7 @@ class Controls {
     pop();
   }
 
-  public drawImages() {
+  private drawImages() {
     if (this.img.width > 0 && this.img.height > 0) {
       image(this.img, width / 2 - 110, height / 2 - 155, 230, 90);
     }

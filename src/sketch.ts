@@ -2,11 +2,17 @@
 // let sound: p5.SoundFile
 // let gameFrame: GameFrame;
 let controls: Controls;
-let img: p5.Image;
-let img1: p5.Image;
-let img2: p5.Image;
-let img3: p5.Image;
 // let menuFont;
+
+interface Images {
+  iceUpper: p5.Image;
+  iceLower: p5.Image;
+  wsadButtons: p5.Image;
+  arrowButtons: p5.Image;
+}
+
+let images: Images;
+
 
 /**
  * Built in preload function in P5
@@ -14,11 +20,13 @@ let img3: p5.Image;
  * sound files, images etc...
  */
 function preload() {
+  images = {
+    iceUpper: loadImage("/assets/images/ice1.png"),
+    iceLower: loadImage("/assets/images/ice2.png"),
+    wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
+    arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
+  }
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
-  img = loadImage("/assets/images/ice1.png");
-  img1 = loadImage("/assets/images/ice2.png");
-  img2 = loadImage("/assets/images/wsadbuttons.png");
-  img3 = loadImage("/assets/images/arrowbuttons.png");
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
   // );
@@ -34,7 +42,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   //gameFrame = new GameFrame();
-  controls = new Controls(img, img1, img2, img3);
+  controls = new Controls();
 }
 
 /**
@@ -43,6 +51,9 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
+  // Globala stilinställningar
+  textFont("Sansita");
+
   //game.update(); // What is the difference between update and draw?
   //game.draw();
   controls.draw();
