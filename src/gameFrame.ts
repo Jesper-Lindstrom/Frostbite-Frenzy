@@ -1,4 +1,4 @@
-/* class GameFrame{
+ class GameFrame{
     // This property is an object containing the current scene. A instance either of the Game or Menu class.
    private activeState: Game | Menu;
    // Controls whether the game music is playing or not.
@@ -24,4 +24,4 @@
    public newGame() {
     this.activeState = new Game()
    }
-} */
+} 
