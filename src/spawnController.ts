@@ -36,6 +36,7 @@ class SpawnController {
    */
   public createPlayers(): Player[] {
     const players:  Player[] = [];
+    let pNum = 1;
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
         const position = new p5.Vector(
@@ -43,10 +44,13 @@ class SpawnController {
           i * this.cellSize + this.startPoint.y
         )
         if (cell === 2) {
-          players.push(new Player(position, this.cellSize, 1));
+          players.push(new Player(position, this.cellSize, pNum));
+          pNum ++;
         }
       });
     });
+    console.log(players);
+    debugger;
     return players;
   }
   
