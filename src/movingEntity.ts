@@ -1,3 +1,5 @@
+/// <reference path="gameentity.ts" />
+
 abstract class MovingEntity extends GameEntity {
     private speed: number;
 

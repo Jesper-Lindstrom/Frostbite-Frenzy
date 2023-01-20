@@ -1,6 +1,8 @@
 /// <reference path="movingEntity.ts"/>
 
+
 class Player extends MovingEntity {
+
   constructor(x: number, y: number, cellSize: number) {
     super(
       new p5.Vector(
@@ -17,4 +19,6 @@ class Player extends MovingEntity {
     fill("blue");
     rect(this.position.x, this.position.y, this.size.x);
   }
+
+
 }
