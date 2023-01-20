@@ -49,8 +49,6 @@ class SpawnController {
         }
       });
     });
-    console.log(players);
-    debugger;
     return players;
   }
   
