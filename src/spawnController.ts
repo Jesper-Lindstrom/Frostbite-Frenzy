@@ -4,8 +4,7 @@ class SpawnController {
   private mapArray: number[][];
   private gridCols: number;
   private gridRows: number;
-  private cellWidth: number;
-  private cellHeight: number;
+  private cellSize: number;
 
   
   constructor(mapArray: number[][]){
@@ -20,8 +19,7 @@ class SpawnController {
     this.mapArray = mapArray;
     this.gridRows = this.mapArray.length;
     this.gridCols = this.mapArray[0].length;
-    this.cellWidth = this.mapSize / this.gridCols;
-    this.cellHeight = this.mapSize / this.gridRows;
+    this.cellSize = this.mapSize / this.gridCols;
   }
 
   public update() {
@@ -39,8 +37,12 @@ class SpawnController {
     const entities: GameEntity[] = [];
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
+        const position = new p5.Vector(
+          j * this.cellSize + this.startPoint.x,
+          i * this.cellSize + this.startPoint.y
+        )
         if (cell === 1) {
-          entities.push(new WallBlock(j, i, this.startPoint, this.cellWidth, this.cellHeight));
+          entities.push(new WallBlock(position, this.cellSize));
         } else if (cell == 2) {
 
         }

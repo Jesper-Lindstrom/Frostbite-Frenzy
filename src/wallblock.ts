@@ -1,18 +1,13 @@
-
 class WallBlock extends GameEntity {
-  public position: p5.Vector;
-  private size: p5.Vector;
   
   public constructor(
-    x: number,
-    y: number,
-    startPoint: p5.Vector,
-    cellWidth: number,
-    cellHeight: number
+    position: p5.Vector,
+    cellSize: number
   ) {
-    super();
-    this.position = new p5.Vector((x * cellWidth) + startPoint.x, (y * cellHeight) + startPoint.y);
-    this.size = createVector(cellWidth, cellHeight);
+    super(position, new p5.Vector (
+      cellSize,
+      cellSize
+    ));
   }
   
   public draw() {
