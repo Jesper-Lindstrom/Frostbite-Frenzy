@@ -1,6 +1,6 @@
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
-// let gameFrame: GameFrame;
+let gameFrame: GameFrame;
 let controls: Controls;
 // let menuFont;
 
@@ -40,6 +40,8 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  frameRate(1);
+  gameFrame = new GameFrame(false);
   frameRate(60);
   //gameFrame = new GameFrame();
   controls = new Controls();
@@ -51,12 +53,8 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  // Globala stilinställningar
-  textFont("Sansita");
-
-  //game.update(); // What is the difference between update and draw?
-  //game.draw();
-  controls.draw();
+  gameFrame.update(); // What is the difference between update and draw?
+  gameFrame.draw();
 }
 
 /**
