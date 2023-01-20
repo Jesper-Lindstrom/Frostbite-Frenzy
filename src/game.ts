@@ -4,12 +4,8 @@ class Game {
      * It will have a position desribed by a Vector and a height and width relative to the height of the canvas.
      * The arena's properties are sent to the spawnController's constructor in order for spawnController to place objects within it.
      */
-    private arena: Arena;
-    private wallBlocks: WallBlock[];
-    private players: Player [];
-    private monsters: Monster[];
-    private keys: Key[];
-    private powerups: Powerup[];
+    private players: Player[];
+    private entities: GameEntity[];
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -18,41 +14,60 @@ class Game {
     private spawnController: SpawnController;
 
   constructor() {
-    this.arena = new Arena();
-    this.spawnController = new SpawnController();
-    this.wallBlocks = this.spawnController.createWalls();
-    this.players = this.spawnController.createPlayers();
-    this.monsters = this.spawnController.createMonsters();
-    this.keys = this.spawnController.createKeys();
-    this.powerups = this.spawnController.createPowerups();
+    this.spawnController = new SpawnController([
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ]);
+    this.players = [];
+    this.entities = this.spawnController.createEntities();
     this.timer = new Timer();
     this.scoreTable = new ScoreTable();
   }
 
   public update() {
     this.updatePlayers();
-    this.updateMonsters();
-    this.updateKeys();
-    this.updatePowerups();
+    this.updateEntities();
     this.checkCollision();
   }
 
   public draw() {
-    this.drawArena();
-    this.drawWalls();
+    this.drawEntities();
     this.drawPlayers();
-    this.drawMonsters();
-    this.drawKeys();
-    this.drawPowerups();
   }
 
-  private updatePlayers() {};
-  private updateMonsters() {};
-  private updateKeys() {};
-  private updatePowerups() {};
+  private updatePlayers() {}
+  private updateEntities() {
+    for (const entity of this.entities) {
+      // if (entity instanceof MovableEntity) {
+      //   entity.update();   
+      // }
+    }
+  }
   
-  private drawArena() {};
-  private drawWalls() {};
+  private drawEntities() {
+    for (const entity of this.entities) {
+      entity.draw();
+    }
+  };
   private drawPlayers() {};
   private drawMonsters() {};
   private drawKeys() {};
@@ -62,7 +77,15 @@ class Game {
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
    * Calls collisionHandler sending which entities have collided as arguments.
    */
-  checkCollision() {};
+  checkCollision() {
+    for (const entity of this.entities) {
+      // 1. är det en kollision
+      // 2. med vad??
+      if (entity instanceof Key) {
+
+      }
+    }
+  };
 
   /**
    * Takes colliding entities as arguments and calls appropriate function of collision.
