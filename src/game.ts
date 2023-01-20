@@ -1,5 +1,3 @@
-
-
 class Game {
     /**
      * The arena object is the square upon which the game will be rendered.
@@ -52,7 +50,6 @@ class Game {
   }
 
   public draw() {
-    this.drawArena();
     this.drawEntities();
     this.drawPlayers();
   }
@@ -66,7 +63,6 @@ class Game {
     }
   }
   
-  private drawArena() {}
   private drawEntities() {
     for (const entity of this.entities) {
       entity.draw();
