@@ -2,6 +2,7 @@
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
 let controls: Controls;
+let gameover: Gameover;
 // let menuFont;
 
 interface Images {
@@ -12,7 +13,6 @@ interface Images {
 }
 
 let images: Images;
-
 
 /**
  * Built in preload function in P5
@@ -25,7 +25,7 @@ function preload() {
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
-  }
+  };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
@@ -40,11 +40,11 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(1);
-  gameFrame = new GameFrame(false);
-  frameRate(1);
+  frameRate(60);
+  // gameFrame = new GameFrame(false);
   //gameFrame = new GameFrame();
-  controls = new Controls();
+  // controls = new Controls();
+  gameover = new Gameover();
 }
 
 /**
@@ -53,8 +53,9 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  gameFrame.update(); // What is the difference between update and draw?
-  gameFrame.draw();
+  // gameFrame.update(); // What is the difference between update and draw?
+  // gameFrame.draw();
+  gameover.draw();
 }
 
 /**
