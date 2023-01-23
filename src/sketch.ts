@@ -4,6 +4,7 @@ let gameFrame: GameFrame;
 let controls: Controls;
 let startpage: StartPage;
 let objectives: Objectives;
+let advantages: Advantages;
 // let menuFont;
 
 interface Images {
@@ -15,6 +16,9 @@ interface Images {
   snowflakes: p5.Image;
   key: p5.Image;
   monsterdescriptions: p5.Image;
+  watch: p5.Image;
+  advantagessnowflake: p5.Image;
+  invertarrows: p5.Image;
 }
 
 let images: Images;
@@ -34,6 +38,9 @@ function preload() {
     snowflakes: loadImage("/assets/images/snowflakes.png"),
     key: loadImage("/assets/images/key.png"),
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
+    watch: loadImage("/assets/images/watch.png"),
+    advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
+    invertarrows: loadImage("/assets/images/invertarrows.png"),
   };
 
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
@@ -56,7 +63,8 @@ function setup() {
   //gameFrame = new GameFrame();
   // controls = new Controls();
   // startpage = new StartPage();
-  objectives = new Objectives();
+  // objectives = new Objectives();
+  advantages = new Advantages();
 }
 
 /**
@@ -70,7 +78,8 @@ function draw() {
   // gameFrame.draw();
   // controls.draw();
   // startpage.draw();
-  objectives.draw();
+  // objectives.draw();
+  advantages.draw();
 }
 
 function keyPressed() {
