@@ -85,21 +85,40 @@ class Game {
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
    * Calls collisionHandler sending which entities have collided as arguments.
    */
-  checkCollision() {
-    for (const entity of this.entities) {
-      // 1. är det en kollision
-      // 2. med vad??
-      if (entity instanceof Key) {
+  public checkCollision() {
+    // Finns kollision?
+    // if (
+      // item1 top > item2 bottom ||
+      // item1 bottom < item2 top ||
+      // item1 left > item2 right ||
+      // item1 right < item2 left
+      //)
 
+      for (const player of this.players) {
+        for (const entity of this.entities) {
+          if(player.bounds.left > entity.bounds.right ||
+            player.bounds.right < entity.bounds.left ||
+            player.bounds.top > entity.bounds.bottom ||
+            player.bounds.bottom < entity.bounds.top ) {
+              console.log('No collision')
+            } else {
+              console.log('Collision detected')
+            }
+        }
       }
-    }
+      
+      
+
   };
 
   /**
    * Takes colliding entities as arguments and calls appropriate function of collision.
    * Probably an if statement or switch/break.
    */
-  collisionHandler() {};
+  collisionHandler() {
+    // Med vad kolliderar vi?
+    // Vad ska hända?
+  };
 
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.

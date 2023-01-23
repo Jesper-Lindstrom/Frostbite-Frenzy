@@ -47,6 +47,7 @@ class Player extends MovingEntity {
 
   public update() {
     this.checkUserInput();
+    this.updateBounds();
   };
 
   public draw() {
