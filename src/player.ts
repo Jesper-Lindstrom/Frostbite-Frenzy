@@ -20,6 +20,8 @@ class Player extends MovingEntity {
       new p5.Vector(cellSize * 0.7, cellSize * 0.7),
       10
     );
+    this.position.x += cellSize * 0.15;
+    this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
     this.images = []; // Character image currently unassigned. Assign later.
     this.isFrozen = false;
@@ -34,7 +36,8 @@ class Player extends MovingEntity {
   public draw() {
     push();
     fill("blue");
-    rect(this.position.x, this.position.y, this.size.x);
+    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    pop();
   };
 
   /**
