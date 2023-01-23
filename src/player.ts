@@ -6,7 +6,7 @@ class Player extends MovingEntity {
   private color: string; // Testing purposes.
 
   public playerNumber: number;
-  private images: p5.Image[];
+  private image: p5.Image;
   private isFrozen: boolean;
   private isImmortal: boolean;
   private isInverted: boolean;
@@ -33,7 +33,7 @@ class Player extends MovingEntity {
     this.position.x += cellSize * 0.15;
     this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
-    this.images = []; // Character image currently unassigned. Assign later.
+    this.image = images.yellowSnowman;
     this.isFrozen = false;
     this.isImmortal = false;
     this.isInverted = false;
@@ -48,6 +48,24 @@ class Player extends MovingEntity {
 
   }
 
+  private getKeyCodes(): number[] {
+    let keyCodes: number[]= []; // David fråga. Bättre sätt att typa?
+    if (this.playerNumber === 1) {
+      keyCodes = [65, 68, 87, 83]
+    } else if (this.playerNumber === 2) {
+      keyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW]
+    }
+    return keyCodes;
+  }
+
+  // private getImages(): p5.Image {
+  //   let playerImages: p5.Image = images.yellowSnowman;
+  //   if (this.playerNumber === 2) {
+  //     playerImages = images.greenSnowman
+  //   }
+  //   return playerImages
+  // }
+
   public update() {
     this.color = 'blue'; // Testing purposes
     this.previousPosition = new p5.Vector(this.position.x, this.position.y);
@@ -60,17 +78,10 @@ class Player extends MovingEntity {
     fill(this.color);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
+    console.log(this.image);
+    debugger;
+    image(this.image, this.position.x, this.position.y - (this.size.y * 1.5), 100, 200);
   };
-
-  private getKeyCodes(): number[] {
-    let keyCodes: number[]= []; // David fråga. Bättre sätt att typa?
-    if (this.playerNumber === 1) {
-      keyCodes = [65, 68, 87, 83]
-    } else if (this.playerNumber === 2) {
-      keyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW]
-    }
-    return keyCodes;
-  }
 
   /**
    * Called from update. Checks keyboard input.

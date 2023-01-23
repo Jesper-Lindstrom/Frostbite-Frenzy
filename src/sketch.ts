@@ -9,6 +9,8 @@ interface Images {
   iceLower: p5.Image;
   wsadButtons: p5.Image;
   arrowButtons: p5.Image;
+  yellowSnowman: p5.Image;
+  greenSnowman: p5.Image;
 }
 
 let images: Images;
@@ -25,6 +27,8 @@ function preload() {
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
+    yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
+    greenSnowman: loadImage("/assets/images/greensnowman.png")
   }
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
