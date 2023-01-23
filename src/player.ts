@@ -46,6 +46,7 @@ class Player extends MovingEntity {
   }
 
   public update() {
+    this.previousPosition = this.position;
     this.checkUserInput();
     this.updateBounds();
   };
@@ -57,7 +58,7 @@ class Player extends MovingEntity {
     pop();
   };
 
-  getKeyCodes(): number[] {
+  private getKeyCodes(): number[] {
     let keyCodes: number[]= []; // David fråga. Bättre sätt att typa?
     if (this.playerNumber === 1) {
       keyCodes = [65, 68, 87, 83]
@@ -86,6 +87,15 @@ class Player extends MovingEntity {
     }
 
   };
+
+  /**
+   * Called by collsionHandler if collsion detected with a wall.
+   * Reverts to previous position to prevent movement before drawing.
+   */
+  public wallCollsion() {
+    console.log('wallCollision called');
+    this.position = this.previousPosition;
+  }
 
   /**
    * Sets player to frozen, sets time limit.

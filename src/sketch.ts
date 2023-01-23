@@ -40,10 +40,8 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(1);
+  frameRate(30);
   gameFrame = new GameFrame(false);
-  frameRate(1);
-  //gameFrame = new GameFrame();
   controls = new Controls();
 }
 
@@ -53,7 +51,7 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  gameFrame.update(); // What is the difference between update and draw?
+  gameFrame.update();
   gameFrame.draw();
 }
 
