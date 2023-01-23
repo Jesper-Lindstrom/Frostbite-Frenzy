@@ -86,13 +86,6 @@ class Game {
    * Calls collisionHandler sending which entities have collided as arguments.
    */
   public checkCollision() {
-    // Finns kollision?
-    // if (
-      // item1 top > item2 bottom ||
-      // item1 bottom < item2 top ||
-      // item1 left > item2 right ||
-      // item1 right < item2 left
-      //)
 
       for (const player of this.players) {
         for (const entity of this.entities) {
@@ -105,9 +98,7 @@ class Game {
               console.log('Collision detected')
             }
         }
-      }
-      
-      
+      }    
 
   };
 
