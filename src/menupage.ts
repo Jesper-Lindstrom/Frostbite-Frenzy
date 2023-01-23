@@ -1,3 +1,20 @@
+class MenuPage {
+    public constructor() {}
+
+    public draw() {}
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 /* interface PageContent {
     [key: string]: string;
 }
@@ -13,6 +30,8 @@ export class MenuPage {
     public draw(): void {
         // Calls for the drawImage-method
         this.drawImages();
+        this.drawText();
+        this.drawShapes();
     }
 
     public drawText(): void {
@@ -23,7 +42,11 @@ export class MenuPage {
         // Draw the images
     }
 
-    protected openPage(page: MenuPage): void {
-        // Logic for Opening a page
+    public drawShapes(): void {
+        // Draw the images
     }
-}  */
+
+    protected openPage(page: MenuPage): void {
+        // Logic for Opening a page 
+    }
+}   */

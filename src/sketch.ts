@@ -2,6 +2,8 @@
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
 let controls: Controls;
+let menu: Menu;
+
 // let menuFont;
 
 interface Images {
@@ -45,6 +47,7 @@ function setup() {
   frameRate(60);
   //gameFrame = new GameFrame();
   controls = new Controls();
+  menu = new Menu();
 }
 
 /**
