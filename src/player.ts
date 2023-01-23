@@ -3,6 +3,8 @@
 
 class Player extends MovingEntity {
 
+  private color: string; // Testing purposes.
+
   public playerNumber: number;
   private images: p5.Image[];
   private isFrozen: boolean;
@@ -27,6 +29,7 @@ class Player extends MovingEntity {
       new p5.Vector(cellSize * 0.7, cellSize * 0.7),
       7
     );
+    this.color = 'blue'; // Testing purposes.
     this.position.x += cellSize * 0.15;
     this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
@@ -46,14 +49,15 @@ class Player extends MovingEntity {
   }
 
   public update() {
-    this.previousPosition = this.position;
+    this.color = 'blue'; // Testing purposes
+    this.previousPosition = new p5.Vector(this.position.x, this.position.y);
     this.checkUserInput();
     this.updateBounds();
   };
 
   public draw() {
     push();
-    fill("blue");
+    fill(this.color);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
   };
@@ -93,8 +97,8 @@ class Player extends MovingEntity {
    * Reverts to previous position to prevent movement before drawing.
    */
   public wallCollsion() {
-    console.log('wallCollision called');
     this.position = this.previousPosition;
+    this.color = 'yellow'; // Testing purposes
   }
 
   /**

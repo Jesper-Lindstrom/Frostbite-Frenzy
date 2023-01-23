@@ -93,32 +93,13 @@ class Game {
             player.bounds.right < entity.bounds.left ||
             player.bounds.top > entity.bounds.bottom ||
             player.bounds.bottom < entity.bounds.top ) {
-              console.log('No collision')
             } else {
-              console.log('Collision detected');
-              // this.collisionHandler(player, entity)
+              this.collisionHandler(player, entity)
             }
         }
       }    
 
   };
-  // public checkCollision() {
-
-  //     for (const player of this.players) {
-  //       for (const entity of this.entities) {
-  //         if(player.bounds.left < entity.bounds.right ||
-  //           player.bounds.right > entity.bounds.left ||
-  //           player.bounds.top < entity.bounds.bottom ||
-  //           player.bounds.bottom > entity.bounds.top ) {
-  //             console.log('No collision')
-  //           } else {
-  //             console.log('Collision detected');
-  //             this.collisionHandler(player, entity)
-  //           }
-  //       }
-  //     }    
-
-  // };
 
   /**
    * Takes colliding entities as arguments and calls appropriate function of collision.

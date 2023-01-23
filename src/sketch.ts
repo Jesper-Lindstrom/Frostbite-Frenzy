@@ -40,7 +40,7 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(30);
+  frameRate(60);
   gameFrame = new GameFrame(false);
   controls = new Controls();
 }

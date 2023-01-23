@@ -16,8 +16,8 @@
    }
 
    public draw() {
-    background('black')
-    this.activeState.draw()
+    background('black');
+    this.activeState.draw();
    }
 
    // This function starts a new game
