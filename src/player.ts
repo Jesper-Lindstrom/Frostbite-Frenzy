@@ -14,10 +14,10 @@ class Player extends MovingEntity {
    */
   private powerupTimer: number;
 
-  private leftButton!: number;
-  private rightButton!: number;
-  private upButton!: number;
-  private downButton!: number;
+  private leftButton: number;
+  private rightButton: number;
+  private upButton: number;
+  private downButton: number;
 
   public constructor(position: p5.Vector, cellSize: number, playerNumber: number) {
     super(
@@ -34,17 +34,17 @@ class Player extends MovingEntity {
     this.isInverted = false;
     this.powerupTimer = 0;
 
-    if (playerNumber === 1) {
-      this.leftButton = 65;
-      this.rightButton = 68;
-      this.upButton = 87;
-      this.downButton = 83;
-    } else if (playerNumber === 2) {
-      this.leftButton = LEFT_ARROW;
-      this.rightButton = RIGHT_ARROW;
-      this.upButton = UP_ARROW;
-      this.downButton = DOWN_ARROW;
-    }
+    // if (playerNumber === 1) {
+    //   this.leftButton = 65;
+    //   this.rightButton = 68;
+    //   this.upButton = 87;
+    //   this.downButton = 83;
+    // } else if (playerNumber === 2) {
+    //   this.leftButton = LEFT_ARROW;
+    //   this.rightButton = RIGHT_ARROW;
+    //   this.upButton = UP_ARROW;
+    //   this.downButton = DOWN_ARROW;
+    // }
 
   }
 
@@ -58,6 +58,10 @@ class Player extends MovingEntity {
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
   };
+
+  // Create function that returns what each key should be. Depends onkey and player number.
+  // Take required key as argument
+  // Set empty variable to contain key value.
 
   /**
    * Called from update. Checks keyboard input.
