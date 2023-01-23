@@ -72,18 +72,17 @@ class SpawnController {
     return entities;
   }
 
-  private randomValidSpawnpoint(){
+  public randomValidSpawnpoint(){
     let validSpawnPoints = [];
     for (let i = 0; i < this.mapArray.length; i++) {
-      if (this.mapArray[i] === 0) {
+      for (let j = 0; j < this.mapArray[i].length; j++){
+      if (this.mapArray[i][j] === 0) {
         validSpawnPoints.push(i);
       }
     }
-
-    let randomIndex = Math.floor(Math.random() * validSpawnPoints.length);
-    return validSpawnPoints[randomIndex];
   }
+  let randomIndex = Math.floor(Math.random() * validSpawnPoints.length);
+  return validSpawnPoints[randomIndex];
 }
-
-
+}
 

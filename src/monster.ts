@@ -2,8 +2,8 @@
 
 class Monster extends MovingEntity {
 
-    constructor(speed: p5.Vector, size: p5.Vector, position: p5.Vector){
-        super(speed, size, position);
+    constructor(speed: number, size: p5.Vector, position: p5.Vector){
+        super(position, size, speed);
     }
       
     draw(): void {
