@@ -2,6 +2,8 @@
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
 let controls: Controls;
+let startpage: StartPage;
+let objectives: Objectives;
 // let menuFont;
 
 interface Images {
@@ -9,10 +11,13 @@ interface Images {
   iceLower: p5.Image;
   wsadButtons: p5.Image;
   arrowButtons: p5.Image;
+  characters: p5.Image;
+  snowflakes: p5.Image;
+  key: p5.Image;
+  monsterdescriptions: p5.Image;
 }
 
 let images: Images;
-
 
 /**
  * Built in preload function in P5
@@ -25,7 +30,12 @@ function preload() {
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
-  }
+    characters: loadImage("/assets/images/characters.png"),
+    snowflakes: loadImage("/assets/images/snowflakes.png"),
+    key: loadImage("/assets/images/key.png"),
+    monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
+  };
+
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
@@ -40,11 +50,13 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(1);
-  gameFrame = new GameFrame(false);
   frameRate(60);
+  // gameFrame = new GameFrame(false);
+  // frameRate(60);
   //gameFrame = new GameFrame();
-  controls = new Controls();
+  // controls = new Controls();
+  // startpage = new StartPage();
+  objectives = new Objectives();
 }
 
 /**
@@ -52,9 +64,17 @@ function setup() {
  * This is a good place to call public methods of the object
  * you created in the setup function above
  */
+
 function draw() {
-  gameFrame.update(); // What is the difference between update and draw?
-  gameFrame.draw();
+  // gameFrame.update(); // What is the difference between update and draw?
+  // gameFrame.draw();
+  // controls.draw();
+  // startpage.draw();
+  objectives.draw();
+}
+
+function keyPressed() {
+  startpage.keyPressed();
 }
 
 /**
