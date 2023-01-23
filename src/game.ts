@@ -54,7 +54,11 @@ class Game {
     this.drawPlayers();
   }
 
-  private updatePlayers() {}
+  private updatePlayers() {
+    for (const player of this.players) {
+      player.update();
+    }
+  }
   private updateEntities() {
     for (const entity of this.entities) {
       // if (entity instanceof MovableEntity) {

@@ -1,7 +1,7 @@
 /// <reference path="gameentity.ts" />
 
 abstract class MovingEntity extends GameEntity {
-    private speed: number;
+    protected speed: number;
 
     constructor (position: p5.Vector, size: p5.Vector, speed: number) {
         super(position, size);
