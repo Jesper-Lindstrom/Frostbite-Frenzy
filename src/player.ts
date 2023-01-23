@@ -14,6 +14,8 @@ class Player extends MovingEntity {
    */
   private powerupTimer: number;
 
+  private keyCodes: number[];
+
   private leftButton: number;
   private rightButton: number;
   private upButton: number;
@@ -34,17 +36,12 @@ class Player extends MovingEntity {
     this.isInverted = false;
     this.powerupTimer = 0;
 
-    // if (playerNumber === 1) {
-    //   this.leftButton = 65;
-    //   this.rightButton = 68;
-    //   this.upButton = 87;
-    //   this.downButton = 83;
-    // } else if (playerNumber === 2) {
-    //   this.leftButton = LEFT_ARROW;
-    //   this.rightButton = RIGHT_ARROW;
-    //   this.upButton = UP_ARROW;
-    //   this.downButton = DOWN_ARROW;
-    // }
+    this.keyCodes = this.getKeyCodes();
+    this.leftButton = this.keyCodes[0];
+    this.rightButton = this.keyCodes[1];
+    this.upButton = this.keyCodes[2];
+    this.downButton = this.keyCodes[3];
+    
 
   }
 
@@ -59,9 +56,15 @@ class Player extends MovingEntity {
     pop();
   };
 
-  // Create function that returns what each key should be. Depends onkey and player number.
-  // Take required key as argument
-  // Set empty variable to contain key value.
+  getKeyCodes(): number[] {
+    let keyCodes: number[]= []; // David fråga. Bättre sätt att typa?
+    if (this.playerNumber === 1) {
+      keyCodes = [65, 68, 87, 83]
+    } else if (this.playerNumber === 2) {
+      keyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW]
+    }
+    return keyCodes;
+  }
 
   /**
    * Called from update. Checks keyboard input.
