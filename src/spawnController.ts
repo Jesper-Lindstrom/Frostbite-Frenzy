@@ -71,4 +71,19 @@ class SpawnController {
 
     return entities;
   }
+
+  private randomValidSpawnpoint(){
+    let validSpawnPoints = [];
+    for (let i = 0; i < this.mapArray.length; i++) {
+      if (this.mapArray[i] === 0) {
+        validSpawnPoints.push(i);
+      }
+    }
+
+    let randomIndex = Math.floor(Math.random() * validSpawnPoints.length);
+    return validSpawnPoints[randomIndex];
+  }
 }
+
+
+
