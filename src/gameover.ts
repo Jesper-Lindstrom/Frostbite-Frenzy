@@ -27,9 +27,13 @@ class Gameover {
 
 class GameOver extends MenuPage {
     
-public constructor(content: PageContent) {
-    super(content);
+public constructor() {
+    super();
 } 
+
+public draw() {
+    super.draw();
+}
     
     
 } */
