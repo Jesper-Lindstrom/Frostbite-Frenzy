@@ -15,12 +15,14 @@
    }
 
    public draw() {
-    background('black')
-    this.activeState.draw()
+    background('black');
+    this.activeState.draw();
    }
 
    // This function starts a new game
    public newGame() {
-    this.activeState = new Game()
+      removeElements();
+    this.activeState = new Game();
+    redraw();
    }
 } 

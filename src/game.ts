@@ -93,9 +93,8 @@ class Game {
             player.bounds.right < entity.bounds.left ||
             player.bounds.top > entity.bounds.bottom ||
             player.bounds.bottom < entity.bounds.top ) {
-              console.log('No collision')
             } else {
-              console.log('Collision detected')
+              this.collisionHandler(player, entity)
             }
         }
       }    
@@ -106,10 +105,28 @@ class Game {
    * Takes colliding entities as arguments and calls appropriate function of collision.
    * Probably an if statement or switch/break.
    */
-  collisionHandler() {
-    // Med vad kolliderar vi?
-    // Vad ska hända?
+  private collisionHandler(player: Player, entity: GameEntity) {
+    if (entity instanceof WallBlock) {
+      player.wallCollsion();
+    }
+    if (entity instanceof Monster) {
+
+    }
+    if (entity instanceof Key) {
+      
+    }
+    if (entity instanceof InvertKeys) {
+      
+    }
+    if (entity instanceof Invincible) {
+
+    }
+    if (entity instanceof SlowOpponent) {
+
+    }
   };
+
+
 
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.

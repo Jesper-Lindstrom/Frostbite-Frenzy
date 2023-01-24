@@ -1,8 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
-
-
+let controls: Controls;
 // let menuFont;
 
 interface Images {
@@ -21,6 +20,7 @@ interface Images {
 
 let images: Images;
 
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -38,9 +38,8 @@ function preload() {
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
-    invertarrows: loadImage("/assets/images/invertarrows.png"),
-  };
-
+    invertarrows: loadImage("/assets/images/invertarrows.png")
+  }
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
@@ -55,11 +54,8 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(1);
+  frameRate(60);
   gameFrame = new GameFrame(false);
-  frameRate(1);
-  //gameFrame = new GameFrame();
-  
 }
 
 /**
@@ -67,9 +63,8 @@ function setup() {
  * This is a good place to call public methods of the object
  * you created in the setup function above
  */
-
 function draw() {
-  gameFrame.update(); // What is the difference between update and draw?
+  gameFrame.update();
   gameFrame.draw();
 }
 
