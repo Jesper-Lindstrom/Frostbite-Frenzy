@@ -21,6 +21,8 @@
 
    // This function starts a new game
    public newGame() {
-    this.activeState = new Game()
+      removeElements();
+    this.activeState = new Game();
+    redraw();
    }
 } 

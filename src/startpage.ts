@@ -122,7 +122,7 @@ class StartPage {
 
 function startGame() {
   // code to start the game
-  alert("Game started");
+  gameFrame.newGame();
 }
 
 function showObjectives() {
