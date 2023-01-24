@@ -1,41 +1,23 @@
 /// <reference path="menupage.ts" />
 
 class Controls extends MenuPage {
-  
-  public constructor() {
-    super();
-  }
-
-  public draw() {
-    super.draw();
-  }
-}
-
-
-
-
-
-
-/* class Controls {
   private img: p5.Image;
   private img1: p5.Image;
   private img2: p5.Image;
   private img3: p5.Image;
 
-  constructor() {
+  public constructor() {
+    super();
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
     this.img2 = images.wsadButtons;
     this.img3 = images.arrowButtons;
-  }
-
-  public draw() {
-    this.drawShape();
+    this.drawShapes();
     this.drawText();
     this.drawImages();
   }
 
-  private drawShape() {
+  public drawShapes() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(74, 122, 167);
@@ -51,7 +33,7 @@ class Controls extends MenuPage {
     pop(); // restore previous styles and transformations
   }
 
-  private drawText() {
+  public drawText() {
     push(); // save current styles and transformations
     fill(255);
     textSize(28);
@@ -86,7 +68,7 @@ class Controls extends MenuPage {
     pop();
   }
 
-  private drawImages() {
+  public drawImages() {
     if (this.img.width > 0 && this.img.height > 0) {
       image(this.img1, width / 2 - 110, height / 2 - 155, 230, 90);
     }
@@ -100,9 +82,5 @@ class Controls extends MenuPage {
       image(this.img3, width / 2 - -20, height / 2 - 10, 70, 40);
     }
   }
-} */
 
-
-
-
-
+}

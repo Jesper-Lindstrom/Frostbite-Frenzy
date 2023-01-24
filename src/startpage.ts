@@ -1,11 +1,13 @@
 class StartPage {
+    public menu: Menu;
   private characters: p5.Image;
   private snowflakes: p5.Image;
   private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
 
-  public constructor() {
+  public constructor(menu: Menu) {
+    this.menu = menu;
     this.characters = images.characters;
     this.snowflakes = images.snowflakes;
   }
@@ -60,7 +62,8 @@ class StartPage {
         } else if (i === 1) {
           showObjectives();
         } else if (i === 2) {
-          showGameControls();
+            removeElements();
+          this.menu.openPage(new Controls());
         }
       });
       this.buttons.push(button);
