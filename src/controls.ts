@@ -1,3 +1,5 @@
+/// <reference path="menupage.ts" />
+
 class Controls extends MenuPage {
   
   public constructor() {
@@ -19,7 +21,7 @@ class Controls extends MenuPage {
   private img1: p5.Image;
   private img2: p5.Image;
   private img3: p5.Image;
-  
+
   constructor() {
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
@@ -32,12 +34,12 @@ class Controls extends MenuPage {
     this.drawText();
     this.drawImages();
   }
-  
+
   private drawShape() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(74, 122, 167);
-    rect(width / 2, height / 2, 400, 325); // larger rect
+    rect(width / 2, height / 2, 700, 600); // larger rect
     pop();
 
     push();
@@ -48,7 +50,6 @@ class Controls extends MenuPage {
     rect(width / 2, height / 2, 200, 270); // "frame"
     pop(); // restore previous styles and transformations
   }
-
 
   private drawText() {
     push(); // save current styles and transformations
@@ -87,10 +88,10 @@ class Controls extends MenuPage {
 
   private drawImages() {
     if (this.img.width > 0 && this.img.height > 0) {
-      image(this.img, width / 2 - 110, height / 2 - 155, 230, 90);
+      image(this.img1, width / 2 - 110, height / 2 - 155, 230, 90);
     }
     if (this.img1.width > 0 && this.img1.height > 0) {
-      image(this.img1, width / 2 - 103, height / 2 - -125, 208, 34);
+      image(this.img, width / 2 - 103, height / 2 - -125, 208, 34);
     }
     if (this.img2.width > 0 && this.img2.height > 0) {
       image(this.img2, width / 2 - 90, height / 2 - 10, 70, 40);

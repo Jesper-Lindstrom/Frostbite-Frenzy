@@ -5,8 +5,8 @@ class MenuPage {
         this.drawShapes();
     }
 
-    protected drawImages(): void {}
-    protected drawText(): void {}
-    protected drawShapes(): void {}
+    public drawImages(): void {}
+    public drawText(): void {}
+    public drawShapes(): void {}
 }
 

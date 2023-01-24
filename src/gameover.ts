@@ -1,6 +1,6 @@
-// import { MenuPage } from '../src/menupage';
+/* /// <reference path="movingEntity.ts" />
 
-class GameOver extends Menupage {
+class GameOver extends MenuPage {
     
 public constructor() {
     super();
@@ -11,4 +11,4 @@ public draw() {
 }
     
     
-} 
+}  */
