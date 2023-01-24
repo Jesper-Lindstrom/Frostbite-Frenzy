@@ -2,6 +2,7 @@
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
 let controls: Controls;
+let fontFreckleFace: p5.Font;
 // let menuFont;
 
 interface Images {
@@ -27,6 +28,8 @@ let images: Images;
  * sound files, images etc...
  */
 function preload() {
+  fontFreckleFace = loadFont("/assets/fonts/FreckleFace.ttf");
+
   images = {
     iceUpper: loadImage("/assets/images/ice1.png"),
     iceLower: loadImage("/assets/images/ice2.png"),
