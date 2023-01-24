@@ -1,4 +1,22 @@
-class Controls {
+/// <reference path="menupage.ts" />
+
+class Controls extends MenuPage {
+  
+  public constructor() {
+    super();
+  }
+
+  public draw() {
+    super.draw();
+  }
+}
+
+
+
+
+
+
+/* class Controls {
   private img: p5.Image;
   private img1: p5.Image;
   private img2: p5.Image;
@@ -82,38 +100,9 @@ class Controls {
       image(this.img3, width / 2 - -20, height / 2 - 10, 70, 40);
     }
   }
-}
-
-/* import { MenuPage } from '../src/menupage';
-
-class Controls extends MenuPage {
-    
-public constructor(content: PageContent) {
-    super(content);
-} 
-
-public draw() {
-    
-}
-
-class Controls {
-    
-    public constructor(content: PageContent) {
-        super(content);
-    } 
-    
-    public draw() {
-        
-    }
-
-
-
-
-
-// New example
-/* draw() {
-    super.draw();
-    super.drawText();
-    super.drawImages();
-} 
 } */
+
+
+
+
+

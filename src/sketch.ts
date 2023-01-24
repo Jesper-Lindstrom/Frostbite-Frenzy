@@ -1,10 +1,8 @@
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
-let controls: Controls;
-let startpage: StartPage;
-let objectives: Objectives;
-let advantages: Advantages;
+
+
 // let menuFont;
 
 interface Images {
@@ -57,14 +55,11 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(60);
-  // gameFrame = new GameFrame(false);
-  // frameRate(60);
+  frameRate(1);
+  gameFrame = new GameFrame(false);
+  frameRate(1);
   //gameFrame = new GameFrame();
-  // controls = new Controls();
-  startpage = new StartPage();
-  // objectives = new Objectives();
-  // advantages = new Advantages();
+  
 }
 
 /**
@@ -74,16 +69,8 @@ function setup() {
  */
 
 function draw() {
-  // gameFrame.update(); // What is the difference between update and draw?
-  // gameFrame.draw();
-  // controls.draw();
-  startpage.draw();
-  // objectives.draw();
-  // advantages.draw();
-}
-
-function keyPressed() {
-  startpage.keyPressed();
+  gameFrame.update(); // What is the difference between update and draw?
+  gameFrame.draw();
 }
 
 /**

@@ -11,7 +11,7 @@ class StartPage {
   }
 
   public draw() {
-    this.drawShape();
+    this.drawShapes();
     this.drawText();
     removeElements();
     this.drawButtons();
@@ -21,7 +21,7 @@ class StartPage {
 
   public update() {}
 
-  private drawShape() {
+  public drawShapes() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(74, 122, 167);
@@ -80,7 +80,7 @@ class StartPage {
     }
   }
 
-  private drawText() {
+  public drawText() {
     push(); // save current styles and transformations
     textFont("Freckle Face");
     fill(255);
@@ -90,7 +90,7 @@ class StartPage {
     pop(); // restore previous styles and transformations
   }
 
-  private drawImages() {
+  public drawImages() {
     if (this.characters.width > 0 && this.characters.height > 0) {
       image(this.characters, width / 2 - 350, height / 2 - -50, 700, 250);
     }

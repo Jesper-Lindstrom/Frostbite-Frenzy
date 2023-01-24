@@ -1,29 +1,12 @@
-/* interface PageContent {
-    [key: string]: string;
+class MenuPage {
+    public draw(): void {
+        this.drawText();
+        this.drawImages();
+        this.drawShapes();
+    }
+
+    public drawImages(): void {}
+    public drawText(): void {}
+    public drawShapes(): void {}
 }
 
-// New example
-export class MenuPage {
-    private content: PageContent;
-
-    public constructor(content: PageContent) {
-        this.content = content;
-    }
-
-    public draw(): void {
-        // Calls for the drawImage-method
-        this.drawImages();
-    }
-
-    public drawText(): void {
-        // Draw the text
-    }
-
-    public drawImages(): void {
-        // Draw the images
-    }
-
-    protected openPage(page: MenuPage): void {
-        // Logic for Opening a page
-    }
-}  */
