@@ -2,8 +2,11 @@
 
 class Monster extends MovingEntity {
 
-    constructor(speed: number, size: p5.Vector, position: p5.Vector){
+    private mapArray: number[][];
+
+    constructor(speed: number, size: p5.Vector, position: p5.Vector, mapArray: number[][]){
         super(position, size, speed);
+        this.mapArray = mapArray;
     }
       
     draw(): void {
@@ -33,13 +36,13 @@ class Monster extends MovingEntity {
         let x = currentPosition.x;
         let y = currentPosition.y;
         if(direction === "up"){
-        if(map[x-1][y] === 0) possibleDirs.push(direction);
+        if(this.mapArray[x-1][y] === 0) possibleDirs.push(direction);
         } else if(direction === "down"){
-        if(map[x+1][y] === 0) possibleDirs.push(direction);
+        if(this.mapArray[x+1][y] === 0) possibleDirs.push(direction);
         } else if(direction === "left"){
-        if(map[x][y-1] === 0) possibleDirs.push(direction);
+        if(this.mapArray[x][y-1] === 0) possibleDirs.push(direction);
         } else if(direction === "right"){
-        if(map[x][y+1] === 0) possibleDirs.push(direction);
+        if(this.mapArray[x][y+1] === 0) possibleDirs.push(direction);
         }
     }
     return possibleDirs;
@@ -63,3 +66,12 @@ class Monster extends MovingEntity {
     }
 
 }
+
+// Set speed according to cell size.
+// eg. cellSize / 10
+// Set property on monster to track frames passed. Start at 0.
+// Add 1 with each frame from update()
+// Run moveRandom when the same number of frames has passed as cellSize was divided by.
+// In this example, 10.
+// Get cell, get random direction
+// Set frame counter property to 0
