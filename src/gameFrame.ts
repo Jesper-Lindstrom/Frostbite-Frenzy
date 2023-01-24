@@ -8,7 +8,6 @@
     // The menu constructor will need to take an argument in the future to describe which page to open. When gameOver, we will need to send player score.
     this.activeState = new Menu();
     this.musicPlaying = musicPlaying;
-    this.newGame(); // Testing purposes. Remove this when menu is incorporated.
    }
 
    public update() {
@@ -16,12 +15,14 @@
    }
 
    public draw() {
-    background('black')
-    this.activeState.draw()
+    background('black');
+    this.activeState.draw();
    }
 
    // This function starts a new game
    public newGame() {
-    this.activeState = new Game()
+      removeElements();
+    this.activeState = new Game();
+    redraw();
    }
 } 

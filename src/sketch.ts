@@ -9,6 +9,13 @@ interface Images {
   iceLower: p5.Image;
   wsadButtons: p5.Image;
   arrowButtons: p5.Image;
+  characters: p5.Image;
+  snowflakes: p5.Image;
+  key: p5.Image;
+  monsterdescriptions: p5.Image;
+  watch: p5.Image;
+  advantagessnowflake: p5.Image;
+  invertarrows: p5.Image;
 }
 
 let images: Images;
@@ -25,6 +32,13 @@ function preload() {
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
+    characters: loadImage("/assets/images/characters.png"),
+    snowflakes: loadImage("/assets/images/snowflakes.png"),
+    key: loadImage("/assets/images/key.png"),
+    monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
+    watch: loadImage("/assets/images/watch.png"),
+    advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
+    invertarrows: loadImage("/assets/images/invertarrows.png")
   }
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
@@ -40,11 +54,8 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(1);
+  frameRate(60);
   gameFrame = new GameFrame(false);
-  frameRate(1);
-  //gameFrame = new GameFrame();
-  controls = new Controls();
 }
 
 /**
@@ -53,7 +64,7 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  gameFrame.update(); // What is the difference between update and draw?
+  gameFrame.update();
   gameFrame.draw();
 }
 

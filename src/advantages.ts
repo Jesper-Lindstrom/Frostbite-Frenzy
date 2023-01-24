@@ -1,23 +1,22 @@
-class Objectives {
-  private readMoreLink: string;
+class Advantages {
   private img: p5.Image;
   private img1: p5.Image;
-  private key: p5.Image;
-  private monsterdescriptions: p5.Image;
+  private watch: p5.Image;
+  private advantagessnowflake: p5.Image;
+  private invertarrows: p5.Image;
 
   public constructor() {
-    this.readMoreLink = "Read More";
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
-    this.key = images.key;
-    this.monsterdescriptions = images.monsterdescriptions;
+    this.watch = images.watch;
+    this.advantagessnowflake = images.advantagessnowflake;
+    this.invertarrows = images.invertarrows;
   }
 
   public draw() {
     this.drawShape();
     this.drawText();
     this.drawImages();
-    this.mousePressed();
   }
 
   private drawShape() {
@@ -42,14 +41,14 @@ class Objectives {
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("Objectives", width / 2, height / 3.3);
+    text("Advantages", width / 2, height / 3.3);
     pop(); // restore previous styles and transformations
 
     push();
     textFont("Freckle Face");
     fill(173, 202, 220);
     textSize(31);
-    text("Collect keys", (width / 2) * 0.7, height / 2.52);
+    text("Get Faster", (width / 2) * 0.7, height / 2.52);
     pop();
 
     push();
@@ -58,10 +57,10 @@ class Objectives {
     textSize(22);
     textWrap(WORD);
     text(
-      "The player with most keys when the time runs out wins!",
+      "Grab a clock to become faster!",
       (width / 2) * 0.7,
       height / 2.4,
-      280
+      150
     );
     pop();
 
@@ -69,7 +68,7 @@ class Objectives {
     textFont("Freckle Face");
     fill(173, 202, 220);
     textSize(29);
-    text("Don't Get Caught", (width / 2) * 0.7, height / 1.97);
+    text("Get Stronger", (width / 2) * 0.7, height / 1.93);
     pop();
 
     push();
@@ -78,10 +77,10 @@ class Objectives {
     textSize(22);
     textWrap(WORD);
     text(
-      "Watch out for monsters - they will freeze you!",
+      "Grab a snowflake to be able to walk through the monsters!",
       (width / 2) * 0.7,
-      height / 1.9,
-      280
+      height / 1.86,
+      285
     );
     pop();
 
@@ -89,7 +88,8 @@ class Objectives {
     textFont("Freckle Face");
     fill(173, 202, 220);
     textSize(29);
-    text("Get Advantages", (width / 2) * 0.7, height / 1.6);
+    textWrap(WORD);
+    text("Mess With The Other Player", (width / 2) * 0.7, height / 1.61, 180);
     pop();
 
     push();
@@ -98,27 +98,11 @@ class Objectives {
     textSize(22);
     textWrap(WORD);
     text(
-      "Pick up special items to get those keys quicker than your opponent!",
+      "Grab the arrows to invert the other player's controls!",
       (width / 2) * 0.7,
-      height / 1.56,
+      height / 1.43,
       280
     );
-    pop();
-
-    push();
-    textFont("Freckle Face");
-    fill(255);
-    textSize(22);
-    textWrap(WORD);
-    text("Faster than the blue one!", (width / 2) * 1.27, height / 1.68, 100);
-    pop();
-
-    push();
-    textFont("Sansita");
-    fill(255);
-    textSize(22);
-    textWrap(WORD);
-    text("Read more", (width / 2) * 0.9, height / 1.35, 100);
     pop();
   }
 
@@ -129,45 +113,23 @@ class Objectives {
     if (this.img1.width > 0 && this.img1.height > 0) {
       image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
     }
-    if (this.key.width > 0 && this.key.height > 0) {
-      image(this.key, width / 2 - -190, height / 2 - 90, 80, 40);
+    if (this.watch.width > 0 && this.watch.height > 0) {
+      image(this.watch, width / 2 - -180, height / 2 - 120, 90, 70);
     }
     if (
-      this.monsterdescriptions.width > 0 &&
-      this.monsterdescriptions.height > 0
+      this.advantagessnowflake.width > 0 &&
+      this.advantagessnowflake.height > 0
     ) {
       image(
-        this.monsterdescriptions,
-        width / 2 - -165,
-        height / 2 - 15,
-        115,
-        105
+        this.advantagessnowflake,
+        width / 2 - -180,
+        height / 2 - -12,
+        90,
+        70
       );
     }
-  }
-
-  public mousePressed() {
-    if (
-      mouseX > (width / 2) * 0.9 &&
-      mouseX < (width / 2) * 0.9 + textWidth(this.readMoreLink) &&
-      mouseY > height / 1.35 - textSize() &&
-      mouseY < height / 1.35
-    ) {
-      // clear the canvas
-      console.log("Klick klick");
-      clear(47, 78, 107, 100);
-      new Advantages().draw();
+    if (this.invertarrows.width > 0 && this.invertarrows.height > 0) {
+      image(this.invertarrows, width / 2 - -180, height / 2 - -150, 85, 70);
     }
   }
 }
-
-/* import { MenuPage } from '../src/menupage';
-
-class Objectives extends MenuPage {
-    
-public constructor(content: PageContent) {
-    super(content);
-} 
-    
-    
-} */

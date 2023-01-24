@@ -3,6 +3,8 @@
 
 class Player extends MovingEntity {
 
+  private color: string; // Testing purposes.
+
   public playerNumber: number;
   private images: p5.Image[];
   private isFrozen: boolean;
@@ -27,6 +29,7 @@ class Player extends MovingEntity {
       new p5.Vector(cellSize * 0.7, cellSize * 0.7),
       7
     );
+    this.color = 'blue'; // Testing purposes.
     this.position.x += cellSize * 0.15;
     this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
@@ -46,18 +49,20 @@ class Player extends MovingEntity {
   }
 
   public update() {
+    this.color = 'blue'; // Testing purposes
+    this.previousPosition = new p5.Vector(this.position.x, this.position.y);
     this.checkUserInput();
     this.updateBounds();
   };
 
   public draw() {
     push();
-    fill("blue");
+    fill(this.color);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
   };
 
-  getKeyCodes(): number[] {
+  private getKeyCodes(): number[] {
     let keyCodes: number[]= []; // David fråga. Bättre sätt att typa?
     if (this.playerNumber === 1) {
       keyCodes = [65, 68, 87, 83]
@@ -86,6 +91,15 @@ class Player extends MovingEntity {
     }
 
   };
+
+  /**
+   * Called by collsionHandler if collsion detected with a wall.
+   * Reverts to previous position to prevent movement before drawing.
+   */
+  public wallCollsion() {
+    this.position = this.previousPosition;
+    this.color = 'yellow'; // Testing purposes
+  }
 
   /**
    * Sets player to frozen, sets time limit.
