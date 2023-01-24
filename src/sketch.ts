@@ -42,7 +42,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   gameFrame = new GameFrame(false);
-  controls = new Controls();
 }
 
 /**

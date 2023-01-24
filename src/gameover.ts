@@ -1,10 +1,14 @@
-/* import { MenuPage } from '../src/menupage';
+/* /// <reference path="movingEntity.ts" />
 
 class GameOver extends MenuPage {
     
-public constructor(content: PageContent) {
-    super(content);
+public constructor() {
+    super();
 } 
+
+public draw() {
+    super.draw();
+}
     
     
-} */
+}  */
