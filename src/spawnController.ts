@@ -73,16 +73,22 @@ class SpawnController {
   }
 
   public randomValidSpawnpoint(){
-    let validSpawnPoints = [];
+    let validSpawnPoints: Coordinates[] = [];
     for (let i = 0; i < this.mapArray.length; i++) {
       for (let j = 0; j < this.mapArray[i].length; j++){
       if (this.mapArray[i][j] === 0) {
-        validSpawnPoints.push(i);
+        validSpawnPoints.push({x: j, y: i});
       }
     }
   }
   let randomIndex = Math.floor(Math.random() * validSpawnPoints.length);
   return validSpawnPoints[randomIndex];
 }
+
 }
 
+
+interface Coordinates {
+  x: number,
+  y: number
+}
