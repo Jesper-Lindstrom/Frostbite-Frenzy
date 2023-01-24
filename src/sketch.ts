@@ -62,9 +62,9 @@ function setup() {
   // frameRate(60);
   //gameFrame = new GameFrame();
   // controls = new Controls();
-  // startpage = new StartPage();
+  startpage = new StartPage();
   // objectives = new Objectives();
-  advantages = new Advantages();
+  // advantages = new Advantages();
 }
 
 /**
@@ -77,9 +77,9 @@ function draw() {
   // gameFrame.update(); // What is the difference between update and draw?
   // gameFrame.draw();
   // controls.draw();
-  // startpage.draw();
+  startpage.draw();
   // objectives.draw();
-  advantages.draw();
+  // advantages.draw();
 }
 
 function keyPressed() {

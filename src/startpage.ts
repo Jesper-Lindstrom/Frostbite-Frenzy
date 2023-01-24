@@ -19,6 +19,8 @@ class StartPage {
     this.drawImages();
   }
 
+  public update() {}
+
   private drawShape() {
     push(); // save current styles and transformations
     rectMode(CENTER);
