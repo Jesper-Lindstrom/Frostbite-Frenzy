@@ -1,10 +1,6 @@
 /// <reference path="movingEntity.ts"/>
 
-
 class Player extends MovingEntity {
-
-  private color: string; // Testing purposes.
-
   public playerNumber: number;
   private image: p5.Image;
   private isFrozen: boolean;
@@ -23,13 +19,12 @@ class Player extends MovingEntity {
   private upButton: number;
   private downButton: number;
 
-  public constructor(position: p5.Vector, cellSize: number, playerNumber: number) {
-    super(
-      position,
-      new p5.Vector(cellSize * 0.7, cellSize * 0.7),
-      7
-    );
-    this.color = 'blue'; // Testing purposes.
+  public constructor(
+    position: p5.Vector,
+    cellSize: number,
+    playerNumber: number
+  ) {
+    super(position, new p5.Vector(cellSize * 0.6, cellSize * 0.6), 7);
     this.position.x += cellSize * 0.15;
     this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
@@ -38,56 +33,70 @@ class Player extends MovingEntity {
     this.isImmortal = false;
     this.isInverted = false;
     this.powerupTimer = 0;
-    
+
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
     this.rightButton = this.keyCodes[1];
     this.upButton = this.keyCodes[2];
     this.downButton = this.keyCodes[3];
-    
-
   }
 
+  /**
+   * Returns which key codes to be assigned to playe controls.
+   * @returns {number[]}
+   */
   private getKeyCodes(): number[] {
-    let keyCodes: number[]= []; // David fråga. Bättre sätt att typa?
+    let keyCodes: number[] = [];
     if (this.playerNumber === 1) {
-      keyCodes = [65, 68, 87, 83]
+      keyCodes = [65, 68, 87, 83];
     } else if (this.playerNumber === 2) {
-      keyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW]
+      keyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW];
     }
     return keyCodes;
   }
 
+  /**
+   * Returns the right images for the player number.
+   * @returns {p5.Image}
+   */
   private getImages(): p5.Image {
     let playerImages: p5.Image = images.yellowSnowman;
     if (this.playerNumber === 2) {
-      playerImages = images.greenSnowman
+      playerImages = images.greenSnowman;
     }
-    return playerImages
+    return playerImages;
   }
 
   public update() {
-    this.color = 'blue'; // Testing purposes
+    /**
+     * Here we record the player's starting position at each frame in order to
+     * reset the new position on collision with a wall.
+     */
     this.previousPosition = new p5.Vector(this.position.x, this.position.y);
     this.checkUserInput();
     this.updateBounds();
-  };
+  }
 
   public draw() {
     push();
-    fill(this.color);
+    fill(0, 0, 0, 0);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
     console.log(this.image);
     debugger;
-    image(this.image, this.position.x, this.position.y - (this.size.y * 1.5), 100, 200);
-  };
+    image(
+      this.image,
+      this.position.x - this.size.x * 0.1,
+      this.position.y - this.size.y * 0.7,
+      this.size.x * 1.2,
+      this.size.y * 1.7
+    );
+  }
 
   /**
    * Called from update. Checks keyboard input.
    */
   private checkUserInput() {
-
     if (keyIsDown(this.leftButton)) {
       this.position.x -= this.speed;
     }
@@ -100,8 +109,7 @@ class Player extends MovingEntity {
     if (keyIsDown(this.downButton)) {
       this.position.y += this.speed;
     }
-
-  };
+  }
 
   /**
    * Called by collsionHandler if collsion detected with a wall.
@@ -109,31 +117,29 @@ class Player extends MovingEntity {
    */
   public wallCollsion() {
     this.position = this.previousPosition;
-    this.color = 'yellow'; // Testing purposes
   }
 
   /**
    * Sets player to frozen, sets time limit.
    * Called by collisionHandler.
    */
-  public freeze() {};
+  public freeze() {}
 
   /**
    * Increases player speed during limited time.
    * Called by collisionHandler.
    */
-  public speedUp() {};
+  public speedUp() {}
 
   /**
    * Set isImmortal to true for a limited time.
    * Called by collisionHandler.
    */
-  public makeImmortal() {};
+  public makeImmortal() {}
 
   /**
    * Sets key controls to opposite sides during limited time.
    * Called by collisionHandler.
    */
-  public invertKeys() {};
-
+  public invertKeys() {}
 }
