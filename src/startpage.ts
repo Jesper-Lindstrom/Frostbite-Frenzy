@@ -56,7 +56,7 @@ class StartPage {
       button.mousePressed(() => {
         // callback function to call when the button is clicked
         if (i === 0) {
-          startGame();
+          gameFrame.newGame();
         } else if (i === 1) {
           showObjectives();
         } else if (i === 2) {
@@ -112,17 +112,12 @@ class StartPage {
       this.currentOption = max(this.currentOption - 1, 0);
     } else if (key === "Enter") {
       if (this.currentOption === this.options.length - 1) {
-        startGame();
+        gameFrame.newGame();
         console.log("Click");
       }
     }
     this.updateHover();
   }
-}
-
-function startGame() {
-  // code to start the game
-  gameFrame.newGame();
 }
 
 function showObjectives() {
