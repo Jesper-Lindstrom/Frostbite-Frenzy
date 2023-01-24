@@ -3,6 +3,7 @@
 let gameFrame: GameFrame;
 let controls: Controls;
 let fontFreckleFace: p5.Font;
+let fontSansita: p5.Font;
 // let menuFont;
 
 interface Images {
@@ -29,6 +30,7 @@ let images: Images;
  */
 function preload() {
   fontFreckleFace = loadFont("/assets/fonts/FreckleFace.ttf");
+  fontSansita = loadFont("/assets/fonts/Sansita.ttf");
 
   images = {
     iceUpper: loadImage("/assets/images/ice1.png"),

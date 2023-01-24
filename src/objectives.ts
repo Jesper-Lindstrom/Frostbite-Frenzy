@@ -38,7 +38,7 @@ class Objectives {
 
   private drawText() {
     push(); // save current styles and transformations
-    textFont("Sansita");
+    textFont(fontSansita);
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
