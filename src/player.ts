@@ -33,12 +33,12 @@ class Player extends MovingEntity {
     this.position.x += cellSize * 0.15;
     this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
-    this.image = images.yellowSnowman;
+    this.image = this.getImages();
     this.isFrozen = false;
     this.isImmortal = false;
     this.isInverted = false;
     this.powerupTimer = 0;
-
+    
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
     this.rightButton = this.keyCodes[1];
@@ -58,13 +58,13 @@ class Player extends MovingEntity {
     return keyCodes;
   }
 
-  // private getImages(): p5.Image {
-  //   let playerImages: p5.Image = images.yellowSnowman;
-  //   if (this.playerNumber === 2) {
-  //     playerImages = images.greenSnowman
-  //   }
-  //   return playerImages
-  // }
+  private getImages(): p5.Image {
+    let playerImages: p5.Image = images.yellowSnowman;
+    if (this.playerNumber === 2) {
+      playerImages = images.greenSnowman
+    }
+    return playerImages
+  }
 
   public update() {
     this.color = 'blue'; // Testing purposes
