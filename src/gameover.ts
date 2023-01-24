@@ -1,10 +1,14 @@
-/* import { MenuPage } from '../src/menupage';
+// import { MenuPage } from '../src/menupage';
 
-class GameOver extends MenuPage {
+class GameOver extends Menupage {
     
-public constructor(content: PageContent) {
-    super(content);
+public constructor() {
+    super();
 } 
+
+public draw() {
+    super.draw();
+}
     
     
-} */
+} 
