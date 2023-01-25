@@ -1,4 +1,4 @@
-class StartPage {
+class StartPage extends MenuPage {
   public menu: Menu;
   private characters: p5.Image;
   private snowflakes: p5.Image;
@@ -7,6 +7,7 @@ class StartPage {
   private buttons: p5.Element[] = [];
 
   public constructor(menu: Menu) {
+    super();
     this.menu = menu;
     this.characters = images.characters;
     this.snowflakes = images.snowflakes;

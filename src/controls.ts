@@ -1,6 +1,7 @@
 /// <reference path="menupage.ts" />
 
 class Controls extends MenuPage {
+  // public menu: Menu;
   private img: p5.Image;
   private img1: p5.Image;
   private img2: p5.Image;
@@ -9,6 +10,7 @@ class Controls extends MenuPage {
 
   public constructor() {
     super();
+    // this.menu = menu;
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
     this.img2 = images.wsadButtons;
@@ -87,18 +89,47 @@ class Controls extends MenuPage {
       image(this.img3, width / 2 - -50, height / 2 - 30, 140, 80);
     }
     if (this.img4.width > 0 && this.img4.height > 0) {
+      rect(width / 2 - 305, height / 2 - -190, 60, 60);
+      fill(47, 78, 107);
       image(this.img4, width / 2 - 320, height / 2 - -180, 90, 90);
-    }
-  }
-
-  public mouseClicked() {
-    if (
-      mouseX > width / 2 - this.img4.width / 2 &&
-      mouseX < width / 2 + this.img4.width / 2 &&
-      mouseY > height / 2 - this.img4.height / 2 &&
-      mouseY < height / 2 + this.img4.height / 2
-    ) {
-      console.log("img4 clicked");
+      // image(this.img4, width / 2 - 320, height / 2 - -180, 90, 90);
     }
   }
 }
+
+function mousePressed() {
+  if (
+    mouseX > width / 2 - 320 &&
+    mouseX < width / 2 - 320 + 90 &&
+    mouseY > height / 2 - -180 &&
+    mouseY < height / 2 - -180 + 90
+  ) {
+    handleMousePress();
+  }
+}
+
+function handleMousePress() {
+  // this.menu.openPage(new StartPage(this));
+  console.log("Klick");
+}
+// function mousePressed() {
+//   if (
+//     mouseX > width / 2 - 320 &&
+//     mouseX < width / 2 - 230 &&
+//     mouseY > height / 2 - 270 &&
+//     mouseY < height / 2 - 180
+//   ) {
+//     // Add desired behavior here, such as:
+//     // window.location.href = "example.com"; or
+//     console.log("arrow clicked");
+//   }
+// }
+// public mouseClicked() {
+//   if (
+//     mouseX > width / 2 - this.img4.width / 2 &&
+//     mouseX < width / 2 + this.img4.width / 2 &&
+//     mouseY > height / 2 - this.img4.height / 2 &&
+//     mouseY < height / 2 + this.img4.height / 2
+//   ) {
+//     console.log("img4 clicked");
+//   }
