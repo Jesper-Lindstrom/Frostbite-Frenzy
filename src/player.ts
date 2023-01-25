@@ -1,4 +1,6 @@
 /// <reference path="movingEntity.ts"/>
+/// <reference path="key.ts"/>
+
 
 class Player extends MovingEntity {
   public playerNumber: number;
@@ -84,8 +86,8 @@ class Player extends MovingEntity {
     fill(0, 0, 0, 0);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
-    console.log(this.image);
-    debugger;
+    // console.log(this.image);
+    // debugger;
     image(
       this.image,
       this.position.x - this.size.x * 0.1,
@@ -126,8 +128,7 @@ class Player extends MovingEntity {
    */
   public keyCollection() {
     this.playerScore += 1;
-    this.color ='black';
-    console.log(this.playerScore)
+    console.log('Player ' + this.playerNumber + ' is ' + this.playerScore)
   }
 
   /**
