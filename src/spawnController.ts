@@ -5,7 +5,6 @@ class SpawnController {
   private gridCols: number;
   private gridRows: number;
   private cellSize: number;
-
   
   constructor(mapArray: number[][]){
 
@@ -25,7 +24,6 @@ class SpawnController {
   public update() {
     
   }
-  
   public draw(){
   }
 
@@ -51,9 +49,8 @@ class SpawnController {
     });
     return players;
   }
-  
 
-  public createEntities() {
+  public createStaticEntities() {
     const entities: GameEntity[] = [];
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
@@ -63,8 +60,6 @@ class SpawnController {
         )
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
-        } else if (cell == 2) {
-
         }
       });
     });
@@ -73,11 +68,11 @@ class SpawnController {
   }
 
   public randomValidSpawnpoint(){
-    let validSpawnPoints: Coordinates[] = [];
+    let validSpawnPoints = [];
     for (let i = 0; i < this.mapArray.length; i++) {
       for (let j = 0; j < this.mapArray[i].length; j++){
       if (this.mapArray[i][j] === 0) {
-        validSpawnPoints.push({x: j, y: i});
+        validSpawnPoints.push(i);
       }
     }
   }
@@ -85,10 +80,38 @@ class SpawnController {
   return validSpawnPoints[randomIndex];
 }
 
+public spawnEntity() {
+  this.randomValidSpawnpoint();
+  // spawn entity at (x, y)
+  for (let i = 0; i < 4; i++){
+    new Monster(10, size, (this.cellSize, this.cellSize), [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],]);
+  }
+}
 }
 
 
-interface Coordinates {
-  x: number,
-  y: number
-}
+// RandomValidSpawnpoint picks out a random index of the zeroes in mapArray
+// RandomValidSpawnpoint needs to save the coordinates of that 0,
+// spawnEntity recieves those coordinates and initiates spawning of an entity depending on time/how many monsters have spawned/etc.
+// Calls to create new object as needed, which will update/draw itself.
