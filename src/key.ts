@@ -13,7 +13,7 @@ class Key extends GameEntity {
     public draw() {
       push();
       fill('white')
-      rect(this.position.x, this.position.y, this.size.x, this.size.y)
+      rect(this.position.x, this.position.y, this.size.x * 0.5, this.size.y * 0.5)
       pop();
     }
     public update() {}
@@ -24,7 +24,7 @@ class Key extends GameEntity {
 
 //börja med att få EN nyckeln att synas
   // skapa klassen. Position och storlek behövs.
-  // mata in i 2d arrayen med siffran 4
+  // mata in i 2d arrayen med siffran 4 (senare randomspawnpoint som Linus jobbar på)
 
 
 //Kollisionshantering del 1 ta bort och ersätt nyckel

@@ -10,6 +10,7 @@ class Player extends MovingEntity {
   private isFrozen: boolean;
   private isImmortal: boolean;
   private isInverted: boolean;
+  private playerScore: number;
   /**
    * Keeps track of the time that a player powerup has been active.
    * Counts downwards in milliseconds.
@@ -38,6 +39,7 @@ class Player extends MovingEntity {
     this.isImmortal = false;
     this.isInverted = false;
     this.powerupTimer = 0;
+    this.playerScore = 0;
 
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
@@ -99,6 +101,15 @@ class Player extends MovingEntity {
   public wallCollsion() {
     this.position = this.previousPosition;
     this.color = 'yellow'; // Testing purposes
+  }
+
+  /**
+   * Increases the playerscore after picking up a key
+   */
+  public keyCollection() {
+    this.playerScore += 1;
+    this.color ='black';
+    console.log(this.playerScore)
   }
 
   /**
