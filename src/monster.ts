@@ -13,16 +13,14 @@ class Monster extends MovingEntity {
         
     }
     update(){
-
+        this.getPossibleDirections()
+        this.moveRandom()
     }
-
-
     /* First iteration of a movement handler for the monster object. 
     function getPossibleDirections checks the four surrounding cells of the current position of the monster.
     It returns an array of possible directions for the monster to go in. 
     after that the moveRandom function will choose from these four directions, and the calcultion will run again.
     this is as random as we can get with 0 intelligence for monster.  */
-
 
     private getPossibleDirections() {
     let possibleDirections = ["up", "down", "left", "right"];

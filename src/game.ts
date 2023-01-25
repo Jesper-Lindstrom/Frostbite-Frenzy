@@ -38,22 +38,19 @@ class Game {
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]);
     this.players = this.spawnController.createPlayers();
-    this.entities = this.spawnController.createEntities();
+    this.entities = this.spawnController.createStaticEntities();
     this.timer = new Timer();
     this.scoreTable = new ScoreTable();
   }
-
   public update() {
     this.updatePlayers();
     this.updateEntities();
     this.checkCollision();
   }
-
   public draw() {
     this.drawEntities();
     this.drawPlayers();
   }
-
   private updatePlayers() {
     for (const player of this.players) {
       player.update();
@@ -66,7 +63,6 @@ class Game {
       // }
     }
   }
-  
   private drawEntities() {
     for (const entity of this.entities) {
       entity.draw();
@@ -80,13 +76,11 @@ class Game {
   private drawMonsters() {};
   private drawKeys() {};
   private drawPowerups() {};
-
   /**
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
    * Calls collisionHandler sending which entities have collided as arguments.
    */
   public checkCollision() {
-
       for (const player of this.players) {
         for (const entity of this.entities) {
           if(player.bounds.left > entity.bounds.right ||
@@ -97,8 +91,7 @@ class Game {
               this.collisionHandler(player, entity)
             }
         }
-      }    
-
+      }
   };
 
   /**
