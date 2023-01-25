@@ -11,6 +11,8 @@ interface Images {
   iceLower: p5.Image;
   wsadButtons: p5.Image;
   arrowButtons: p5.Image;
+  yellowSnowman: p5.Image;
+  greenSnowman: p5.Image;
   characters: p5.Image;
   snowflakes: p5.Image;
   key: p5.Image;
@@ -37,6 +39,8 @@ function preload() {
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
+    yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
+    greenSnowman: loadImage("/assets/images/greensnowman.png"),
     characters: loadImage("/assets/images/characters.png"),
     snowflakes: loadImage("/assets/images/snowflakes.png"),
     key: loadImage("/assets/images/key.png"),
