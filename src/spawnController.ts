@@ -50,7 +50,7 @@ class SpawnController {
     return players;
   }
 
-  public createStaticEntities() {
+  public createEntities() {
     const entities: GameEntity[] = [];
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
