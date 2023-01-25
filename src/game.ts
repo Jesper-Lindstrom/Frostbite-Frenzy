@@ -113,7 +113,7 @@ class Game {
 
     }
     if (entity instanceof Key) {
-      
+      player.keyCollection();
     }
     if (entity instanceof InvertKeys) {
       
@@ -138,7 +138,9 @@ class Game {
    * Called by collisionHandler when a collision is detected between a player and a key.
    * Calls functions that spawn a new key (in spawnController) and that update the player's score (in scoreTable).
    */
-  keyCollection() {};
+  keyCollection() {
+    
+  };
 
   /**
    * Chcecks elapsed time using a getTime method in the timer object.
