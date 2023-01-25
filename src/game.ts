@@ -1,12 +1,7 @@
 class Game {
-    /**
-     * The arena object is the square upon which the game will be rendered.
-     * It will have a position desribed by a Vector and a height and width relative to the height of the canvas.
-     * The arena's properties are sent to the spawnController's constructor in order for spawnController to place objects within it.
-     */
+    private mapSize: number;
     private players: Player[];
     private entities: GameEntity[];
-
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -15,6 +10,7 @@ class Game {
     private spawnController: SpawnController;
 
   constructor() {
+    this.mapSize = height * 0.9;
     this.spawnController = new SpawnController([
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -37,26 +33,27 @@ class Game {
       [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    ]);
+    ], this.mapSize);
     this.players = this.spawnController.createPlayers();
-    this.entities = this.spawnController.createStaticEntities();
-    this.timer = new Timer();
-    this.scoreTable = new ScoreTable();
-
-    for (let i = 0; i < 4; i++) {
-      this.entities.push(this.spawnController.spawnMonster());
-    }
-
+    this.entities = this.spawnController.createEntities();
+    this.timer = new Timer(this.mapSize);
+    this.scoreTable = new ScoreTable(this.mapSize);
   }
+
   public update() {
     this.updatePlayers();
     this.updateEntities();
     this.checkCollision();
+    this.timer.update();
   }
+
   public draw() {
     this.drawEntities();
     this.drawPlayers();
+    this.timer.draw();
+    this.scoreTable.draw();
   }
+
   private updatePlayers() {
     for (const player of this.players) {
       player.update();
@@ -69,6 +66,7 @@ class Game {
       // }
     }
   }
+  
   private drawEntities() {
     for (const entity of this.entities) {
       entity.draw();
@@ -82,11 +80,13 @@ class Game {
   private drawMonsters() {};
   private drawKeys() {};
   private drawPowerups() {};
+
   /**
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
    * Calls collisionHandler sending which entities have collided as arguments.
    */
   public checkCollision() {
+
       for (const player of this.players) {
         for (const entity of this.entities) {
           if(player.bounds.left > entity.bounds.right ||
@@ -97,7 +97,8 @@ class Game {
               this.collisionHandler(player, entity)
             }
         }
-      }
+      }    
+
   };
 
   /**
