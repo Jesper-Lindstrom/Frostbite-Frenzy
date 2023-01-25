@@ -82,7 +82,7 @@ class StartPage {
 
   public drawText() {
     push(); // save current styles and transformations
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(255);
     textSize(42);
     textAlign(CENTER, CENTER);
