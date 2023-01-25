@@ -1,9 +1,5 @@
 class Game {
-    /**
-     * The arena object is the square upon which the game will be rendered.
-     * It will have a position desribed by a Vector and a height and width relative to the height of the canvas.
-     * The arena's properties are sent to the spawnController's constructor in order for spawnController to place objects within it.
-     */
+    private mapSize: number;
     private players: Player[];
     private entities: GameEntity[];
     private timer: Timer;
@@ -14,6 +10,7 @@ class Game {
     private spawnController: SpawnController;
 
   constructor() {
+    this.mapSize = height * 0.9;
     this.spawnController = new SpawnController([
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -36,10 +33,10 @@ class Game {
       [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    ]);
+    ], this.mapSize);
     this.players = this.spawnController.createPlayers();
     this.entities = this.spawnController.createEntities();
-    this.timer = new Timer();
+    this.timer = new Timer(this.mapSize);
     this.scoreTable = new ScoreTable();
   }
 
@@ -52,6 +49,7 @@ class Game {
   public draw() {
     this.drawEntities();
     this.drawPlayers();
+    this.timer.draw();
   }
 
   private updatePlayers() {
