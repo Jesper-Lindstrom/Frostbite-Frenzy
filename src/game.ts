@@ -44,6 +44,7 @@ class Game {
     this.updatePlayers();
     this.updateEntities();
     this.checkCollision();
+    this.timer.update();
   }
 
   public draw() {

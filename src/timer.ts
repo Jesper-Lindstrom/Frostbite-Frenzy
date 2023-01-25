@@ -3,6 +3,7 @@ class Timer {
     private seconds: number;
     private timerText: string;
     private timerRunning: boolean;
+    private deltaSecond: number;
 
     // Properties related to on screen display.
     private fontSize: number;
@@ -13,7 +14,9 @@ class Timer {
     public constructor(mapSize: number) {
         this.minutes = 3;
         this.seconds = 0;
-        this.timerRunning = false;
+        this.timerRunning = true;
+        this.deltaSecond = 0;
+
         this.fontSize = (mapSize / 9) / 3;
         this.x = width / 2;
         this.y = this.fontSize / 5;
@@ -24,11 +27,22 @@ class Timer {
      * Updates the time every second using delta time.
      */
     public update() {
-        this.timerText = this.setTimerText();
+        if (this.timerRunning) {
+            this.deltaSecond += deltaTime;
+            if (this.deltaSecond >= 1000) {
+                this.seconds -= 1;
+                if (this.seconds === -1) {
+                    this.minutes -= 1;
+                    this.seconds = 59;
+                }
+                this.timerText = this.setTimerText();
+                this.deltaSecond = 0;
+            }
+        }
     }
 
     /**
-     * Updates the time display every second.
+     * Draws the timer display.
      */
     public draw() {
         push();
