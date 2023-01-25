@@ -37,7 +37,7 @@ class Game {
     this.players = this.spawnController.createPlayers();
     this.entities = this.spawnController.createEntities();
     this.timer = new Timer(this.mapSize);
-    this.scoreTable = new ScoreTable();
+    this.scoreTable = new ScoreTable(this.mapSize);
   }
 
   public update() {
@@ -51,6 +51,7 @@ class Game {
     this.drawEntities();
     this.drawPlayers();
     this.timer.draw();
+    this.scoreTable.draw();
   }
 
   private updatePlayers() {

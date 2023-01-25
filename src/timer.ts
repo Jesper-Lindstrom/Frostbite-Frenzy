@@ -6,7 +6,7 @@ class Timer {
     private deltaSecond: number;
 
     // Properties related to on screen display.
-    private fontSize: number;
+    private textSize: number;
     private x: number;
     private y: number;
     
@@ -17,9 +17,9 @@ class Timer {
         this.timerRunning = true;
         this.deltaSecond = 0;
 
-        this.fontSize = (mapSize / 9) / 3;
+        this.textSize = (mapSize / 9) / 3;
         this.x = width / 2;
-        this.y = this.fontSize / 5;
+        this.y = this.textSize / 5;
         this.timerText = this.setTimerText();
     }
 
@@ -48,7 +48,7 @@ class Timer {
         push();
         fill('white');
         textFont(fontFreckleFace);
-        textSize(this.fontSize);
+        textSize(this.textSize);
         textAlign(CENTER, TOP);
         text(this.timerText, this.x, this.y);
         pop();    
