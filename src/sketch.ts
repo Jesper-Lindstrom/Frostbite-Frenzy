@@ -13,11 +13,15 @@ interface Images {
   characters: p5.Image;
   snowflakes: p5.Image;
   key: p5.Image;
+  key2: p5.Image;
+  key3: p5.Image;
+  key4: p5.Image;
   monsterdescriptions: p5.Image;
   watch: p5.Image;
   advantagessnowflake: p5.Image;
   invertarrows: p5.Image;
   purpleMonsterSingle: p5.Image;
+  monsterBlue: p5.Image;
   yellowSnowman: p5.Image;
   greenSnowman:p5.Image;
 
@@ -39,11 +43,15 @@ function preload() {
     characters: loadImage("/assets/images/characters.png"),
     snowflakes: loadImage("/assets/images/snowflakes.png"),
     key: loadImage("/assets/images/key.png"),
+    key2: loadImage("/assets/images/key2.png"),
+    key3: loadImage("/assets/images/key3.png"),
+    key4: loadImage("/assets/images/key4.png"),
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
+    monsterBlue: loadImage("/assets/images/monsterBlue.png"),
     greenSnowman: loadImage("/assets/images/greenSnowman.png"),
     yellowSnowman: loadImage("/assets/images/yellowSnowman.png"),
 
