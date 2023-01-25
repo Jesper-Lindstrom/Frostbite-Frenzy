@@ -113,7 +113,7 @@ class Player extends MovingEntity {
    * Called by collsionHandler if collsion detected with a wall.
    * Reverts to previous position to prevent movement before drawing.
    */
-  public wallCollsion() {
+  public wallCollision() {
     this.position = this.previousPosition;
   }
 

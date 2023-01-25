@@ -14,13 +14,13 @@ private direction: string;
     super(
       new p5.Vector(position.x + cellSize * 0.1, position.y + cellSize * 0.1),
       new p5.Vector(cellSize * 0.8, cellSize * 0.8),
-      cellSize / 15
+      cellSize / 2
     );
     this.mapArray = mapArray;
     this.mapPosition = mapPosition;
     this.cellSize = cellSize;
     this.stepCounter = 0;
-    this.cellSteps = 15;
+    this.cellSteps = 2;
     this.direction = this.setDirection();
   }
 
@@ -79,8 +79,8 @@ private direction: string;
   }
 
   private getCell(): Coordinates {
-    const x = Math.floor((this.position.x - this.mapPosition.x) / this.cellSize);
-    const y = Math.floor((this.position.y - this.mapPosition.y) / this.cellSize);
+    const x = Math.ceil((this.position.x - this.mapPosition.x) / this.cellSize);
+    const y = Math.ceil((this.position.y - this.mapPosition.y) / this.cellSize);
     return { x: x, y: y};
   }
 

@@ -63,7 +63,7 @@ function preload() {
  */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(60);
+  frameRate(10);
   gameFrame = new GameFrame(false);
 }
 
