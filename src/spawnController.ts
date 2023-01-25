@@ -1,6 +1,6 @@
 class SpawnController {
   private mapSize: number;
-  private startPoint: p5.Vector;
+  private mapPosition: p5.Vector;
   private mapArray: number[][];
   private gridCols: number;
   private gridRows: number;
@@ -13,7 +13,7 @@ class SpawnController {
     let startX = (width - this.mapSize) / 2;
     let startY = (height - this.mapSize) / 2;
 
-    this.startPoint = new p5.Vector(startX, startY);
+    this.mapPosition = new p5.Vector(startX, startY);
 
     this.mapArray = mapArray;
     this.gridRows = this.mapArray.length;
@@ -38,8 +38,8 @@ class SpawnController {
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
         const position = new p5.Vector(
-          j * this.cellSize + this.startPoint.x,
-          i * this.cellSize + this.startPoint.y
+          j * this.cellSize + this.mapPosition.x,
+          i * this.cellSize + this.mapPosition.y
         )
         if (cell === 2) {
           players.push(new Player(position, this.cellSize, pNum));
@@ -55,8 +55,8 @@ class SpawnController {
     this.mapArray.forEach((row, i) => {
       row.forEach((cell, j) => {
         const position = new p5.Vector(
-          j * this.cellSize + this.startPoint.x,
-          i * this.cellSize + this.startPoint.y
+          j * this.cellSize + this.mapPosition.x,
+          i * this.cellSize + this.mapPosition.y
         )
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
@@ -84,14 +84,14 @@ class SpawnController {
   let randomIndex = Math.floor(Math.random() * validSpawnPoints.length);
   let spawnPoint = validSpawnPoints[randomIndex];
   return new p5.Vector(
-    spawnPoint.x * this.cellSize + this.startPoint.x,
-    spawnPoint.y * this.cellSize + this.startPoint.y
+    spawnPoint.x * this.cellSize + this.mapPosition.x,
+    spawnPoint.y * this.cellSize + this.mapPosition.y
   );
 }
 
 public createMonster(): Monster {
     const spawnPos = this.randomValidSpawnpoint();
-    return new Monster(spawnPos, this.cellSize, this.mapArray);
+    return new Monster(spawnPos, this.cellSize, this.mapArray, this.mapPosition);
   }
 }
 

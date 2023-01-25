@@ -63,9 +63,9 @@ class Game {
 
   private updateEntities() {
     for (const entity of this.entities) {
-      // if (entity instanceof MovableEntity) {
-      //   entity.update();   
-      // }
+      if (entity instanceof MovingEntity) {
+        entity.update();   
+      }
     }
   }
 

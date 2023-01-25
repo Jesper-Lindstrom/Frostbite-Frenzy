@@ -2,14 +2,26 @@
 
 class Monster extends MovingEntity {
   private mapArray: number[][];
+  private mapPosition: p5.Vector;
+  private cellSize: number;
 
-  constructor(position: p5.Vector, cellSize: number, mapArray: number[][]) {
+  private stepCounter: number;
+  private cellSteps: number;
+
+private direction: string;
+
+  constructor(position: p5.Vector, cellSize: number, mapArray: number[][], mapPosition: p5.Vector) {
     super(
       new p5.Vector(position.x + cellSize * 0.1, position.y + cellSize * 0.1),
       new p5.Vector(cellSize * 0.8, cellSize * 0.8),
-      cellSize / 10
+      cellSize / 15
     );
     this.mapArray = mapArray;
+    this.mapPosition = mapPosition;
+    this.cellSize = cellSize;
+    this.stepCounter = 0;
+    this.cellSteps = 15;
+    this.direction = this.setDirection();
   }
 
   draw(): void {
@@ -20,24 +32,35 @@ class Monster extends MovingEntity {
   }
 
   update() {
-    this.getPossibleDirections();
-    this.moveRandom();
+    this.directionControl();
+    this.move();
   }
+
+
+
+  private directionControl() {
+    if (this.stepCounter === this.cellSteps) {
+        this.direction = this.setDirection();
+        this.stepCounter = 0;
+    } else {
+        this.stepCounter ++
+    }
+  }
+
   /* First iteration of a movement handler for the monster object. 
     function getPossibleDirections checks the four surrounding cells of the current position of the monster.
     It returns an array of possible directions for the monster to go in. 
     after that the moveRandom function will choose from these four directions, and the calcultion will run again.
     this is as random as we can get with 0 intelligence for monster.  */
-
-  private getPossibleDirections() {
-    let possibleDirections = ["up", "down", "left", "right"];
-    let currentPosition = { x: 1, y: 1 };
+  private setDirection() {
+    let directions = ["up", "down", "left", "right"];
+    let currentPosition = this.getCell();
     let possibleDirs = [];
 
     /*The "MAP" that is being referred to should be of type "boolean". We need a function that converts 1 and 0 in our mapArray into true and false.
     That is an easier logic for the function to work properly in typescript. I think.. */
 
-    for (let direction of possibleDirections) {
+    for (let direction of directions) {
       let x = currentPosition.x;
       let y = currentPosition.y;
       if (direction === "up") {
@@ -50,19 +73,27 @@ class Monster extends MovingEntity {
         if (this.mapArray[x][y + 1] === 0) possibleDirs.push(direction);
       }
     }
-    return possibleDirs;
+    
+    return possibleDirs[Math.ceil(Math.random() * possibleDirs.length)];
+
   }
 
-  private moveRandom() {
-    let possibleDirections = ["up", "down", "right", "left"];
+  private getCell(): Coordinates {
+    const x = Math.floor((this.position.x - this.mapPosition.x) / this.cellSize);
+    const y = Math.floor((this.position.y - this.mapPosition.y) / this.cellSize);
+    return { x: x, y: y};
+  }
 
-    let randomIndex = Math.floor(Math.random() * possibleDirections.length);
-    let chosenDirection = possibleDirections[randomIndex];
+  private move() {
 
-    if (chosenDirection === "up") {
-    } else if (chosenDirection === "down") {
-    } else if (chosenDirection === "right") {
-    } else if (chosenDirection === "left") {
+    if (this.direction === "up") {
+        this.position.y -= this.speed;
+    } else if (this.direction === "down") {
+        this.position.y += this.speed;
+    } else if (this.direction === "right") {
+        this.position.x += this.speed;
+    } else if (this.direction === "left") {
+        this.position.x -= this.speed;
     }
   }
 }

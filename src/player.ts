@@ -82,7 +82,6 @@ class Player extends MovingEntity {
     fill(0, 0, 0, 0);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
-    debugger;
     image(
       this.image,
       this.position.x - this.size.x * 0.1,
