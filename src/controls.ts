@@ -30,12 +30,12 @@ class Controls extends MenuPage {
   }
 
   public draw() {
-    this.drawShape();
+    this.drawShapes();
     this.drawText();
     this.drawImages();
   }
 
-  private drawShape() {
+  private drawShapes() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(74, 122, 167);

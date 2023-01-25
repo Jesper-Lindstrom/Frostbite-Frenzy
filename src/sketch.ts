@@ -17,6 +17,10 @@ interface Images {
   watch: p5.Image;
   advantagessnowflake: p5.Image;
   invertarrows: p5.Image;
+  purpleMonsterSingle: p5.Image;
+  yellowSnowman: p5.Image;
+  greenSnowman:p5.Image;
+
 }
 
 let images: Images;
@@ -38,7 +42,11 @@ function preload() {
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
-    invertarrows: loadImage("/assets/images/invertarrows.png")
+    invertarrows: loadImage("/assets/images/invertarrows.png"),
+    purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
+    greenSnowman: loadImage("/assets/images/greenSnowman.png"),
+    yellowSnowman: loadImage("/assets/images/yellowSnowman.png"),
+
   }
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
@@ -56,6 +64,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   gameFrame = new GameFrame(false);
+  
 }
 
 /**

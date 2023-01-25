@@ -1,8 +1,8 @@
 class Menu {
-  private activePage: MenuPage;
+  private activePage: Gameover;
 
   public constructor() {
-      this.activePage = new StartPage();
+      this.activePage = new Gameover();
   }
 
   public update(): void {}
