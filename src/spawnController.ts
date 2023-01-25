@@ -63,7 +63,9 @@ class SpawnController {
         }
       });
     });
-
+    for (let i = 0; i < 4; i++) {
+      entities.push(this.createMonster());
+    }
     return entities;
   }
 
@@ -87,7 +89,7 @@ class SpawnController {
   );
 }
 
-public spawnMonster(): Monster {
+public createMonster(): Monster {
     const spawnPos = this.randomValidSpawnpoint();
     return new Monster(spawnPos, this.cellSize, this.mapArray);
   }
