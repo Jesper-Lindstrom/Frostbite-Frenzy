@@ -6,6 +6,7 @@ class Game {
      */
     private players: Player[];
     private entities: GameEntity[];
+
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -41,6 +42,11 @@ class Game {
     this.entities = this.spawnController.createStaticEntities();
     this.timer = new Timer();
     this.scoreTable = new ScoreTable();
+
+    for (let i = 0; i < 4; i++) {
+      this.entities.push(this.spawnController.spawnMonster());
+    }
+
   }
   public update() {
     this.updatePlayers();

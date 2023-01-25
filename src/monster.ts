@@ -4,14 +4,20 @@ class Monster extends MovingEntity {
 
     private mapArray: number[][];
 
-    constructor(speed: number, size: p5.Vector, position: p5.Vector, mapArray: number[][]){
-        super(position, size, speed);
+    constructor(position: p5.Vector, cellSize: number,  mapArray: number[][]){
+        super(position, new p5.Vector(
+            cellSize * 0.8,
+            cellSize * 0.8
+        ), cellSize / 10);
         this.mapArray = mapArray;
     }
       
     draw(): void {
-        
+        push();
+        fill('white');
+        circle(this.position.x, this.position.y, this.size.x);
     }
+
     update(){
         this.getPossibleDirections()
         this.moveRandom()
