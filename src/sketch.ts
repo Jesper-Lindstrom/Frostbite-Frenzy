@@ -20,10 +20,10 @@ interface Images {
   watch: p5.Image;
   advantagessnowflake: p5.Image;
   invertarrows: p5.Image;
+  backarrow: p5.Image;
 }
 
 let images: Images;
-
 
 /**
  * Built in preload function in P5
@@ -47,8 +47,9 @@ function preload() {
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
-    invertarrows: loadImage("/assets/images/invertarrows.png")
-  }
+    invertarrows: loadImage("/assets/images/invertarrows.png"),
+    backarrow: loadImage("/assets/images/backarrow.png"),
+  };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
