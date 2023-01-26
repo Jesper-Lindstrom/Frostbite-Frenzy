@@ -12,8 +12,6 @@ class Monster extends MovingEntity {
     update(){
 
     }
-
-
     /* First iteration of a movement handler for the monster object. 
     function getPossibleDirections checks the four surrounding cells of the current position of the monster.
     It returns an array of possible directions for the monster to go in. 
@@ -32,6 +30,7 @@ class Monster extends MovingEntity {
     for (let direction of possibleDirections) {
         let x = currentPosition.x;
         let y = currentPosition.y;
+        
         if(direction === "up"){
         if(map[x-1][y] === 0) possibleDirs.push(direction);
         } else if(direction === "down"){
