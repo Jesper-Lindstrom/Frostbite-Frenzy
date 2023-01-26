@@ -81,7 +81,6 @@ class Game {
     }
   };
 
-  private drawMonsters() {};
   private drawKeys() {};
   private drawPowerups() {};
 
@@ -114,7 +113,7 @@ class Game {
       player.wallCollision();
     }
     if (entity instanceof Monster) {
-
+      player.freeze();
     }
     if (entity instanceof Key) {
       
