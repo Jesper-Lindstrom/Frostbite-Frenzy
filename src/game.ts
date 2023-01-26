@@ -23,7 +23,7 @@ class Game {
       [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
@@ -80,13 +80,6 @@ class Game {
       player.draw();
     }
   };
-  private drawMonsters() {};
-  private drawKeys() {
-  //   for(const key of this.keys) {
-  //     key.draw();
-  // }
-};
-  private drawPowerups() {};
 
   /**
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
@@ -120,8 +113,7 @@ class Game {
       player.freeze();
     }
     if (entity instanceof Key) {
-      player.keyCollection();
-      
+      this.keyCollision(player, entity);
     }
     if (entity instanceof InvertKeys) {
       
@@ -134,7 +126,9 @@ class Game {
     }
   };
 
-
+  // private keyCollection() {
+  //   this.
+  // }
 
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
@@ -146,13 +140,20 @@ class Game {
    * Called by collisionHandler when a collision is detected between a player and a key.
    * Calls functions that spawn a new key (in spawnController) and that update the player's score (in scoreTable).
    */
-  respawnKey() {
+  private keyCollision(player: Player, key: Key) {
     
-  };
-
+    this.entities = this.entities.filter(function(obj) {
+      return obj !== key
+    });
+    this.entities.push(this.spawnController.createKey());
+    this.scoreTable.givePoint(player.playerNumber);
+    
+  }
   /**
    * Chcecks elapsed time using a getTime method in the timer object.
    * According to the time, timeCheck will call functions that spawn powerups (in spawnController) and end the game.
    */
   timeCheck() {};
 }
+
+// replace item with new item
