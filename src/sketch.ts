@@ -13,6 +13,7 @@ interface Images {
   arrowButtons: p5.Image;
   yellowSnowman: p5.Image;
   greenSnowman: p5.Image;
+  blueMonster: p5.Image;
   characters: p5.Image;
   snowflakes: p5.Image;
   key: p5.Image;
@@ -20,10 +21,10 @@ interface Images {
   watch: p5.Image;
   advantagessnowflake: p5.Image;
   invertarrows: p5.Image;
+  backarrow: p5.Image;
 }
 
 let images: Images;
-
 
 /**
  * Built in preload function in P5
@@ -41,14 +42,16 @@ function preload() {
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
     yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
     greenSnowman: loadImage("/assets/images/greensnowman.png"),
+    blueMonster: loadImage("/assets/images/bluemonster.png"),
     characters: loadImage("/assets/images/characters.png"),
     snowflakes: loadImage("/assets/images/snowflakes.png"),
     key: loadImage("/assets/images/key.png"),
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
-    invertarrows: loadImage("/assets/images/invertarrows.png")
-  }
+    invertarrows: loadImage("/assets/images/invertarrows.png"),
+    backarrow: loadImage("/assets/images/backarrow.png"),
+  };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"

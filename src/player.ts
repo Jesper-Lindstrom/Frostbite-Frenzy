@@ -6,6 +6,7 @@ class Player extends MovingEntity {
   public playerNumber: number;
   private image: p5.Image;
   private isFrozen: boolean;
+  private freezeTimer: number;
   private isImmortal: boolean;
   private isInverted: boolean;
   private playerScore: number;
@@ -33,6 +34,7 @@ class Player extends MovingEntity {
     this.playerNumber = playerNumber;
     this.image = this.getImages();
     this.isFrozen = false;
+    this.freezeTimer = 0;
     this.isImmortal = false;
     this.isInverted = false;
     this.powerupTimer = 0;
@@ -77,28 +79,40 @@ class Player extends MovingEntity {
      * reset the new position on collision with a wall.
      */
     this.previousPosition = new p5.Vector(this.position.x, this.position.y);
+    this.updateState();
     this.checkUserInput();
     this.updateBounds();
   }
 
   public draw() {
     push();
-    fill(0, 0, 0, 0);
-    rect(this.position.x, this.position.y, this.size.x, this.size.y);
-    pop();
+    if (this.isFrozen) {
+      tint(0, 153, 204, 126);
+    }
     image(
       this.image,
       this.position.x - this.size.x * 0.1,
       this.position.y - this.size.y * 0.7,
       this.size.x * 1.2,
       this.size.y * 1.7
-    );
+      );
+      pop();
+  }
+
+  updateState() {
+    if (this.isFrozen) {
+      this.freezeTimer -= deltaTime;
+      if (this.freezeTimer <= 0) {
+        this.isFrozen = false
+      }
+    }
   }
 
   /**
    * Called from update. Checks keyboard input.
    */
   private checkUserInput() {
+    if (!this.isFrozen) {
     if (keyIsDown(this.leftButton)) {
       this.position.x -= this.speed;
     }
@@ -112,12 +126,13 @@ class Player extends MovingEntity {
       this.position.y += this.speed;
     }
   }
+  }
 
   /**
    * Called by collsionHandler if collsion detected with a wall.
    * Reverts to previous position to prevent movement before drawing.
    */
-  public wallCollsion() {
+  public wallCollision() {
     this.position = this.previousPosition;
   }
 
@@ -133,7 +148,12 @@ class Player extends MovingEntity {
    * Sets player to frozen, sets time limit.
    * Called by collisionHandler.
    */
-  public freeze() {}
+  public freeze() {
+    if (!this.isFrozen) {
+    this.freezeTimer = 3000;
+    this.isFrozen = true;
+    }
+  }
 
   /**
    * Increases player speed during limited time.

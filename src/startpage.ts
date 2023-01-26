@@ -1,11 +1,14 @@
-class StartPage {
+class StartPage extends MenuPage {
+  public menu: Menu;
   private characters: p5.Image;
   private snowflakes: p5.Image;
   private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
 
-  public constructor() {
+  public constructor(menu: Menu) {
+    super();
+    this.menu = menu;
     this.characters = images.characters;
     this.snowflakes = images.snowflakes;
   }
@@ -15,6 +18,7 @@ class StartPage {
     this.drawText();
     removeElements();
     this.drawButtons();
+    this.keyPressed();
     this.updateHover();
     this.drawImages();
   }
@@ -24,7 +28,7 @@ class StartPage {
   public drawShapes() {
     push(); // save current styles and transformations
     rectMode(CENTER);
-    fill(74, 122, 167);
+    fill(47, 78, 107);
     rect(width / 2, height / 2, 700, 600); // larger rect
     pop(); // restore previous styles and transformations
   }
@@ -49,7 +53,7 @@ class StartPage {
       });
 
       button.mouseOut(() => {
-        this.currentOption = 0;
+        this.currentOption = i;
         this.updateHover();
       });
 
@@ -60,7 +64,8 @@ class StartPage {
         } else if (i === 1) {
           showObjectives();
         } else if (i === 2) {
-          showGameControls();
+          removeElements();
+          this.menu.openPage(new Controls());
         }
       });
       this.buttons.push(button);
@@ -72,7 +77,6 @@ class StartPage {
     for (let i = 0; i < this.options.length; i++) {
       if (i === this.currentOption) {
         this.buttons[i].style("background-color", "rgb(100, 190, 230)");
-        console.log("Hover effect");
       } else {
         this.buttons[i].style("background-color", "#D2ECF3");
       }
@@ -99,13 +103,13 @@ class StartPage {
     }
   }
 
-  public keyPressed() {
+  private keyPressed() {
     // update the current option based on the keyboard input
     if (keyCode === 87) {
       this.currentOption = max(this.currentOption - 1, 0);
     } else if (keyCode === 83) {
       this.currentOption = min(this.currentOption + 1, this.options.length - 1);
-      console.log("qwtqwetwqe");
+      console.log("funkar det?");
     } else if (key === "a" || key === "A") {
       this.currentOption = min(this.currentOption + 1, this.options.length - 1);
     } else if (key === "d" || key === "D") {

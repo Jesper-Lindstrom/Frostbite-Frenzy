@@ -2,6 +2,7 @@ class Game {
     private mapSize: number;
     private players: Player[];
     private entities: GameEntity[];
+
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -18,15 +19,15 @@ class Game {
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
       [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
       [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -59,19 +60,21 @@ class Game {
       player.update();
     }
   }
+
   private updateEntities() {
     for (const entity of this.entities) {
-      // if (entity instanceof MovableEntity) {
-      //   entity.update();   
-      // }
+      if (entity instanceof MovingEntity) {
+        entity.update();   
+      }
     }
   }
-  
+
   private drawEntities() {
     for (const entity of this.entities) {
       entity.draw();
     }
   };
+
   private drawPlayers() {
     for (const player of this.players) {
       player.draw();
@@ -90,7 +93,6 @@ class Game {
    * Calls collisionHandler sending which entities have collided as arguments.
    */
   public checkCollision() {
-
       for (const player of this.players) {
         for (const entity of this.entities) {
           if(player.bounds.left > entity.bounds.right ||
@@ -101,7 +103,7 @@ class Game {
               this.collisionHandler(player, entity)
             }
         }
-      }    
+      }
 
   };
 
@@ -109,12 +111,13 @@ class Game {
    * Takes colliding entities as arguments and calls appropriate function of collision.
    * Probably an if statement or switch/break.
    */
+  
   private collisionHandler(player: Player, entity: GameEntity) {
     if (entity instanceof WallBlock) {
-      player.wallCollsion();
+      player.wallCollision();
     }
     if (entity instanceof Monster) {
-
+      player.freeze();
     }
     if (entity instanceof Key) {
       player.keyCollection();
@@ -153,4 +156,3 @@ class Game {
    */
   timeCheck() {};
 }
- 
