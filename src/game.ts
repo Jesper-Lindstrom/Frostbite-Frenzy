@@ -121,13 +121,12 @@ class Game {
     }
     if (entity instanceof Key) {
       player.keyCollection();
-      
     }
     if (entity instanceof InvertKeys) {
-      
+      player.invertControls()
     }
-    if (entity instanceof Invincible) {
-
+    if (entity instanceof Immortal) {
+      player.makeImmortal()
     }
     if (entity instanceof SlowOpponent) {
 
