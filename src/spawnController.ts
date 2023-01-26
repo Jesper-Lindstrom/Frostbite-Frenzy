@@ -54,7 +54,11 @@ class SpawnController {
         )
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
+        } if (cell === 4) {
+          entities.push(new Key(position, this.cellSize) )
         }
+        
+        // else if (cell == 2) {}
       });
     });
     for (let i = 0; i < 4; i++) { // Change back to number monsters

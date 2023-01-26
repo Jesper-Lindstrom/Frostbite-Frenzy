@@ -1,4 +1,6 @@
 /// <reference path="movingEntity.ts"/>
+/// <reference path="key.ts"/>
+
 
 class Player extends MovingEntity {
   public playerNumber: number;
@@ -7,6 +9,7 @@ class Player extends MovingEntity {
   private freezeTimer: number;
   private isImmortal: boolean;
   private isInverted: boolean;
+  private playerScore: number;
   /**
    * Keeps track of the time that a player powerup has been active.
    * Counts downwards in milliseconds.
@@ -35,6 +38,7 @@ class Player extends MovingEntity {
     this.isImmortal = false;
     this.isInverted = false;
     this.powerupTimer = 0;
+    this.playerScore = 0;
 
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
@@ -130,6 +134,14 @@ class Player extends MovingEntity {
    */
   public wallCollision() {
     this.position = this.previousPosition;
+  }
+
+  /**
+   * Increases the playerscore after picking up a key
+   */
+  public keyCollection() {
+    this.playerScore += 1;
+    console.log('Player ' + this.playerNumber + ' is ' + this.playerScore)
   }
 
   /**

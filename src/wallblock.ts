@@ -9,6 +9,8 @@ class WallBlock extends GameEntity {
       cellSize
     ));
   }
+
+  
   
   public draw() {
     push();

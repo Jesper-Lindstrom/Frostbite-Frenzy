@@ -23,7 +23,7 @@ class Game {
       [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
@@ -80,8 +80,12 @@ class Game {
       player.draw();
     }
   };
-
-  private drawKeys() {};
+  private drawMonsters() {};
+  private drawKeys() {
+  //   for(const key of this.keys) {
+  //     key.draw();
+  // }
+};
   private drawPowerups() {};
 
   /**
@@ -116,6 +120,7 @@ class Game {
       player.freeze();
     }
     if (entity instanceof Key) {
+      player.keyCollection();
       
     }
     if (entity instanceof InvertKeys) {
@@ -141,7 +146,9 @@ class Game {
    * Called by collisionHandler when a collision is detected between a player and a key.
    * Calls functions that spawn a new key (in spawnController) and that update the player's score (in scoreTable).
    */
-  keyCollection() {};
+  respawnKey() {
+    
+  };
 
   /**
    * Chcecks elapsed time using a getTime method in the timer object.
