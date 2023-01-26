@@ -82,8 +82,6 @@ class Player extends MovingEntity {
 
   public draw() {
     push();
-    fill(0, 0, 0, 0);
-    rect(this.position.x, this.position.y, this.size.x, this.size.y);
     if (this.isFrozen) {
       tint(0, 153, 204, 126);
     }
