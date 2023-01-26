@@ -1,6 +1,7 @@
 /// <reference path="movingEntity.ts" />
 
 class Monster extends MovingEntity {
+  private monsterSprite: p5.Image;
   private mapArray: number[][];
 
   constructor(position: p5.Vector, cellSize: number, mapArray: number[][]) {
@@ -10,13 +11,21 @@ class Monster extends MovingEntity {
       cellSize / 10
     );
     this.mapArray = mapArray;
+    this.monsterSprite = loadImage("/Sprites/monsters/blåeldmonster.png")
   }
 
   draw(): void {
     push();
-    fill("white");
+    fill(0, 0, 0, 0);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
+    image(
+      this.monsterSprite,
+      this.position.x - this.size.x * 0.1,
+      this.position.y - this.size.y * 0.7,
+      this.size.x * 1.2,
+      this.size.y * 1.7
+    );
   }
 
   update() {
