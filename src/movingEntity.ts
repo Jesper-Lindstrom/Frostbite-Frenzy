@@ -19,3 +19,8 @@ abstract class MovingEntity extends GameEntity {
         this.bounds.bottom = this.position.y + this.size.y;
     }
 }
+
+
+// Delta = Förändring i ett värde
+// Delta Y = Förändring i Y värde. 
+
