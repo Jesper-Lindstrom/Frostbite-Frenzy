@@ -82,7 +82,6 @@ class Player extends MovingEntity {
     fill(0, 0, 0, 0);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
-    debugger;
     image(
       this.image,
       this.position.x - this.size.x * 0.1,
@@ -114,7 +113,7 @@ class Player extends MovingEntity {
    * Called by collsionHandler if collsion detected with a wall.
    * Reverts to previous position to prevent movement before drawing.
    */
-  public wallCollsion() {
+  public wallCollision() {
     this.position = this.previousPosition;
   }
 

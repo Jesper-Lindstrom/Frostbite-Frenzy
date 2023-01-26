@@ -2,14 +2,31 @@
 
 class Monster extends MovingEntity {
   private mapArray: number[][];
+  private mapPosition: p5.Vector;
+  private cellSize: number;
 
-  constructor(position: p5.Vector, cellSize: number, mapArray: number[][]) {
+  private stepCounter: number;
+  private cellSteps: number;
+
+  private direction: string;
+
+  constructor(
+    position: p5.Vector,
+    cellSize: number,
+    mapArray: number[][],
+    mapPosition: p5.Vector
+  ) {
     super(
       new p5.Vector(position.x + cellSize * 0.1, position.y + cellSize * 0.1),
       new p5.Vector(cellSize * 0.8, cellSize * 0.8),
-      cellSize / 10
+      cellSize / 20
     );
     this.mapArray = mapArray;
+    this.mapPosition = mapPosition;
+    this.cellSize = cellSize;
+    this.stepCounter = 0;
+    this.cellSteps = 20;
+    this.direction = this.setDirection(this.getDirections());
   }
 
   draw(): void {
@@ -20,49 +37,68 @@ class Monster extends MovingEntity {
   }
 
   update() {
-    this.getPossibleDirections();
-    this.moveRandom();
+    this.directionControl();
+    this.move();
   }
-  /* First iteration of a movement handler for the monster object. 
-    function getPossibleDirections checks the four surrounding cells of the current position of the monster.
-    It returns an array of possible directions for the monster to go in. 
-    after that the moveRandom function will choose from these four directions, and the calcultion will run again.
-    this is as random as we can get with 0 intelligence for monster.  */
 
-  private getPossibleDirections() {
-    let possibleDirections = ["up", "down", "left", "right"];
-    let currentPosition = { x: 1, y: 1 };
+  private directionControl() {
+    let openDirections;
+    if (this.stepCounter === this.cellSteps) {
+      openDirections = this.getDirections();
+      this.direction = this.setDirection(openDirections);
+      this.stepCounter = 1;
+    } else {
+      this.stepCounter++;
+    }
+  }
+
+  /**
+   * Calls getCell to locate position on mapArray.
+   * Check adjacent cells for walls.
+   * Returns an array of possigle directions for movement.
+   */
+  private getDirections() {
+    let currentPos = this.getCell();
+    const x = currentPos.x;
+    const y = currentPos.y;
     let possibleDirs = [];
 
-    /*The "MAP" that is being referred to should be of type "boolean". We need a function that converts 1 and 0 in our mapArray into true and false.
-    That is an easier logic for the function to work properly in typescript. I think.. */
+    // Checking adjacent cells for walls
+    if (this.mapArray[y - 1][x] != 1) possibleDirs.push("up");
+    if (this.mapArray[y + 1][x] != 1) possibleDirs.push("down");
+    if (this.mapArray[y][x - 1] != 1) possibleDirs.push("left");
+    if (this.mapArray[y][x + 1] != 1) possibleDirs.push("right");
 
-    for (let direction of possibleDirections) {
-      let x = currentPosition.x;
-      let y = currentPosition.y;
-      if (direction === "up") {
-        if (this.mapArray[x - 1][y] === 0) possibleDirs.push(direction);
-      } else if (direction === "down") {
-        if (this.mapArray[x + 1][y] === 0) possibleDirs.push(direction);
-      } else if (direction === "left") {
-        if (this.mapArray[x][y - 1] === 0) possibleDirs.push(direction);
-      } else if (direction === "right") {
-        if (this.mapArray[x][y + 1] === 0) possibleDirs.push(direction);
-      }
-    }
     return possibleDirs;
   }
 
-  private moveRandom() {
-    let possibleDirections = ["up", "down", "right", "left"];
+  /**
+   * Calculates coordinates on map grid from pixel position.
+   * Returns coordinates object.
+   */
+  private getCell(): Coordinates {
+    const x = Math.floor((this.position.x - this.mapPosition.x) / this.cellSize);
+    const y = Math.floor((this.position.y - this.mapPosition.y) / this.cellSize);
+    return { x: x, y: y };
+  }
 
-    let randomIndex = Math.floor(Math.random() * possibleDirections.length);
-    let chosenDirection = possibleDirections[randomIndex];
+  setDirection(openDirections: string[]): string {
+    let direction: string = this.direction;
+    if (openDirections.length >= 3 || !openDirections.includes(this.direction)) {
+      direction = openDirections[Math.floor(Math.random() * openDirections.length)]
+    }
+    return direction
+  }
 
-    if (chosenDirection === "up") {
-    } else if (chosenDirection === "down") {
-    } else if (chosenDirection === "right") {
-    } else if (chosenDirection === "left") {
+  private move() {
+    if (this.direction === "up") {
+      this.position.y -= this.speed;
+    } else if (this.direction === "down") {
+      this.position.y += this.speed;
+    } else if (this.direction === "right") {
+      this.position.x += this.speed;
+    } else if (this.direction === "left") {
+      this.position.x -= this.speed;
     }
   }
 }
