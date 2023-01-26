@@ -6,7 +6,6 @@ class Controls extends MenuPage {
   private img1: p5.Image;
   private img2: p5.Image;
   private img3: p5.Image;
-  private img4: p5.Image;
 
   public constructor() {
     super();
@@ -15,10 +14,10 @@ class Controls extends MenuPage {
     this.img1 = images.iceUpper;
     this.img2 = images.wsadButtons;
     this.img3 = images.arrowButtons;
-    this.img4 = images.backarrow;
     this.drawShapes();
     this.drawText();
     this.drawImages();
+    this.createBackButton();
   }
 
   public drawShapes() {
@@ -34,6 +33,36 @@ class Controls extends MenuPage {
     rectMode(CENTER);
     rect(width / 2, height / 2, 700, 600); // "frame"
     pop(); // restore previous styles and transformations
+  }
+
+  protected createBackButton() {
+    let button = createButton("Back");
+    button.position(width / 2 - 315, height / 2 - -210);
+    button.size(150, 40);
+    button.style("color: #FFFFFF");
+    button.style("border-radius: 1rem");
+    button.style("border-style: none");
+    button.style("font-size: 19px");
+    button.style("font-family: Freckle Face");
+    button.style("background: rgb(0,137,162)");
+    button.style(
+      "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
+    );
+    button.mousePressed(() => {
+      console.log("hej");
+    });
+    button.mouseOver(() => {
+      button.style("background: rgb(1,108,129);");
+      button.style(
+        "background: linear-gradient(90deg, rgba(1,108,129,1) 7%, rgba(55,120,189,1) 41%, rgba(11,110,184,1) 81%, rgba(0,48,158,1) 99%);"
+      );
+    });
+    button.mouseOut(() => {
+      button.style("background: rgb(0,137,162)");
+      button.style(
+        "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
+      );
+    });
   }
 
   public drawText() {
@@ -88,30 +117,24 @@ class Controls extends MenuPage {
     if (this.img3.width > 0 && this.img3.height > 0) {
       image(this.img3, width / 2 - -50, height / 2 - 30, 140, 80);
     }
-    if (this.img4.width > 0 && this.img4.height > 0) {
-      rect(width / 2 - 305, height / 2 - -190, 60, 60);
-      fill(47, 78, 107);
-      image(this.img4, width / 2 - 320, height / 2 - -180, 90, 90);
-      // image(this.img4, width / 2 - 320, height / 2 - -180, 90, 90);
-    }
   }
 }
 
-function mousePressed() {
-  if (
-    mouseX > width / 2 - 320 &&
-    mouseX < width / 2 - 320 + 90 &&
-    mouseY > height / 2 - -180 &&
-    mouseY < height / 2 - -180 + 90
-  ) {
-    handleMousePress();
-  }
-}
+// function mousePressed() {
+//   if (
+//     mouseX > width / 2 - 320 &&
+//     mouseX < width / 2 - 320 + 90 &&
+//     mouseY > height / 2 - -180 &&
+//     mouseY < height / 2 - -180 + 90
+//   ) {
+//     handleMousePress();
+//   }
+// }
 
-function handleMousePress() {
-  // this.menu.openPage(new StartPage(this));
-  console.log("Klick");
-}
+// function handleMousePress() {
+//   // this.menu.openPage(new StartPage(this));
+//   console.log("Klick");
+// }
 // function mousePressed() {
 //   if (
 //     mouseX > width / 2 - 320 &&
