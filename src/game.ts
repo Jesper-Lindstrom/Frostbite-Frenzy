@@ -2,6 +2,7 @@ class Game {
     private mapSize: number;
     private players: Player[];
     private entities: GameEntity[];
+
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -59,6 +60,7 @@ class Game {
       player.update();
     }
   }
+
   private updateEntities() {
     for (const entity of this.entities) {
       // if (entity instanceof MovableEntity) {
@@ -66,27 +68,28 @@ class Game {
       // }
     }
   }
-  
+
   private drawEntities() {
     for (const entity of this.entities) {
       entity.draw();
     }
   };
+
   private drawPlayers() {
     for (const player of this.players) {
       player.draw();
     }
   };
+
   private drawMonsters() {};
   private drawKeys() {};
   private drawPowerups() {};
-
   /**
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
    * Calls collisionHandler sending which entities have collided as arguments.
    */
-  public checkCollision() {
 
+  public checkCollision() {
       for (const player of this.players) {
         for (const entity of this.entities) {
           if(player.bounds.left > entity.bounds.right ||
@@ -97,14 +100,14 @@ class Game {
               this.collisionHandler(player, entity)
             }
         }
-      }    
-
+      }
   };
 
   /**
    * Takes colliding entities as arguments and calls appropriate function of collision.
    * Probably an if statement or switch/break.
    */
+  
   private collisionHandler(player: Player, entity: GameEntity) {
     if (entity instanceof WallBlock) {
       player.wallCollsion();
@@ -146,4 +149,3 @@ class Game {
    */
   timeCheck() {};
 }
- 

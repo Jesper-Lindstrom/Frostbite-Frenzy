@@ -5,7 +5,6 @@ class SpawnController {
   private gridCols: number;
   private gridRows: number;
   private cellSize: number;
-
   
   constructor(mapArray: number[][], mapSize: number){
 
@@ -25,7 +24,6 @@ class SpawnController {
   public update() {
     
   }
-  
   public draw(){
   }
 
@@ -51,7 +49,6 @@ class SpawnController {
     });
     return players;
   }
-  
 
   public createEntities() {
     const entities: GameEntity[] = [];
@@ -63,12 +60,48 @@ class SpawnController {
         )
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
-        } else if (cell == 2) {
-
         }
       });
     });
-
+    for (let i = 0; i < 4; i++) {
+      entities.push(this.createMonster());
+    }
     return entities;
   }
+
+  public randomValidSpawnpoint(): p5.Vector{
+    let validSpawnPoints: Coordinates[] = [];
+    for (let i = 0; i < this.mapArray.length; i++) {
+      for (let j = 0; j < this.mapArray[i].length; j++){
+      if (this.mapArray[i][j] === 0) {
+        validSpawnPoints.push({
+          x: j,
+          y: i
+        });
+      }
+    }
+  }
+  let randomIndex = Math.floor(Math.random() * validSpawnPoints.length);
+  let spawnPoint = validSpawnPoints[randomIndex];
+  return new p5.Vector(
+    spawnPoint.x * this.cellSize + this.startPoint.x,
+    spawnPoint.y * this.cellSize + this.startPoint.y
+  );
 }
+
+public createMonster(): Monster {
+    const spawnPos = this.randomValidSpawnpoint();
+    return new Monster(spawnPos, this.cellSize, this.mapArray);
+  }
+}
+
+
+interface Coordinates {
+  x: number,
+  y: number
+}
+
+// RandomValidSpawnpoint picks out a random index of the zeroes in mapArray
+// RandomValidSpawnpoint needs to save the coordinates of that 0,
+// spawnEntity recieves those coordinates and initiates spawning of an entity depending on time/how many monsters have spawned/etc.
+// Calls to create new object as needed, which will update/draw itself.
