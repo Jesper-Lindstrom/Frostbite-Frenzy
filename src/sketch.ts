@@ -13,6 +13,7 @@ interface Images {
   arrowButtons: p5.Image;
   yellowSnowman: p5.Image;
   greenSnowman: p5.Image;
+  blueMonster: p5.Image;
   characters: p5.Image;
   snowflakes: p5.Image;
   key: p5.Image;
@@ -41,6 +42,7 @@ function preload() {
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
     yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
     greenSnowman: loadImage("/assets/images/greensnowman.png"),
+    blueMonster: loadImage("/assets/images/bluemonster.png"),
     characters: loadImage("/assets/images/characters.png"),
     snowflakes: loadImage("/assets/images/snowflakes.png"),
     key: loadImage("/assets/images/key.png"),

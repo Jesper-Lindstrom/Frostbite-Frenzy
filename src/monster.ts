@@ -31,17 +31,17 @@ class Monster extends MovingEntity {
 
   draw(): void {
     push();
-    fill("white");
-    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    image(images.blueMonster, this.position.x, this.position.y - this.size.y * 0.2, this.size.x, this.size.y * 1.2);
     pop();
   }
 
-  update() {
+  update(): void {
     this.directionControl();
     this.move();
+    this.updateBounds();
   }
 
-  private directionControl() {
+  private directionControl(): void {
     let openDirections;
     if (this.stepCounter === this.cellSteps) {
       openDirections = this.getDirections();
@@ -102,12 +102,3 @@ class Monster extends MovingEntity {
     }
   }
 }
-
-// Set speed according to cell size.
-// eg. cellSize / 10
-// Set property on monster to track frames passed. Start at 0.
-// Add 1 with each frame from update()
-// Run moveRandom when the same number of frames has passed as cellSize was divided by.
-// In this example, 10.
-// Get cell, get random direction
-// Set frame counter property to 0
