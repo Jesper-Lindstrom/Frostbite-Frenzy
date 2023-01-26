@@ -1,12 +1,14 @@
 class Key extends GameEntity {
     private image: p5.Image;
+    private id: number;
 
-    public constructor(position: p5.Vector,cellSize: number) {
+    public constructor(position: p5.Vector,cellSize: number, id: number) {
       super(position, new p5.Vector(
         cellSize, 
         cellSize
         ));
       this.image = images.key;
+      this.id = id;
     }
 
    
@@ -22,8 +24,8 @@ class Key extends GameEntity {
       );
       pop();
     }
-    public update() {}
 
+   
    
 }
 
