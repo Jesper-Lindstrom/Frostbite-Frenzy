@@ -54,20 +54,20 @@ class SpawnController {
         )
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
-        } if (cell === 4) {
-          entities.push(new Key(position, this.cellSize) )
         }
-        
-        // else if (cell == 2) {}
       });
     });
-    for (let i = 0; i < 4; i++) { // Change back to number monsters
+    for (let i = 0; i < 4; i++) {
       entities.push(this.createMonster());
+    }
+    for (let i = 0; i < 2; i++) {
+      const position: p5.Vector = this.randomValidSpawnpoint();
+      entities.push(new Key(position, this.cellSize));
     }
     return entities;
   }
 
-  public randomValidSpawnpoint(): p5.Vector{
+  private randomValidSpawnpoint(): p5.Vector{
     let validSpawnPoints: Coordinates[] = [];
     for (let i = 0; i < this.mapArray.length; i++) {
       for (let j = 0; j < this.mapArray[i].length; j++){
