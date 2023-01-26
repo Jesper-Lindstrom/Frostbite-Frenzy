@@ -21,12 +21,6 @@ class SpawnController {
     this.cellSize = this.mapSize / this.gridCols;
   }
 
-  public update() {
-    
-  }
-  public draw(){
-  }
-
   /**
    * Loops through the mapArray and create a Player object for each 2.
    * Reads indices of 2D array to write player position.
@@ -63,7 +57,7 @@ class SpawnController {
         }
       });
     });
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) { // Change back to number monsters
       entities.push(this.createMonster());
     }
     return entities;
