@@ -76,7 +76,7 @@ class StartPage {
       } else {
         this.buttons[i].style("background-color", "#D2ECF3");
       }
-      // noLoop();
+      noLoop();
     }
   }
 
