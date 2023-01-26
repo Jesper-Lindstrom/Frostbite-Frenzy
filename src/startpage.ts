@@ -62,7 +62,8 @@ class StartPage extends MenuPage {
         if (i === 0) {
           gameFrame.newGame();
         } else if (i === 1) {
-          showObjectives();
+          removeElements();
+          this.menu.openPage(new Objectives());
         } else if (i === 2) {
           removeElements();
           this.menu.openPage(new Controls());
@@ -124,16 +125,3 @@ class StartPage extends MenuPage {
   }
 }
 
-function showObjectives() {
-  // code to show the objectives of the game
-  alert(
-    "Objectives: \n- Collect as many keys as possible\n- Avoid obstacles and enemies\n- you have 3 minutes!"
-  );
-}
-
-function showGameControls() {
-  // code to show the controls of the game
-  alert(
-    "Controls: \n- Use W, A, S, D or arrow keys to move\n- Press P to pause the game\n- Press M to mute the sound\n- Press Esc to exit the game"
-  );
-}
