@@ -1,15 +1,15 @@
 /// <reference path="menupage.ts" />
 
 class Controls extends MenuPage {
-  // public menu: Menu;
+  public menu: Menu;
   private img: p5.Image;
   private img1: p5.Image;
   private img2: p5.Image;
   private img3: p5.Image;
 
-  public constructor() {
+  public constructor(menu: Menu) {
     super();
-    // this.menu = menu;
+    this.menu = menu;
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
     this.img2 = images.wsadButtons;
@@ -37,7 +37,7 @@ class Controls extends MenuPage {
 
   protected createBackButton() {
     let button = createButton("Back");
-    button.position(width / 2 - 315, height / 2 - -210);
+    button.position(width / 2 - 315, height / 2 - -225);
     button.size(150, 40);
     button.style("color: #FFFFFF");
     button.style("border-radius: 1rem");
@@ -49,12 +49,15 @@ class Controls extends MenuPage {
       "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
     );
     button.mousePressed(() => {
-      console.log("hej");
+      this.menu.openStartPage();
     });
     button.mouseOver(() => {
       button.style("background: rgb(1,108,129);");
       button.style(
         "background: linear-gradient(90deg, rgba(1,108,129,1) 7%, rgba(55,120,189,1) 41%, rgba(11,110,184,1) 81%, rgba(0,48,158,1) 99%);"
+      );
+      button.style(
+        "box-shadow: rgb(230,230,250) 0px 0px 0px 3px, rgb(0,191,255) 0px 0px 0px 6px, rgb(50, 217, 250) 0px 0px 0px 9px, rgb(100,149,237) 0px 0px 0px 12px, rgb(240,248,255) 0px 0px 0px 15px"
       );
     });
     button.mouseOut(() => {
@@ -62,13 +65,14 @@ class Controls extends MenuPage {
       button.style(
         "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
       );
+      button.style("box-shadow: none");
     });
   }
 
   public drawText() {
     push(); // save current styles and transformations
     fill(255);
-    textFont("Sansita");
+    textFont(fontSansita);
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Game Controls", width / 2, height / 2.7);
@@ -79,7 +83,7 @@ class Controls extends MenuPage {
     text("Player1", width * 0.445, height * 0.455);
     textSize(16);
     text("Movement", width * 0.443, height * 0.56);
-    textFont("Sansita");
+    textFont(fontSansita);
     pop();
     push();
     fill(255);
@@ -87,7 +91,7 @@ class Controls extends MenuPage {
     text("Player2", width * 0.535, height * 0.455);
     textSize(16);
     text("Movement", width * 0.533, height * 0.56);
-    textFont("Sansita");
+    textFont(fontSansita);
     pop();
     push();
     fill(255);
@@ -100,7 +104,7 @@ class Controls extends MenuPage {
     text("Move Down", width * 0.535, height * 0.62);
     text("Move Left", width * 0.535, height * 0.64);
     text("Move Right", width * 0.535, height * 0.66);
-    textFont("Sansita");
+    textFont(fontSansita);
     pop();
   }
 

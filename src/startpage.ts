@@ -11,19 +11,20 @@ class StartPage extends MenuPage {
     this.menu = menu;
     this.characters = images.characters;
     this.snowflakes = images.snowflakes;
+    this.drawShapes();
+    removeElements();
+    this.drawButtons();
+    this.keyPressed();
+    // this.updateHover();
   }
 
   public draw() {
     this.drawShapes();
     this.drawText();
-    removeElements();
-    this.drawButtons();
-    this.keyPressed();
-    this.updateHover();
     this.drawImages();
   }
 
-  public update() {}
+  // public update() {}
 
   public drawShapes() {
     push(); // save current styles and transformations
@@ -49,12 +50,14 @@ class StartPage extends MenuPage {
 
       button.mouseOver(() => {
         this.currentOption = i;
-        this.updateHover();
+        this.buttons[i].style("color", "rgb(255, 255, 255)");
+        this.buttons[i].style("background-color", "rgb(15, 82, 186");
+        // this.updateHover();
       });
 
       button.mouseOut(() => {
-        this.currentOption = i;
-        this.updateHover();
+        this.buttons[i].style("background: #D2ECF3");
+        this.buttons[i].style("color: #4A7AA7");
       });
 
       button.mousePressed(() => {
@@ -63,27 +66,28 @@ class StartPage extends MenuPage {
           gameFrame.newGame();
         } else if (i === 1) {
           removeElements();
-          this.menu.openPage(new Objectives());
+          this.menu.openObjectives();
         } else if (i === 2) {
           removeElements();
-          this.menu.openPage(new Controls());
+          this.menu.openControls();
         }
       });
       this.buttons.push(button);
     }
+    noLoop();
   }
 
-  private updateHover() {
-    // update hover effect on buttons
-    for (let i = 0; i < this.options.length; i++) {
-      if (i === this.currentOption) {
-        this.buttons[i].style("background-color", "rgb(100, 190, 230)");
-      } else {
-        this.buttons[i].style("background-color", "#D2ECF3");
-      }
-      noLoop();
-    }
-  }
+  // private updateHover() {
+  //   // update hover effect on buttons
+  //   for (let i = 0; i < this.options.length; i++) {
+  //     if (i === this.currentOption) {
+  //       this.buttons[i].style("background-color", "rgb(0,0,128)");
+  //     } else {
+  //       this.buttons[i].style("background-color", "#D2ECF3");
+  //     }
+
+  //   }
+  // }
 
   public drawText() {
     push(); // save current styles and transformations
@@ -121,7 +125,6 @@ class StartPage extends MenuPage {
         console.log("Click");
       }
     }
-    this.updateHover();
+    // this.updateHover();
   }
 }
-
