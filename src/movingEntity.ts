@@ -12,6 +12,8 @@ abstract class MovingEntity extends GameEntity {
 
     abstract draw(): void;
 
+    abstract update(): void;
+
     protected updateBounds(): void {
         this.bounds.left = this.position.x;
         this.bounds.right = this.position.x + this.size.x;
