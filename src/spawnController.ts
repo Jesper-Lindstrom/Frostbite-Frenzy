@@ -7,9 +7,9 @@ class SpawnController {
   private cellSize: number;
 
   
-  constructor(mapArray: number[][]){
+  constructor(mapArray: number[][], mapSize: number){
 
-    this.mapSize = height * 0.9;
+    this.mapSize = mapSize;
 
     let startX = (width - this.mapSize) / 2;
     let startY = (height - this.mapSize) / 2;
