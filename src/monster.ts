@@ -31,8 +31,7 @@ class Monster extends MovingEntity {
 
   draw(): void {
     push();
-    fill("white");
-    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    image(images.blueMonster, this.position.x, this.position.y - this.size.y * 0.2, this.size.x, this.size.y * 1.2);
     pop();
   }
 
