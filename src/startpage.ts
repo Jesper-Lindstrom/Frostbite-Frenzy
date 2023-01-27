@@ -7,16 +7,16 @@ class StartPage extends MenuPage {
   private buttons: p5.Element[] = [];
   private rectWidth: number;
   private rectHeight: number;
-  rectX: number;
-  rectY: number;
+  private rectX: number;
+  private rectY: number;
 
   public constructor(menu: Menu) {
     super();
     this.menu = menu;
     this.characters = images.characters;
     this.snowflakes = images.snowflakes;
-    this.rectWidth = windowWidth * 0.75;
-    this.rectHeight = windowHeight * 0.75;
+    this.rectWidth = windowWidth * 0.6;
+    this.rectHeight = windowHeight * 0.85;
     this.rectX = (windowWidth - this.rectWidth) / 2;
     this.rectY = (windowHeight - this.rectHeight) / 2;
   }
@@ -45,9 +45,9 @@ class StartPage extends MenuPage {
   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.position(width / 2, height / 2.5 + (i + 1) * 50);
       button.size(150, 40);
       button.center("horizontal");
+      button.position(this.rectX + (this.rectWidth - 150) / 2, this.rectY + (i + 1 + 3) * 50);
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
@@ -99,9 +99,9 @@ class StartPage extends MenuPage {
     fill(255);
     textSize(42);
     textAlign(CENTER, CENTER);
-    text("Frostbite Frenzy", width / 2, height / 2.6);
+    text("Frostbite Frenzy", this.rectX + this.rectWidth/2, this.rectY + this.rectHeight/3.5);
     pop(); // restore previous styles and transformations
-  }
+}
 
  
 
