@@ -12,6 +12,8 @@ class Player extends MovingEntity {
   private immortalTimer: number;
   private isInverted: boolean;
   private playerScore: number;
+  private isSpedUp: boolean;
+  private speedUpTimer: number;
   /**
    * Keeps track of the time that a player powerup has been active.
    * Counts downwards in milliseconds.
@@ -43,6 +45,8 @@ class Player extends MovingEntity {
     this.invertedTimer = 0;
     this.powerupTimer = 0;
     this.playerScore = 0;
+    this.isSpedUp = false;
+    this.speedUpTimer = 0;
 
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
@@ -126,6 +130,12 @@ updateState() {
         this.isImmortal = false;
       }
       break;
+    case this.isSpedUp:
+      this.speedUpTimer -= deltaTime;
+      if (this.speedUpTimer <= 0) {
+        this.isSpedUp = false;
+      }
+      break;
   }
 }
 
@@ -200,7 +210,12 @@ updateState() {
    * Increases player speed during limited time.
    * Called by collisionHandler.
    */
-  public speedUp() {}
+  public speedUp() {
+    if (!this.isSpedUp){
+      this.speedUpTimer = 3000;
+      this.isSpedUp = true;
+    }
+  }
 
   /**
    * Set isImmortal to true for a limited time.
