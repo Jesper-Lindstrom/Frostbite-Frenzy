@@ -5,6 +5,7 @@ class SpawnController {
   private gridCols: number;
   private gridRows: number;
   private cellSize: number;
+  private keysSpawned: number;
   
   constructor(mapArray: number[][], mapSize: number){
 
@@ -19,6 +20,8 @@ class SpawnController {
     this.gridRows = this.mapArray.length;
     this.gridCols = this.mapArray[0].length;
     this.cellSize = this.mapSize / this.gridCols;
+
+    this.keysSpawned = 0;
   }
 
   /**
@@ -54,20 +57,19 @@ class SpawnController {
         )
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
-        } if (cell === 4) {
-          entities.push(new Key(position, this.cellSize) )
         }
-        
-        // else if (cell == 2) {}
       });
     });
-    for (let i = 0; i < 4; i++) { // Change back to number monsters
+    for (let i = 0; i < 4; i++) {
       entities.push(this.createMonster());
+    }
+    for (let i = 0; i < 2; i++) {
+      entities.push(this.createKey());
     }
     return entities;
   }
 
-  public randomValidSpawnpoint(): p5.Vector{
+  private randomValidSpawnpoint(): p5.Vector{
     let validSpawnPoints: Coordinates[] = [];
     for (let i = 0; i < this.mapArray.length; i++) {
       for (let j = 0; j < this.mapArray[i].length; j++){
@@ -91,7 +93,14 @@ public createMonster(): Monster {
     const spawnPos = this.randomValidSpawnpoint();
     return new Monster(spawnPos, this.cellSize, this.mapArray, this.mapPosition);
   }
+
+public createKey(): Key {
+    let key = new Key (this.randomValidSpawnpoint(), this.cellSize, this.keysSpawned);
+    this.keysSpawned ++;
+    return key;
+  }
 }
+
 
 
 interface Coordinates {
