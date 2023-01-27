@@ -7,6 +7,7 @@ class SpawnController {
   private cellSize: number;
   private keysSpawned: number;
   
+  
   constructor(mapArray: number[][], mapSize: number){
 
     this.mapSize = mapSize;
@@ -22,6 +23,7 @@ class SpawnController {
     this.cellSize = this.mapSize / this.gridCols;
 
     this.keysSpawned = 0;
+    
   }
 
   /**
@@ -63,9 +65,9 @@ class SpawnController {
     for (let i = 0; i < 4; i++) {
       entities.push(this.createMonster());
     }
-    for (let i = 0; i < 1; i++) {
-      entities.push(this.createPurpleMonster())
-    }
+    // for (let i = 0; i < 1; i++) {
+    //   entities.push(this.createPurpleMonster())
+    // }
     for (let i = 0; i < 2; i++) {
       entities.push(this.createKey());
     }
@@ -99,6 +101,7 @@ public createMonster(): Monster {
 
 public createPurpleMonster() {
     return new PurpleMonster(this.randomValidSpawnpoint(), this.cellSize, this.mapArray, this.mapPosition);
+
 }
 
 

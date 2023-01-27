@@ -9,6 +9,7 @@ class Game {
      * SpawnController handles spawn/creation of every entity and where they will be spawned on the map layout.
      */
     private spawnController: SpawnController;
+    private purpleMonsterSpawned: boolean;
 
   constructor() {
     this.mapSize = height * 0.9;
@@ -39,6 +40,7 @@ class Game {
     this.entities = this.spawnController.createEntities();
     this.timer = new Timer(this.mapSize);
     this.scoreTable = new ScoreTable(this.mapSize);
+    this.purpleMonsterSpawned = false;
   }
 
   public update() {
@@ -46,6 +48,7 @@ class Game {
     this.updateEntities();
     this.checkCollision();
     this.timer.update();
+    this.timeCheck();
   }
 
   public draw() {
@@ -153,7 +156,16 @@ class Game {
    * Chcecks elapsed time using a getTime method in the timer object.
    * According to the time, timeCheck will call functions that spawn powerups (in spawnController) and end the game.
    */
-  timeCheck() {};
-}
+  timeCheck() {
+    const remainingTime = this.timer.getTime()
+    if (remainingTime <= 60 && this.purpleMonsterSpawned === false) {
+      
+        this.purpleMonsterSpawned = true;
+        this.entities.push(this.spawnController.createPurpleMonster());
+        console.log('Nu finns jag!')
+      
+    }
+  };
+} 
 
 // replace item with new item
