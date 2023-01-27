@@ -5,12 +5,20 @@ class StartPage extends MenuPage {
   private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
+  private rectWidth: number;
+  private rectHeight: number;
+  rectX: number;
+  rectY: number;
 
   public constructor(menu: Menu) {
     super();
     this.menu = menu;
     this.characters = images.characters;
     this.snowflakes = images.snowflakes;
+    this.rectWidth = windowWidth * 0.75;
+    this.rectHeight = windowHeight * 0.75;
+    this.rectX = (windowWidth - this.rectWidth) / 2;
+    this.rectY = (windowHeight - this.rectHeight) / 2;
   }
 
   public draw() {
@@ -27,9 +35,9 @@ class StartPage extends MenuPage {
 
   public drawShapes() {
     push(); // save current styles and transformations
-    rectMode(CENTER);
+    // rectMode(CENTER);
     fill(47, 78, 107);
-    rect(width / 2, height / 2, 700, 600); // larger rect
+    rect(this.rectX, this.rectY, this.rectWidth, this.rectHeight); // larger rect
     pop(); // restore previous styles and transformations
   }
 
@@ -95,14 +103,21 @@ class StartPage extends MenuPage {
     pop(); // restore previous styles and transformations
   }
 
+ 
+
   public drawImages() {
     if (this.characters.width > 0 && this.characters.height > 0) {
-      image(this.characters, width / 2 - 350, height / 2 - -50, 700, 250);
+      image(this.characters, this.rectX, this.rectY+this.rectHeight-250, this.rectWidth, 250);
     }
     if (this.snowflakes.width > 0 && this.snowflakes.height > 0) {
-      image(this.snowflakes, width / 2 - 342, height / 2 - 290, 680, 170);
+      image(this.snowflakes, this.rectX, this.rectY, this.rectWidth, 170);
     }
   }
+
+
+
+
+
 
   private keyPressed() {
     // update the current option based on the keyboard input
