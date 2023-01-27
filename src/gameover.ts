@@ -76,11 +76,12 @@ class Gameover {
 }
 
 private drawImages() {
+  imageMode(CENTER);
   if (this.yellowSnowman.width > 0 && this.yellowSnowman.height > 0) {
-    image(this.yellowSnowman, width / 2 - 80, height / 2 - 180, 150, 170);
+    image(this.yellowSnowman, width / 2, height / 2 - 180, 80, 100);
   }
   if (this.greenSnowman.width > 0 && this.greenSnowman.height > 0) {
-    image(this.greenSnowman, width / 2 - 80, height / 2 - -80, 150, 170);
+    image(this.greenSnowman, width / 2, height / 2 - -80, 80, 100);
   }
   if (this.key.width > 0 && this.key.height > 0) {
     image(this.key, width / 2 - -180, height / 2 - 190, 70, 50);
@@ -107,9 +108,9 @@ private drawImages() {
   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.position(width / 2, height / 1.4 + (i + 1) * 50);
+      button.position(width / 1.6, height / 1.4 + (i + 1) * 50);
       button.size(150, 40);
-      button.center("horizontal");
+      // button.center("horizontal");
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
