@@ -12,7 +12,7 @@ class Timer {
     
 
     public constructor(mapSize: number) {
-        this.minutes = 3;
+        this.minutes = 2;
         this.seconds = 0;
         this.timerRunning = true;
         this.deltaSecond = 0;

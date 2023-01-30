@@ -181,13 +181,7 @@ updateState() {
     this.position = this.previousPosition;
   }
 
-  /**
-   * Increases the playerscore after picking up a key
-   */
-  public keyCollection() {
-    this.playerScore += 1;
-    console.log('Player ' + this.playerNumber + ' is ' + this.playerScore)
-  }
+
 
   public invertControls(){
     if(!this.isInverted)
