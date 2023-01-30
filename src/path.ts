@@ -1,4 +1,4 @@
-class WallBlock extends GameEntity {
+class Path extends GameEntity {
   
   public constructor(
     position: p5.Vector,
@@ -14,8 +14,8 @@ class WallBlock extends GameEntity {
   
   public draw() {
     push();
-    fill("205, 240, 255");
-    // stroke('205, 240, 255')
+    fill("black");
+    stroke('black')
     rect(this.position.x, this.position.y, this.size.x, this.size.y, 10);
     pop();
   }
