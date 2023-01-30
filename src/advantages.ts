@@ -15,13 +15,13 @@ class Advantages extends MenuPage {
     this.watch = images.watch;
     this.advantagessnowflake = images.advantagessnowflake;
     this.invertarrows = images.invertarrows;
-    this.drawShape();
-    this.drawText();
+    this.drawShapes();
     this.drawImages();
+    this.drawText();
     this.createBackButton();
   }
 
-  private drawShape() {
+  public drawShapes() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(47, 78, 107);
@@ -122,7 +122,7 @@ class Advantages extends MenuPage {
       "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
     );
     button.mousePressed(() => {
-      this.menu.openObjectives();
+      this.menu.openPage(new Objectives(this.menu));
     });
     button.mouseOver(() => {
       button.style("background: rgb(1,108,129);");
@@ -143,29 +143,10 @@ class Advantages extends MenuPage {
   }
 
   public drawImages() {
-    if (this.img.width > 0 && this.img.height > 0) {
-      image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
-    }
-    if (this.img1.width > 0 && this.img1.height > 0) {
-      image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
-    }
-    if (this.watch.width > 0 && this.watch.height > 0) {
-      image(this.watch, width / 2 - -180, height / 2 - 120, 90, 70);
-    }
-    if (
-      this.advantagessnowflake.width > 0 &&
-      this.advantagessnowflake.height > 0
-    ) {
-      image(
-        this.advantagessnowflake,
-        width / 2 - -180,
-        height / 2 - -12,
-        90,
-        70
-      );
-    }
-    if (this.invertarrows.width > 0 && this.invertarrows.height > 0) {
-      image(this.invertarrows, width / 2 - -180, height / 2 - -150, 85, 70);
-    }
+    image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
+    image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
+    image(this.watch, width / 2 - -180, height / 2 - 120, 90, 70);
+    image(this.advantagessnowflake, width / 2 - -180, height / 2 - -12, 90, 70);
+    image(this.invertarrows, width / 2 - -180, height / 2 - -150, 85, 70);
   }
 }

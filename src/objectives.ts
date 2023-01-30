@@ -129,7 +129,7 @@ class Objectives extends MenuPage {
       "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
     );
     button.mousePressed(() => {
-      this.menu.openStartPage();
+      this.menu.openPage(new StartPage(this.menu));
     });
     button.mouseOver(() => {
       button.style("background: rgb(1,108,129);");
@@ -165,7 +165,7 @@ class Objectives extends MenuPage {
     );
     button.mousePressed(() => {
       removeElements();
-      this.menu.openAdvantages();
+      this.menu.openPage(new Advantages(this.menu));
     });
     button.mouseOver(() => {
       button.style("background: rgb(1,108,129);");
@@ -186,26 +186,15 @@ class Objectives extends MenuPage {
   }
 
   public drawImages() {
-    if (this.img.width > 0 && this.img.height > 0) {
-      image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
-    }
-    if (this.img1.width > 0 && this.img1.height > 0) {
-      image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
-    }
-    if (this.key.width > 0 && this.key.height > 0) {
-      image(this.key, width / 2 - -190, height / 2 - 90, 80, 40);
-    }
-    if (
-      this.monsterdescriptions.width > 0 &&
-      this.monsterdescriptions.height > 0
-    ) {
-      image(
-        this.monsterdescriptions,
-        width / 2 - -165,
-        height / 2 - 15,
-        115,
-        105
-      );
-    }
+    image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
+    image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
+    image(this.key, width / 2 - -190, height / 2 - 90, 80, 40);
+    image(
+      this.monsterdescriptions,
+      width / 2 - -165,
+      height / 2 - 15,
+      115,
+      105
+    );
   }
 }

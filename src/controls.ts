@@ -49,7 +49,7 @@ class Controls extends MenuPage {
       "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
     );
     button.mousePressed(() => {
-      this.menu.openStartPage();
+      this.menu.openPage(new StartPage(this.menu));
     });
     button.mouseOver(() => {
       button.style("background: rgb(1,108,129);");
@@ -77,6 +77,7 @@ class Controls extends MenuPage {
     textAlign(CENTER, CENTER);
     text("Game Controls", width / 2, height / 2.7);
     pop(); // restore previous styles and transformations
+
     push();
     fill(255);
     textSize(20);
@@ -84,6 +85,7 @@ class Controls extends MenuPage {
     textSize(16);
     text("Movement", width * 0.443, height * 0.56);
     textFont(fontSansita);
+
     pop();
     push();
     fill(255);
@@ -93,6 +95,7 @@ class Controls extends MenuPage {
     text("Movement", width * 0.533, height * 0.56);
     textFont(fontSansita);
     pop();
+
     push();
     fill(255);
     textSize(18);
@@ -109,54 +112,9 @@ class Controls extends MenuPage {
   }
 
   public drawImages() {
-    if (this.img.width > 0 && this.img.height > 0) {
-      image(this.img1, width / 2 - 370, height / 2 - 342, 750, 150);
-    }
-    if (this.img1.width > 0 && this.img1.height > 0) {
-      image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
-    }
-    if (this.img2.width > 0 && this.img2.height > 0) {
-      image(this.img2, width / 2 - 180, height / 2 - 30, 140, 80);
-    }
-    if (this.img3.width > 0 && this.img3.height > 0) {
-      image(this.img3, width / 2 - -50, height / 2 - 30, 140, 80);
-    }
+    image(this.img1, width / 2 - 370, height / 2 - 342, 750, 150);
+    image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
+    image(this.img2, width / 2 - 180, height / 2 - 30, 140, 80);
+    image(this.img3, width / 2 - -50, height / 2 - 30, 140, 80);
   }
 }
-
-// function mousePressed() {
-//   if (
-//     mouseX > width / 2 - 320 &&
-//     mouseX < width / 2 - 320 + 90 &&
-//     mouseY > height / 2 - -180 &&
-//     mouseY < height / 2 - -180 + 90
-//   ) {
-//     handleMousePress();
-//   }
-// }
-
-// function handleMousePress() {
-//   // this.menu.openPage(new StartPage(this));
-//   console.log("Klick");
-// }
-// function mousePressed() {
-//   if (
-//     mouseX > width / 2 - 320 &&
-//     mouseX < width / 2 - 230 &&
-//     mouseY > height / 2 - 270 &&
-//     mouseY < height / 2 - 180
-//   ) {
-//     // Add desired behavior here, such as:
-//     // window.location.href = "example.com"; or
-//     console.log("arrow clicked");
-//   }
-// }
-// public mouseClicked() {
-//   if (
-//     mouseX > width / 2 - this.img4.width / 2 &&
-//     mouseX < width / 2 + this.img4.width / 2 &&
-//     mouseY > height / 2 - this.img4.height / 2 &&
-//     mouseY < height / 2 + this.img4.height / 2
-//   ) {
-//     console.log("img4 clicked");
-//   }
