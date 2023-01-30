@@ -1,4 +1,4 @@
-class speedUp extends GameEntity {
+class SpeedUp extends GameEntity {
     private image: p5.Image;
   //ärver   protected position: p5.Vector;
   // protected size: p5.Vector;
@@ -13,10 +13,10 @@ class speedUp extends GameEntity {
 }
 
     public draw() {
-      push();
-      fill(0, 0, 0, 0)
-      rect(this.position.x, this.position.y, this.size.x * 0.5, this.size.y * 0.5)
-      pop();
+       push();
+       fill(0, 0, 0, 0)
+       rect(this.position.x, this.position.y, this.size.x * 0.5, this.size.y * 0.5)
+       pop();
       image(
         this.image,
         this.position.x - this.size.x * 0.1,

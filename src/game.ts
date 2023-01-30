@@ -10,6 +10,7 @@ class Game {
      */
     private spawnController: SpawnController;
     private purpleMonsterSpawned: boolean;
+    private powerupsHaveStartedSpawning: boolean;
 
   constructor() {
     this.mapSize = height * 0.9;
@@ -41,6 +42,7 @@ class Game {
     this.timer = new Timer(this.mapSize);
     this.scoreTable = new ScoreTable(this.mapSize);
     this.purpleMonsterSpawned = false;
+    this.powerupsHaveStartedSpawning = false;
   }
 
   public update() {
@@ -124,9 +126,9 @@ class Game {
     if (entity instanceof Immortal) {
       player.makeImmortal()
     }
-    if (entity instanceof SlowOpponent) {
+    // if (entity instanceof SlowOpponent) {
 
-    }
+    // }
   };
 
   // private keyCollection() {
@@ -158,13 +160,20 @@ class Game {
    */
   timeCheck() {
     const remainingTime = this.timer.getTime()
+    let randomNum;
+    if (remainingTime <= 115 && this.powerupsHaveStartedSpawning === false) {
+      this.powerupsHaveStartedSpawning = true;
+      setInterval(() => {
+        randomNum = Math.floor(Math.random() * 4) + 1;
+        this.entities.push(this.spawnController.spawnPowerUpFromRandomNumber(randomNum));
+      }, 15000);
+
+    }
     if (remainingTime <= 60 && this.purpleMonsterSpawned === false) {
       
         this.purpleMonsterSpawned = true;
-        this.entities.push(this.spawnController.createPurpleMonster());
-        console.log('Nu finns jag!')
-      
-    }
+        this.entities.push(this.spawnController.createPurpleMonster());      
+    } 
   };
 } 
 
