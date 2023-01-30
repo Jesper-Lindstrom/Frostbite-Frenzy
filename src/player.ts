@@ -7,9 +7,13 @@ class Player extends MovingEntity {
   private image: p5.Image;
   private isFrozen: boolean;
   private freezeTimer: number;
+  private invertedTimer: number;
   private isImmortal: boolean;
+  private immortalTimer: number;
   private isInverted: boolean;
   private playerScore: number;
+  private isSpedUp: boolean;
+  private speedUpTimer: number;
   /**
    * Keeps track of the time that a player powerup has been active.
    * Counts downwards in milliseconds.
@@ -36,9 +40,13 @@ class Player extends MovingEntity {
     this.isFrozen = false;
     this.freezeTimer = 0;
     this.isImmortal = false;
+    this.immortalTimer = 0;
     this.isInverted = false;
+    this.invertedTimer = 0;
     this.powerupTimer = 0;
     this.playerScore = 0;
+    this.isSpedUp = false;
+    this.speedUpTimer = 0;
 
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
@@ -74,6 +82,8 @@ class Player extends MovingEntity {
   }
 
   public update() {
+
+    
     /**
      * Here we record the player's starting position at each frame in order to
      * reset the new position on collision with a wall.
@@ -99,20 +109,56 @@ class Player extends MovingEntity {
       pop();
   }
 
-  updateState() {
-    if (this.isFrozen) {
+
+updateState() {
+  switch (true) {
+    case this.isFrozen:
       this.freezeTimer -= deltaTime;
       if (this.freezeTimer <= 0) {
-        this.isFrozen = false
+        this.isFrozen = false;
       }
-    }
+      break;
+    case this.isInverted:
+      this.invertedTimer -= deltaTime;
+      if (this.invertedTimer <= 0) {
+        this.isInverted = false;
+      }
+      break;
+    case this.isImmortal:
+      this.immortalTimer -= deltaTime;
+      if (this.immortalTimer <= 0) {
+        this.isImmortal = false;
+      }
+      break;
+    case this.isSpedUp:
+      this.speedUpTimer -= deltaTime;
+      if (this.speedUpTimer <= 0) {
+        this.isSpedUp = false;
+      }
+      break;
   }
+}
 
   /**
    * Called from update. Checks keyboard input.
    */
   private checkUserInput() {
-    if (!this.isFrozen) {
+    if (!this.isFrozen)
+    if (this.isInverted) {
+      if (keyIsDown(this.leftButton)) {
+        this.position.x += this.speed;
+      }
+      if (keyIsDown(this.rightButton)) {
+        this.position.x -= this.speed;
+      }
+      if (keyIsDown(this.upButton)) {
+        this.position.y += this.speed;
+      }
+      if (keyIsDown(this.downButton)) {
+        this.position.y -= this.speed;
+      }
+    }
+  else{
     if (keyIsDown(this.leftButton)) {
       this.position.x -= this.speed;
     }
@@ -127,7 +173,6 @@ class Player extends MovingEntity {
     }
   }
   }
-
   /**
    * Called by collsionHandler if collsion detected with a wall.
    * Reverts to previous position to prevent movement before drawing.
@@ -136,12 +181,12 @@ class Player extends MovingEntity {
     this.position = this.previousPosition;
   }
 
-  /**
-   * Increases the playerscore after picking up a key
-   */
-  public keyCollection() {
-    this.playerScore += 1;
-    console.log('Player ' + this.playerNumber + ' is ' + this.playerScore)
+
+
+  public invertControls(){
+    if(!this.isInverted)
+    this.invertedTimer = 3000;
+    this.isInverted = true;
   }
 
   /**
@@ -159,13 +204,20 @@ class Player extends MovingEntity {
    * Increases player speed during limited time.
    * Called by collisionHandler.
    */
-  public speedUp() {}
+  public speedUp() {
+    if (!this.isSpedUp){
+      this.speedUpTimer = 3000;
+      this.isSpedUp = true;
+    }
+  }
 
   /**
    * Set isImmortal to true for a limited time.
    * Called by collisionHandler.
    */
-  public makeImmortal() {}
+  public makeImmortal() {
+    
+  }
 
   /**
    * Sets key controls to opposite sides during limited time.

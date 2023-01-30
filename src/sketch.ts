@@ -14,6 +14,7 @@ interface Images {
   yellowSnowman: p5.Image;
   greenSnowman: p5.Image;
   blueMonster: p5.Image;
+  purplemonster: p5.Image;
   characters: p5.Image;
   key: p5.Image;
   monsterdescriptions: p5.Image;
@@ -43,6 +44,7 @@ function preload() {
     yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
     greenSnowman: loadImage("/assets/images/greensnowman.png"),
     blueMonster: loadImage("/assets/images/bluemonster.png"),
+    purplemonster: loadImage("/assets/images/purplemonster.png"),
     characters: loadImage("/assets/images/characters.png"),
     fallingsnow: loadImage("/assets/images/fallingsnow.gif"),
     key: loadImage("/assets/images/key.png"),

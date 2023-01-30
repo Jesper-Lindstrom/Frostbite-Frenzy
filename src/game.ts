@@ -9,6 +9,7 @@ class Game {
      * SpawnController handles spawn/creation of every entity and where they will be spawned on the map layout.
      */
     private spawnController: SpawnController;
+    private purpleMonsterSpawned: boolean;
 
   constructor() {
     this.mapSize = height * 0.9;
@@ -23,7 +24,7 @@ class Game {
       [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
       [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
@@ -39,6 +40,7 @@ class Game {
     this.entities = this.spawnController.createEntities();
     this.timer = new Timer(this.mapSize);
     this.scoreTable = new ScoreTable(this.mapSize);
+    this.purpleMonsterSpawned = false;
   }
 
   public update() {
@@ -46,6 +48,7 @@ class Game {
     this.updateEntities();
     this.checkCollision();
     this.timer.update();
+    this.timeCheck();
   }
 
   public draw() {
@@ -80,13 +83,6 @@ class Game {
       player.draw();
     }
   };
-  private drawMonsters() {};
-  private drawKeys() {
-  //   for(const key of this.keys) {
-  //     key.draw();
-  // }
-};
-  private drawPowerups() {};
 
   /**
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
@@ -120,21 +116,22 @@ class Game {
       player.freeze();
     }
     if (entity instanceof Key) {
-      player.keyCollection();
-      
+      this.keyCollision(player, entity);
     }
     if (entity instanceof InvertKeys) {
-      
+      player.invertControls()
     }
-    if (entity instanceof Invincible) {
-
+    if (entity instanceof Immortal) {
+      player.makeImmortal()
     }
     if (entity instanceof SlowOpponent) {
 
     }
   };
 
-
+  // private keyCollection() {
+  //   this.
+  // }
 
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
@@ -146,13 +143,29 @@ class Game {
    * Called by collisionHandler when a collision is detected between a player and a key.
    * Calls functions that spawn a new key (in spawnController) and that update the player's score (in scoreTable).
    */
-  respawnKey() {
+  private keyCollision(player: Player, key: Key) {
     
-  };
-
+    this.entities = this.entities.filter(function(obj) {
+      return obj !== key
+    });
+    this.entities.push(this.spawnController.createKey());
+    this.scoreTable.givePoint(player.playerNumber);
+    
+  }
   /**
    * Chcecks elapsed time using a getTime method in the timer object.
    * According to the time, timeCheck will call functions that spawn powerups (in spawnController) and end the game.
    */
-  timeCheck() {};
-}
+  timeCheck() {
+    const remainingTime = this.timer.getTime()
+    if (remainingTime <= 60 && this.purpleMonsterSpawned === false) {
+      
+        this.purpleMonsterSpawned = true;
+        this.entities.push(this.spawnController.createPurpleMonster());
+        console.log('Nu finns jag!')
+      
+    }
+  };
+} 
+
+// replace item with new item
