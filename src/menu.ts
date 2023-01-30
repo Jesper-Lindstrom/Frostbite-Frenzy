@@ -11,7 +11,7 @@ class Menu {
     this.activePage.draw();
   }
 
-  public openPage(newPage: MenuPage): void {
+  public openPage(newPage: any): void {
     this.activePage = newPage;
   }
 }
