@@ -177,8 +177,61 @@ updateState() {
    * Called by collsionHandler if collsion detected with a wall.
    * Reverts to previous position to prevent movement before drawing.
    */
-  public wallCollision() {
-    this.position = this.previousPosition;
+  public wallCollision(wall: WallBlock) {
+    // this.position = this.previousPosition;
+    
+    if (this.position.x !== this.previousPosition.x && this.position.y !== this.previousPosition.y) {
+    let previousBottom: number = this.previousPosition.y + this.size.x;
+    let previousRight: number = this.previousPosition.x + this.size.y;
+    let previousBounds : bounds = {
+      top: this.previousPosition.y,
+      bottom: previousBottom,
+      left: this.previousPosition.x,
+      right: previousRight
+    }
+
+    // Check new position vs old position
+    // If both x and y are different
+      // Which direction is the wall in?
+      // Is the diffrence biggest between x or y?
+      // Which sides are the closest?
+      // Subtract relative bounds to find smallest difference.
+      // Cancel movement in direction of smallest difference. Or in case of 0?
+      let topDistance: number = Math.abs(previousBounds.top - wall.bounds.bottom);
+      let bottomDistance: number = Math.abs(previousBounds.bottom - wall.bounds.top);
+      let leftDistance: number = Math.abs(previousBounds.left - wall.bounds.right);
+      let rightDistance: number = Math.abs(previousBounds.right - wall.bounds.left);
+
+      let collisionSide: number = Math.min(topDistance, bottomDistance, leftDistance, rightDistance);
+      // console.log('Top dist:' + topDistance, 'Bot dist: ' + bottomDistance, 'Left dist:' + leftDistance, 'Right dist: ' + rightDistance, 'Collision side: ' + collisionSide);
+
+      // Update new position without travel towards wall but with travel in other direction.
+
+      switch (collisionSide) {
+        case topDistance:
+          this.position.y = this.previousPosition.y
+          break;
+
+          case bottomDistance:
+            this.position.y = this.previousPosition.y
+            break;
+
+          case leftDistance :
+            this.position.x = this.previousPosition.x
+            break;
+
+            case rightDistance:
+              this.position.x = this.previousPosition.x
+              break;
+
+             
+      
+        default:
+          break;
+      }
+    } else {
+      this.position = this.previousPosition;
+    }
   }
 
 

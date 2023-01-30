@@ -110,7 +110,7 @@ class Game {
   
   private collisionHandler(player: Player, entity: GameEntity) {
     if (entity instanceof WallBlock) {
-      player.wallCollision();
+      player.wallCollision(entity);
     }
     if (entity instanceof Monster) {
       player.freeze();
