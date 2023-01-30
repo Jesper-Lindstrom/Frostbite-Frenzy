@@ -1,8 +1,8 @@
 class StartPage extends MenuPage {
   public menu: Menu;
   private characters: p5.Image;
-  private snowflakes: p5.Image;
-  private currentOption: number = 0;
+  private fallingsnow: p5.Image;
+  // private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
 
@@ -10,20 +10,14 @@ class StartPage extends MenuPage {
     super();
     this.menu = menu;
     this.characters = images.characters;
-    this.snowflakes = images.snowflakes;
-  }
-
-  public draw() {
+    this.fallingsnow = images.fallingsnow;
     this.drawShapes();
-    this.drawText();
     removeElements();
     this.drawButtons();
-    this.keyPressed();
-    this.updateHover();
+    this.drawShapes();
     this.drawImages();
+    this.drawText();
   }
-
-  public update() {}
 
   public drawShapes() {
     push(); // save current styles and transformations
@@ -48,40 +42,30 @@ class StartPage extends MenuPage {
       button.style("background-color: #D2ECF3");
 
       button.mouseOver(() => {
-        this.currentOption = i;
-        this.updateHover();
+        // this.currentOption = i;
+        this.buttons[i].style("color", "rgb(255, 255, 255)");
+        this.buttons[i].style("background-color", "rgb(15, 82, 186");
       });
 
       button.mouseOut(() => {
-        this.currentOption = i;
-        this.updateHover();
+        this.buttons[i].style("background: #D2ECF3");
+        this.buttons[i].style("color: #4A7AA7");
       });
-
       button.mousePressed(() => {
         // callback function to call when the button is clicked
         if (i === 0) {
           gameFrame.newGame();
         } else if (i === 1) {
+          redraw();
           removeElements();
-          this.menu.openPage(new Objectives());
+          this.menu.openPage(new Objectives(this.menu));
         } else if (i === 2) {
+          redraw();
           removeElements();
-          this.menu.openPage(new Controls());
+          this.menu.openPage(new Controls(this.menu));
         }
       });
       this.buttons.push(button);
-    }
-  }
-
-  private updateHover() {
-    // update hover effect on buttons
-    for (let i = 0; i < this.options.length; i++) {
-      if (i === this.currentOption) {
-        this.buttons[i].style("background-color", "rgb(100, 190, 230)");
-      } else {
-        this.buttons[i].style("background-color", "#D2ECF3");
-      }
-      noLoop();
     }
   }
 
@@ -92,36 +76,13 @@ class StartPage extends MenuPage {
     textSize(42);
     textAlign(CENTER, CENTER);
     text("Frostbite Frenzy", width / 2, height / 2.6);
+    stroke(255, 204, 0);
+
     pop(); // restore previous styles and transformations
   }
 
   public drawImages() {
-    if (this.characters.width > 0 && this.characters.height > 0) {
-      image(this.characters, width / 2 - 350, height / 2 - -50, 700, 250);
-    }
-    if (this.snowflakes.width > 0 && this.snowflakes.height > 0) {
-      image(this.snowflakes, width / 2 - 342, height / 2 - 290, 680, 170);
-    }
-  }
-
-  private keyPressed() {
-    // update the current option based on the keyboard input
-    if (keyCode === 87) {
-      this.currentOption = max(this.currentOption - 1, 0);
-    } else if (keyCode === 83) {
-      this.currentOption = min(this.currentOption + 1, this.options.length - 1);
-      console.log("funkar det?");
-    } else if (key === "a" || key === "A") {
-      this.currentOption = min(this.currentOption + 1, this.options.length - 1);
-    } else if (key === "d" || key === "D") {
-      this.currentOption = max(this.currentOption - 1, 0);
-    } else if (key === "Enter") {
-      if (this.currentOption === this.options.length - 1) {
-        gameFrame.newGame();
-        console.log("Click");
-      }
-    }
-    this.updateHover();
+    image(this.characters, width / 2 - 350, height / 2 - -50, 700, 250);
+    image(this.fallingsnow, width / 2 - 342, height / 2 - 295, 684, 245);
   }
 }
-
