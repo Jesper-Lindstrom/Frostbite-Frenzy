@@ -1,4 +1,6 @@
-class Objectives {
+/// <reference path="menupage.ts" />
+
+class Objectives extends MenuPage {
   private readMoreLink: string;
   private img: p5.Image;
   private img1: p5.Image;
@@ -6,21 +8,19 @@ class Objectives {
   private monsterdescriptions: p5.Image;
 
   public constructor() {
+    super();
     this.readMoreLink = "Read More";
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
     this.key = images.key;
     this.monsterdescriptions = images.monsterdescriptions;
-  }
-
-  public draw() {
-    this.drawShape();
+    this.drawShapes();
     this.drawText();
     this.drawImages();
     this.mousePressed();
   }
 
-  private drawShape() {
+  public drawShapes() {
     push(); // save current styles and transformations
     rectMode(CENTER);
     fill(47, 78, 107);
@@ -36,9 +36,9 @@ class Objectives {
     pop(); // restore previous styles and transformations
   }
 
-  private drawText() {
+  public drawText() {
     push(); // save current styles and transformations
-    textFont("Sansita");
+    textFont(fontSansita);
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
@@ -122,7 +122,7 @@ class Objectives {
     pop();
   }
 
-  private drawImages() {
+  public drawImages() {
     if (this.img.width > 0 && this.img.height > 0) {
       image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
     }
@@ -160,14 +160,3 @@ class Objectives {
     }
   }
 }
-
-/* import { MenuPage } from '../src/menupage';
-
-class Objectives extends MenuPage {
-    
-public constructor(content: PageContent) {
-    super(content);
-} 
-    
-    
-} */

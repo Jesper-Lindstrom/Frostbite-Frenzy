@@ -2,6 +2,8 @@
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
 let controls: Controls;
+let fontFreckleFace: p5.Font;
+let fontSansita: p5.Font;
 let gameover: Gameover;
 // let menuFont;
 
@@ -10,6 +12,10 @@ interface Images {
   iceLower: p5.Image;
   wsadButtons: p5.Image;
   arrowButtons: p5.Image;
+  yellowSnowman: p5.Image;
+  greenSnowman: p5.Image;
+  blueMonster: p5.Image;
+  purplemonster: p5.Image;
   characters: p5.Image;
   snowflakes: p5.Image;
   key: p5.Image;
@@ -25,6 +31,7 @@ interface Images {
   yellowSnowman: p5.Image;
   greenSnowman:p5.Image;
 
+  backarrow: p5.Image;
 }
 
 let images: Images;
@@ -35,11 +42,18 @@ let images: Images;
  * sound files, images etc...
  */
 function preload() {
+  fontFreckleFace = loadFont("/assets/fonts/FreckleFace.ttf");
+  fontSansita = loadFont("/assets/fonts/Sansita.ttf");
+
   images = {
     iceUpper: loadImage("/assets/images/ice1.png"),
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
+    yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
+    greenSnowman: loadImage("/assets/images/greensnowman.png"),
+    blueMonster: loadImage("/assets/images/bluemonster.png"),
+    purplemonster: loadImage("/assets/images/purplemonster.png"),
     characters: loadImage("/assets/images/characters.png"),
     snowflakes: loadImage("/assets/images/snowflakes.png"),
     key: loadImage("/assets/images/key.png"),
@@ -56,6 +70,9 @@ function preload() {
     yellowSnowman: loadImage("/assets/images/yellowSnowman.png"),
 
   }
+    invertarrows: loadImage("/assets/images/invertarrows.png"),
+    backarrow: loadImage("/assets/images/backarrow.png"),
+  };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
