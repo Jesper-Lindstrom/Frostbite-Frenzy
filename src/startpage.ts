@@ -5,10 +5,6 @@ class StartPage extends MenuPage {
   // private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
-  private rectWidth: number;
-  private rectHeight: number;
-  private rectX: number;
-  private rectY: number;
 
   public constructor(menu: Menu) {
     super();
@@ -25,19 +21,18 @@ class StartPage extends MenuPage {
 
   public drawShapes() {
     push(); // save current styles and transformations
-    // rectMode(CENTER);
     fill(47, 78, 107);
-    rect(this.rectX, this.rectY, this.rectWidth, this.rectHeight); // larger rect
+    rect(this.x, this.y, this.width, this.height); // larger rect
     pop(); // restore previous styles and transformations
   }
 
   // Creates the buttons with a for loop based on the options array length
-  private drawButtons() {
+   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.size(150, 40);
+      button.size(this.width * 0.3, this.height * 0.08);
       button.center("horizontal");
-      button.position(this.rectX + (this.rectWidth - 150) / 2, this.rectY + (i + 1 + 3) * 50);
+      button.position(this.x + this.width / 2.9, this.y + this.height / 4.2 + (i * 45));
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
@@ -71,24 +66,23 @@ class StartPage extends MenuPage {
       });
       this.buttons.push(button);
     }
-  }
+  } 
 
   public drawText() {
     push(); // save current styles and transformations
     textFont(fontFreckleFace);
     fill(255);
-    textSize(42);
+    textSize(36);
     textAlign(CENTER, CENTER);
-    text("Frostbite Frenzy", width / 2, height / 2.6);
+    text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 6.5);
     stroke(255, 204, 0);
-
     pop(); // restore previous styles and transformations
-}
-
- 
-
-  public drawImages() {
-    image(this.characters, width / 2 - 350, height / 2 - -50, 700, 250);
-    image(this.fallingsnow, width / 2 - 342, height / 2 - 295, 684, 245);
   }
+
+  public drawImages(): void {
+    let imageWidth = this.width;
+    let imageHeight = (imageWidth / this.characters.width) * this.characters.height;
+    image(this.characters, (this.x + this.width * 0.5) - (imageWidth / 2), this.y + this.height - imageHeight, imageWidth, imageHeight);
+  }
+  
 }
