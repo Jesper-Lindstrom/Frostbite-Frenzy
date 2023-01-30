@@ -112,21 +112,17 @@ public createKey(): Key {
 
   
 
-public spawnPowerUpFromRandomNumber(randomNum: number){
-  let position = this.randomValidSpawnpoint();
+public spawnPowerUpFromRandomNumber(randomNum: number): GameEntity{
+  let position: p5.Vector = this.randomValidSpawnpoint();
+  let newPowerUp: GameEntity = new InvertKeys(position, this.cellSize);
   if (randomNum === 1) {
-    new SpeedUp(position, this.cellSize)
-    return SpeedUp;
+    newPowerUp =  new SpeedUp(position, this.cellSize)
   } else if (randomNum === 2) {
-    new Immortal(position, this.cellSize)
-    return Immortal;
+    newPowerUp =  new Immortal(position, this.cellSize)
   } else if (randomNum === 3) {
-    new InvertKeys(position, this.cellSize)
-    return InvertKeys;
+    newPowerUp = new InvertKeys(position, this.cellSize)
   }
-  else{
-    return new InvertKeys(position, this.cellSize);
-  }
+  return newPowerUp;
 }
 
 //Ta emot siffra från RandomNumber
