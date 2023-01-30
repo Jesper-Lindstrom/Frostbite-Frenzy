@@ -116,10 +116,10 @@ class Game {
       this.keyCollision(player, entity);
     }
     if (entity instanceof InvertKeys) {
-      
+      player.invertControls()
     }
-    if (entity instanceof Invincible) {
-
+    if (entity instanceof Immortal) {
+      player.makeImmortal()
     }
     if (entity instanceof SlowOpponent) {
 
