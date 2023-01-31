@@ -111,7 +111,7 @@ class Game {
     if (entity instanceof WallBlock) {
       player.wallCollision();
     }
-    if (entity instanceof Monster && !player.isImmortal = true) {
+    if (entity instanceof Monster && !(player.isImmortal = true)) {
       player.freeze();
     }
     if (entity instanceof Key) {
@@ -124,7 +124,7 @@ class Game {
       player.makeImmortal()
     }
     if (entity instanceof SlowOpponent) {
-
+      
     }
   };
 
