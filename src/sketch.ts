@@ -27,10 +27,6 @@ interface Images {
   invertarrows: p5.Image;
   purpleMonsterSingle: p5.Image;
   monsterBlue: p5.Image;
-  yellowSnowman: p5.Image;
-  greenSnowman:p5.Image;
-
-  backarrow: p5.Image;
   fallingsnow: p5.Image;
 }
 
@@ -66,18 +62,14 @@ function preload() {
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
     monsterBlue: loadImage("/assets/images/monsterBlue.png"),
-    greenSnowman: loadImage("/assets/images/greenSnowman.png"),
-    yellowSnowman: loadImage("/assets/images/yellowSnowman.png"),
-
+  
   }
-    invertarrows: loadImage("/assets/images/invertarrows.png"),
-    backarrow: loadImage("/assets/images/backarrow.png"),
   };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
   // );
-}
+
 
 /**
  * Built in setup function in P5
@@ -88,7 +80,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-  gameFrame = new GameFrame(false);
+  // gameFrame = new GameFrame(false);
+  gameover = new Gameover();
   
 }
 
@@ -98,8 +91,9 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  gameFrame.update();
-  gameFrame.draw();
+  // gameFrame.update();
+  // gameFrame.draw();
+  gameover.draw();
 }
 
 /**

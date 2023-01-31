@@ -1,4 +1,5 @@
-class Gameover {
+class Gameover extends MenuPage {
+  public menu: Menu;
   private greenSnowman: p5.Image;
   private yellowSnowman: p5.Image;
   private key: p5.Image;
@@ -12,7 +13,9 @@ class Gameover {
   private buttons: p5.Element[] = [];
 
 
-  public constructor() {
+  public constructor(menu: Menu) {
+    super()
+    this.menu = menu;
     this.greenSnowman = images.greenSnowman;
     this.yellowSnowman = images.yellowSnowman;
     this.monsterPurple = images.purpleMonsterSingle;
@@ -21,14 +24,17 @@ class Gameover {
     this.key2 = images.key2;
     this.key3 = images.key3;
     this.key4 = images.key4;
-  }
-
-  public draw() {
     this.drawShapes();
     this.drawText();
     this.drawImages();
     this.drawButtons();
   }
+  // public draw() {
+  //   this.drawShapes();
+  //   this.drawText();
+  //   this.drawImages();
+  //   this.drawButtons();
+  // }
 
   public drawShapes() {
     push(); // save current styles and transformations
@@ -75,7 +81,7 @@ class Gameover {
 
 }
 
-private drawImages() {
+public drawImages() {
   imageMode(CENTER);
   if (this.yellowSnowman.width > 0 && this.yellowSnowman.height > 0) {
     image(this.yellowSnowman, width / 2, height / 2 - 180, 80, 100);
@@ -133,9 +139,7 @@ private drawImages() {
         if (i === 0) {
           gameFrame.newGame();
         } else if (i === 1) {
-          showObjectives();
-        } else if (i === 2) {
-          showGameControls();
+        } else if (i === 2) { 
         }
       });
       this.buttons.push(button);
