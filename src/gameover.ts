@@ -29,20 +29,8 @@ class Gameover extends MenuPage {
     this.drawImages();
     this.drawButtons();
   }
-  // public draw() {
-  //   this.drawShapes();
-  //   this.drawText();
-  //   this.drawImages();
-  //   this.drawButtons();
-  // }
 
   public drawShapes() {
-    push(); // save current styles and transformations
-    rectMode(CENTER);
-    fill(74, 122, 167);
-    rect(width / 2, height / 2, 700, 600); // larger rect
-    pop();
-
     push();
     strokeWeight(5); // frame thickness
     stroke(255, 255, 255); // set the "frame" color
@@ -53,7 +41,7 @@ class Gameover extends MenuPage {
     pop(); // restore previous styles and transformations
   }
 
-  private drawText() {
+  protected drawText() {
 
     // push();
     // textFont("Sansita");
