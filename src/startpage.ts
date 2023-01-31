@@ -32,7 +32,7 @@ class StartPage extends MenuPage {
       let button = createButton(this.options[i]);
       button.size(this.width * 0.25, this.height * 0.08);
       button.center("horizontal");
-      button.position(this.x + this.width / 2.7, this.y + this.height / 4.2 + (i * 60));
+      button.position(this.x + this.width / 2.7, this.y + this.height / 4.2 + (i * this.height * 0.1));
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
