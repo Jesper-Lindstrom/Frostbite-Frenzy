@@ -2,7 +2,6 @@ class Game {
     private mapSize: number;
     private players: Player[];
     private entities: GameEntity[];
-
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -112,7 +111,7 @@ class Game {
     if (entity instanceof WallBlock) {
       player.wallCollision();
     }
-    if (entity instanceof Monster) {
+    if (entity instanceof Monster && !player.isImmortal = true) {
       player.freeze();
     }
     if (entity instanceof Key) {
@@ -161,7 +160,6 @@ class Game {
       
         this.purpleMonsterSpawned = true;
         this.entities.push(this.spawnController.createPurpleMonster());
-        console.log('Nu finns jag!')
       
     }
     if (remainingTime === 0) {
