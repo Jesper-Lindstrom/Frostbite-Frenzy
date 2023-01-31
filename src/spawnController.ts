@@ -57,7 +57,7 @@ class SpawnController {
           j * this.cellSize + this.mapPosition.x,
           i * this.cellSize + this.mapPosition.y
         )
-        if (cell === 0) {
+        if (cell === 0 || cell === 2) {
           entities.push(new Path(position, this.cellSize))
         }
         if (cell === 1) {
