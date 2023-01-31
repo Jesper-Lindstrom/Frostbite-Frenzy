@@ -1,10 +1,10 @@
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
-let controls: Controls;
 let fontFreckleFace: p5.Font;
 let fontSansita: p5.Font;
-// let menuFont;
+let gameMusic: p5.SoundFile;
+let gameOver: p5.SoundFile;
 
 interface Images {
   iceUpper: p5.Image;
@@ -27,6 +27,7 @@ interface Images {
   purpleMonsterSingle: p5.Image;
   monsterBlue: p5.Image;
   fallingsnow: p5.Image;
+  trophy: p5.Image;
 }
 
 let images: Images;
@@ -39,6 +40,8 @@ let images: Images;
 function preload() {
   fontFreckleFace = loadFont("/assets/fonts/FreckleFace.ttf");
   fontSansita = loadFont("/assets/fonts/Sansita.ttf");
+  gameMusic = loadSound("/assets/sounds/gamemusic.mp3");
+  gameOver = loadSound("/assets/sounds/gameOver.mp3");
 
   images = {
     iceUpper: loadImage("/assets/images/ice1.png"),
@@ -61,6 +64,7 @@ function preload() {
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
     monsterBlue: loadImage("/assets/images/monsterBlue.png"),
+    trophy: loadImage("/assets/images/trophy.gif"),
   
   }
   };
