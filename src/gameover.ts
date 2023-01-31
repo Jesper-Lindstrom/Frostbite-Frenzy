@@ -6,7 +6,7 @@ class Gameover extends MenuPage {
   private monsterPurple: p5.Image;
   private monsterBlue: p5.Image;
   private currentOption: number = 0;
-  private options: string[] = ["New Game", "Scores"];
+  private options: string[] = ["New Game"];
   private buttons: p5.Element[] = [];
 
   private winnerImage: p5.Image;
@@ -90,9 +90,8 @@ public drawImages() {
   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.position(this.x + this.width - 170, this.y + this.height - 160 + (i + 1) * 50);
+      button.position(this.x + this.width - 170, this.y + this.height - 110 + (i + 1) * 50);
       button.size(150, 40);
-      // button.center("horizontal");
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
@@ -101,13 +100,13 @@ public drawImages() {
       button.style("background-color: #D2ECF3");
 
       button.mouseOver(() => {
-        this.currentOption = i;
-        this.updateHover();
+        this.buttons[i].style("color", "rgb(255, 255, 255)");
+        this.buttons[i].style("background-color", "rgb(15, 82, 186");
       });
 
       button.mouseOut(() => {
-        this.currentOption = 0;
-        this.updateHover();
+        this.buttons[i].style("background: #D2ECF3");
+        this.buttons[i].style("color: #4A7AA7");
       });
 
       button.mousePressed(() => {
@@ -122,32 +121,5 @@ public drawImages() {
     }
   }
 
-  private updateHover() {
-    // update hover effect on buttons
-    for (let i = 0; i < this.options.length; i++) {
-      if (i === this.currentOption) {
-        this.buttons[i].style("background-color", "rgb(100, 190, 230)");
-      } else {
-        this.buttons[i].style("background-color", "#D2ECF3");
-      }
-      noLoop();
-    }
-  }
-
 }
-
-/* import { MenuPage } from '../src/menupage';
-
-class GameOver extends MenuPage {
-    
-public constructor() {
-    super();
-} 
-
-public draw() {
-    super.draw();
-}
-    
-    
-} */
 
