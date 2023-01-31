@@ -1,7 +1,7 @@
 class StartPage extends MenuPage {
   public menu: Menu;
   private characters: p5.Image;
-  private fallingsnow: p5.Image;
+  // private fallingsnow: p5.Image;
   // private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
@@ -10,7 +10,7 @@ class StartPage extends MenuPage {
     super();
     this.menu = menu;
     this.characters = images.characters;
-    this.fallingsnow = images.fallingsnow;
+    //this.fallingsnow = images.fallingsnow;
     this.drawShapes();
     removeElements();
     this.drawButtons();
@@ -21,23 +21,22 @@ class StartPage extends MenuPage {
 
   public drawShapes() {
     push(); // save current styles and transformations
-    rectMode(CENTER);
     fill(47, 78, 107);
-    rect(width / 2, height / 2, 700, 600); // larger rect
+    rect(this.x, this.y, this.width, this.height); // larger rect
     pop(); // restore previous styles and transformations
   }
 
   // Creates the buttons with a for loop based on the options array length
-  private drawButtons() {
+   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.position(width / 2, height / 2.5 + (i + 1) * 50);
-      button.size(150, 40);
+      button.size(this.width * 0.25, this.height * 0.08);
       button.center("horizontal");
+      button.position(this.x + this.width / 2.7, this.y + this.height / 4.2 + (i * 60));
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
-      button.style("font-size: 19px");
+      button.style("font-size: 22px");
       button.style("font-family: Freckle Face");
       button.style("background-color: #D2ECF3");
 
@@ -67,22 +66,23 @@ class StartPage extends MenuPage {
       });
       this.buttons.push(button);
     }
-  }
+  } 
 
   public drawText() {
     push(); // save current styles and transformations
     textFont(fontFreckleFace);
     fill(255);
-    textSize(42);
+    textSize(60);
     textAlign(CENTER, CENTER);
-    text("Frostbite Frenzy", width / 2, height / 2.6);
+    text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 6.5);
     stroke(255, 204, 0);
-
     pop(); // restore previous styles and transformations
   }
 
-  public drawImages() {
-    image(this.characters, width / 2 - 350, height / 2 - -50, 700, 250);
-    image(this.fallingsnow, width / 2 - 342, height / 2 - 295, 684, 245);
+  public drawImages(): void {
+    let imageWidth = this.width;
+    let imageHeight = (imageWidth / this.characters.width) * this.characters.height;
+    image(this.characters, (this.x + this.width * 0.5) - (imageWidth / 2), this.y + this.height - imageHeight, imageWidth, imageHeight);
   }
+  
 }

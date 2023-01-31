@@ -23,17 +23,8 @@ class Objectives extends MenuPage {
 
   public drawShapes() {
     push(); // save current styles and transformations
-    rectMode(CENTER);
     fill(47, 78, 107);
-    rect(width / 2, height / 2, 700, 600); // larger rect
-    pop(); // restore previous styles and transformations
-
-    push();
-    strokeWeight(5); // frame thickness
-    stroke(255, 255, 255); // set the "frame" color
-    fill(47, 78, 107);
-    rectMode(CENTER);
-    rect(width / 2, height / 2, 700, 600); // "frame"
+    rect(this.x, this.y, this.width, this.height);
     pop(); // restore previous styles and transformations
   }
 
@@ -43,14 +34,14 @@ class Objectives extends MenuPage {
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("Objectives", width / 2, height / 3.3);
+    text("Objectives", this.x + this.width / 2, this.y + this.height / 4);
     pop(); // restore previous styles and transformations
 
     push();
     textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(31);
-    text("Collect keys", (width / 2) * 0.7, height / 2.52);
+    text("Collect keys", this.x + (this.width / 2) * 0.5, this.y + this.height / 2.7);
     pop();
 
     push();
@@ -60,9 +51,9 @@ class Objectives extends MenuPage {
     textWrap(WORD);
     text(
       "The player with most keys when the time runs out wins!",
-      (width / 2) * 0.7,
-      height / 2.4,
-      280
+      this.x + (this.width / 2) * 0.5,
+      this.y + this.height / 2.4,
+      this.width - (this.width / 2) * 1.3
     );
     pop();
 
@@ -70,7 +61,7 @@ class Objectives extends MenuPage {
     textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(29);
-    text("Don't Get Caught", (width / 2) * 0.7, height / 1.97);
+    text("Don't Get Caught", this.x + (this.width / 2) * 0.5, this.y + this.height / 1.9);
     pop();
 
     push();
@@ -80,9 +71,9 @@ class Objectives extends MenuPage {
     textWrap(WORD);
     text(
       "Watch out for monsters - they will freeze you!",
-      (width / 2) * 0.7,
-      height / 1.9,
-      280
+      this.x + (this.width / 2) * 0.5,
+      this.y + this.height / 1.75,
+      this.width - (this.width / 2) * 1.3
     );
     pop();
 
@@ -90,7 +81,7 @@ class Objectives extends MenuPage {
     textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(29);
-    text("Get Advantages", (width / 2) * 0.7, height / 1.6);
+    text("Get Advantages", this.x + (this.width / 2) * 0.5, this.y + (this.height / 1.48));
     pop();
 
     push();
@@ -100,9 +91,9 @@ class Objectives extends MenuPage {
     textWrap(WORD);
     text(
       "Pick up special items to get those keys quicker than your opponent!",
-      (width / 2) * 0.7,
-      height / 1.56,
-      280
+      this.x + (this.width / 2) * 0.5,
+      this.y + (this.height / 1.38),
+      this.width * 0.3
     );
     pop();
 
@@ -111,9 +102,9 @@ class Objectives extends MenuPage {
     fill(255);
     textSize(22);
     textWrap(WORD);
-    text("Faster than the blue one!", (width / 2) * 1.27, height / 1.68, 100);
+    text("Faster than the blue one!", this.x + (this.width * 0.6), this.y + (this.height / 1.68), this.width * 0.2);
     pop();
-  }
+  } 
 
   protected createBackButton() {
     let button = createButton("Back");
@@ -185,7 +176,7 @@ class Objectives extends MenuPage {
     });
   }
 
-  public drawImages() {
+   public drawImages() {
     image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
     image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
     image(this.key, width / 2 - -190, height / 2 - 90, 80, 40);
@@ -196,5 +187,5 @@ class Objectives extends MenuPage {
       115,
       105
     );
-  }
+  } 
 }
