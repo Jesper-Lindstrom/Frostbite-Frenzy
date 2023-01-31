@@ -1,7 +1,7 @@
 class StartPage extends MenuPage {
   public menu: Menu;
   private characters: p5.Image;
-  private fallingsnow: p5.Image;
+  // private fallingsnow: p5.Image;
   // private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
@@ -10,7 +10,7 @@ class StartPage extends MenuPage {
     super();
     this.menu = menu;
     this.characters = images.characters;
-    this.fallingsnow = images.fallingsnow;
+    //this.fallingsnow = images.fallingsnow;
     this.drawShapes();
     removeElements();
     this.drawButtons();
@@ -30,13 +30,13 @@ class StartPage extends MenuPage {
    private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.size(this.width * 0.3, this.height * 0.08);
+      button.size(this.width * 0.25, this.height * 0.08);
       button.center("horizontal");
-      button.position(this.x + this.width / 2.9, this.y + this.height / 4.2 + (i * 45));
+      button.position(this.x + this.width / 2.7, this.y + this.height / 4.2 + (i * 60));
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
-      button.style("font-size: 19px");
+      button.style("font-size: 22px");
       button.style("font-family: Freckle Face");
       button.style("background-color: #D2ECF3");
 
@@ -72,7 +72,7 @@ class StartPage extends MenuPage {
     push(); // save current styles and transformations
     textFont(fontFreckleFace);
     fill(255);
-    textSize(36);
+    textSize(60);
     textAlign(CENTER, CENTER);
     text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 6.5);
     stroke(255, 204, 0);
