@@ -4,7 +4,6 @@ let gameFrame: GameFrame;
 let controls: Controls;
 let fontFreckleFace: p5.Font;
 let fontSansita: p5.Font;
-let gameover: Gameover;
 // let menuFont;
 
 interface Images {
@@ -80,8 +79,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-  // gameFrame = new GameFrame(false);
-  gameover = new Gameover();
+  gameFrame = new GameFrame(false);
   
 }
 
@@ -91,9 +89,8 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  // gameFrame.update();
-  // gameFrame.draw();
-  gameover.draw();
+  gameFrame.update();
+  gameFrame.draw();
 }
 
 /**

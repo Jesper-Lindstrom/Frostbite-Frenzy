@@ -1,7 +1,4 @@
 class Gameover extends MenuPage {
-  public menu: Menu;
-  private greenSnowman: p5.Image;
-  private yellowSnowman: p5.Image;
   private key: p5.Image;
   private key2: p5.Image;
   private key3: p5.Image;
@@ -12,15 +9,14 @@ class Gameover extends MenuPage {
   private options: string[] = ["New Game", "Scores"];
   private buttons: p5.Element[] = [];
 
+  private winnerImage: p5.Image;
+  private loserImage: p5.Image;
   private winnerScore: number;
   private loserScore: number;
 
 
-  public constructor(menu: Menu) {
+  public constructor(scores: Scores) {
     super()
-    this.menu = menu;
-    this.greenSnowman = images.greenSnowman;
-    this.yellowSnowman = images.yellowSnowman;
     this.monsterPurple = images.purpleMonsterSingle;
     this.monsterBlue = images.monsterBlue;
     this.key = images.key;
@@ -29,9 +25,20 @@ class Gameover extends MenuPage {
     this.key4 = images.key4;
     this.drawButtons();
 
-    this.winnerScore = 2;
-    this.loserScore = 3;
+    if (scores[1] > scores[2]) {
+      this.winnerImage = images.yellowSnowman;
+      this.winnerScore = scores[1];
+      this.loserImage = images.greenSnowman;
+      this.loserScore = scores[2];
+    } else {
+      this.winnerImage = images.greenSnowman;
+      this.winnerScore = scores[2];
+      this.loserImage = images.yellowSnowman;
+      this.loserScore = scores[1];
+    }
   }
+
+
 
   public drawShapes() {
     push();
@@ -68,8 +75,8 @@ class Gameover extends MenuPage {
 public drawImages() {
   push();
   imageMode(CENTER);
-  image(this.yellowSnowman, width / 2, this.y + this.height * 0.25, this.width * 0.12, this.width * 0.20);
-  image(this.greenSnowman, width / 2, this.y + this.height * 0.75,  this.width * 0.12, this.width * 0.20);
+  image(this.winnerImage, width / 2, this.y + this.height * 0.25, this.width * 0.12, this.width * 0.20);
+  image(this.loserImage, width / 2, this.y + this.height * 0.75,  this.width * 0.12, this.width * 0.20);
   image(this.key, this.x + this.width * 0.1, this.y + this.height * 0.1, this.width * 0.1, this.width * 0.05);
   image(this.key2, this.x + this.width * 0.2, this.y + this.height * 0.2, this.width * 0.1, this.width * 0.05);
   image(this.key3, this.x + this.width * 0.8, this.y + this.height * 0.2, this.width * 0.1, this.width * 0.05);
