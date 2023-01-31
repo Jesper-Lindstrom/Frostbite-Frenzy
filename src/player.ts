@@ -8,7 +8,7 @@ class Player extends MovingEntity {
   private isFrozen: boolean;
   private freezeTimer: number;
   private invertedTimer: number;
-  private isImmortal: boolean;
+  public isImmortal: boolean;
   private immortalTimer: number;
   private isInverted: boolean;
   private playerScore: number;
@@ -216,6 +216,10 @@ updateState() {
    * Called by collisionHandler.
    */
   public makeImmortal() {
+    if (!this.isImmortal){
+      this.immortalTimer = 3000;
+      this.isImmortal = true
+    }
     
   }
 
