@@ -27,6 +27,8 @@ class Player extends MovingEntity {
   private upButton: number;
   private downButton: number;
 
+  private wallBlocksCollided: WallBlock[];
+
   public constructor(
     position: p5.Vector,
     cellSize: number,
@@ -53,6 +55,8 @@ class Player extends MovingEntity {
     this.rightButton = this.keyCodes[1];
     this.upButton = this.keyCodes[2];
     this.downButton = this.keyCodes[3];
+
+    this.wallBlocksCollided = [];
   }
 
   /**
@@ -173,13 +177,30 @@ updateState() {
     }
   }
   }
-  /**
-   * Called by collsionHandler if collsion detected with a wall.
-   * Reverts to previous position to prevent movement before drawing.
-   */
-  public wallCollision(wall: WallBlock) {
-    // this.position = this.previousPosition;
+
+  public registerWallCollision(wallBock: WallBlock) {
+    this.wallBlocksCollided.push(wallBock)
+  }
+
+  public resolveWallCollision() {
+      if (this.wallBlocksCollided.length === 1) {
+        this.singleWallCollision();
+      } else if (this.wallBlocksCollided.length === 2) {
+        if (this.wallBlocksCollided[0].bounds.left === this.wallBlocksCollided[1].bounds.left) {
+          this.position.x = this.previousPosition.x;
+        }
+        if (this.wallBlocksCollided[0].bounds.top === this.wallBlocksCollided[1].bounds.top) {
+          this.position.y = this.previousPosition.y
+        }
+      } else if (this.wallBlocksCollided.length === 3) {
+        this.position = this.previousPosition;
+      }
+      this.wallBlocksCollided = [];
     
+  }
+
+  private singleWallCollision() {
+    const wall = this.wallBlocksCollided[0];
     if (this.position.x !== this.previousPosition.x && this.position.y !== this.previousPosition.y) {
     let previousBottom: number = this.previousPosition.y + this.size.x;
     let previousRight: number = this.previousPosition.x + this.size.y;
