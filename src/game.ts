@@ -129,15 +129,14 @@ class Game {
     }
   };
 
-  // private keyCollection() {
-  //   this.
-  // }
-
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
    * This function will also need to send the players' scores to the GameOver constructor.
    */
-  gameEnd() {};
+  gameEnd() {
+    const scores = this.scoreTable.getScores();
+    gameFrame.gameOver(scores);
+  };
   
   /**
    * Called by collisionHandler when a collision is detected between a player and a key.
@@ -165,7 +164,8 @@ class Game {
         console.log('Nu finns jag!')
       
     }
+    if (remainingTime === 0) {
+      this.gameEnd();
+    }
   };
-} 
-
-// replace item with new item
+}
