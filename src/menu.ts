@@ -2,7 +2,7 @@ class Menu {
   private activePage: MenuPage;
 
   public constructor() {
-    this.activePage = new StartPage(this);
+    this.activePage = new Objectives(this);
   }
 
   public update(): void {}

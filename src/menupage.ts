@@ -6,7 +6,7 @@ class MenuPage {
 
   public constructor() {
     this.width = windowWidth * 0.6;
-    this.height = windowHeight * 0.9;
+    this.height = windowHeight * 0.8;
     this.x = (windowWidth - this.width) / 2;
     this.y = (windowHeight - this.height) / 2;
   }

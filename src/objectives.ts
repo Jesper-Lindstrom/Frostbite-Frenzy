@@ -177,8 +177,9 @@ class Objectives extends MenuPage {
   }
 
    public drawImages() {
-    image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
-    image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
+      image(this.img1, this.width * 0.33, this.height / 2 - this.img1.height * 1.5, this.width * 1.03, this.img1.height);
+      image(this.img, this.width * 0.33, this.height / 2 + this.img.height * 3.25, this.width * 1.03, this.img.height);
+  
     image(this.key, width / 2 - -190, height / 2 - 90, 80, 40);
     image(
       this.monsterdescriptions,
