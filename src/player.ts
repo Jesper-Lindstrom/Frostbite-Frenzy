@@ -16,6 +16,8 @@ class Player extends MovingEntity {
   private isInverted: boolean;
   private isSpedUp: boolean;
   private speedUpTimer: number;
+  private tintTimer: number;
+  private tintOn: boolean;
 
   /**
    * Properties for setting movement controls.
@@ -47,6 +49,8 @@ class Player extends MovingEntity {
     this.invertedTimer = 0;
     this.isSpedUp = false;
     this.speedUpTimer = 0;
+    this.tintTimer = 0;
+    this.tintOn = false;
 
     this.keyCodes = this.getKeyCodes();
     this.leftButton = this.keyCodes[0];
@@ -92,6 +96,7 @@ class Player extends MovingEntity {
     this.updateState();
     this.checkUserInput();
     this.updateBounds();
+    this.tintBlink();
   }
 
   public draw() {
@@ -99,14 +104,14 @@ class Player extends MovingEntity {
     if (this.isFrozen) {
       tint(0, 153, 204, 126);
     }
-    if (this.isImmortal) {
-      tint(250, 250, 50);
+    if (this.isImmortal && this.tintOn) {
+      tint(243, 250, 142);
     }
-    if (this.isSpedUp && !this.isFrozen) {
-      tint(95, 255, 108);
+    if (this.isSpedUp && !this.isFrozen && this.tintOn) {
+      tint(154, 252, 172);
     }
-    if (this.isInverted && !this.isFrozen) {
-      tint(242, 58, 58);
+    if (this.isInverted && !this.isFrozen && this.tintOn) {
+      tint(250, 151, 147);
     }
     image(
       this.image,
@@ -148,6 +153,20 @@ class Player extends MovingEntity {
           this.isSpedUp = false;
         }
         break;
+    }
+  }
+
+  private tintBlink() {
+    if (this.isInverted || this.isSpedUp || this.isImmortal && !this.isFrozen) {
+      this.tintTimer -= deltaTime;
+      if (this.tintTimer > 500) {
+        this.tintOn = true
+      } else {
+        this.tintOn = false
+      }
+      if (this.tintTimer <= 0) {
+        this.tintTimer = 1000;
+      }
     }
   }
 
