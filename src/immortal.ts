@@ -14,16 +14,14 @@ class Immortal extends GameEntity {
 
     public draw() {
       push();
-      fill(0, 0, 0, 0)
-      rect(this.position.x, this.position.y, this.size.x * 0.5, this.size.y * 0.5)
-      pop();
       image(
         this.image,
-        this.position.x - this.size.x * 0.1,
-        this.position.y - this.size.y * 0.7,
-        this.size.x * 0.7,
-        this.size.y * 0.5
-      );
+        this.position.x + this.size.x * 0.1,
+        this.position.y + this.size.y * 0.1,
+        this.size.x * 0.8,
+        this.size.y * 0.8
+        );
+      pop();
     }
     public update() {}
 

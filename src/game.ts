@@ -125,12 +125,23 @@ class Game {
       })
       let filteredPlayer = filteredPlayerArray[0];
       filteredPlayer.invertControls();
-  
+      this.removeEntity(entity);
     }
     if (entity instanceof Immortal) {
       player.makeImmortal();
+      this.removeEntity(entity);
+    }
+    if (entity instanceof SpeedUp) {
+      player.speedUp();
+      this.removeEntity(entity);
     }
   };
+
+  private removeEntity(entity: GameEntity) { 
+    this.entities = this.entities.filter(function(obj) {
+      return obj !== entity
+    })
+  }
 
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
