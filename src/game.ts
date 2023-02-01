@@ -95,18 +95,24 @@ class Game {
    */
   private checkCollision() {
     for (const player of this.players) {
-      if (!player.isFrozen)
-      for (const entity of this.entities) {
-        const distance = Math.abs(player.bounds.left - entity.bounds.left);
-        if (distance <= this.spawnController.cellSize)
-        if (
-          player.bounds.left > entity.bounds.right ||
-          player.bounds.right < entity.bounds.left ||
-          player.bounds.top > entity.bounds.bottom ||
-          player.bounds.bottom < entity.bounds.top
-        ) {
-        } else {
-          this.collisionHandler(player, entity);
+      if (!player.isFrozen) {
+        for (const entity of this.entities) {
+          /**
+           * The if statement here is for optimization.
+           * Only entities within one cell of the players will be checked.
+           */
+          const distance = Math.abs(player.bounds.left - entity.bounds.left);
+          if (distance < this.spawnController.cellSize) {
+            if (
+              player.bounds.left > entity.bounds.right ||
+              player.bounds.right < entity.bounds.left ||
+              player.bounds.top > entity.bounds.bottom ||
+              player.bounds.bottom < entity.bounds.top
+            ) {
+            } else {
+              this.collisionHandler(player, entity);
+            }
+          }
         }
       }
     }
@@ -121,7 +127,7 @@ class Game {
     if (entity instanceof WallBlock) {
       player.registerWallCollision(entity);
     }
-    if (entity instanceof Monster && player.isImmortal != true) {
+    if (entity instanceof Monster && !player.isImmortal) {
       player.freeze();
       frozenSound.play();
       frozenSound.setVolume(0.1);
@@ -155,12 +161,19 @@ class Game {
     }
   }
 
+  /**
+   * Removes the entity in the argument from the game.
+   * @param entity 
+   */
   private removeEntity(entity: GameEntity) {
     this.entities = this.entities.filter(function (obj) {
       return obj !== entity;
     });
   }
 
+  /**
+   * Calls wall collision resolution functions in both players.
+   */
   private resolveWallCollisions() {
     for (const player of this.players) {
       player.resolveWallCollision();
