@@ -2,12 +2,10 @@ class GameFrame {
   // This property is an object containing the current scene. A instance either of the Game or Menu class.
   private activeState: Game | Menu;
   // Controls whether the game music is playing or not.
-  private musicPlaying: boolean;
 
-  public constructor(musicPlaying: boolean) {
+  public constructor() {
     // The menu constructor will need to take an argument in the future to describe which page to open. When gameOver, we will need to send player score.
-    this.activeState = new Menu({1: 1, 2: 2});
-    this.musicPlaying = musicPlaying;
+    this.activeState = new Menu("startpage");
   }
 
   public update() {
@@ -21,12 +19,17 @@ class GameFrame {
 
   // This function starts a new game
   public newGame() {
-     this.activeState = new Game();
-     removeElements();
-     loop();
-   }
+    this.activeState = new Game();
+    gameMusic.play();
+    gameMusic.setVolume(0.1);
+    removeElements();
+    loop();
+  }
 
-   public gameOver(scores: Scores) {
-    this.activeState = new Menu(scores);
-   }
+  public gameOver(scores: Scores) {
+    this.activeState = new Menu("gameover", scores);
+    gameMusic.stop();
+    gameOver.play();
+    gameOver.setVolume(0.2);
+  }
 }

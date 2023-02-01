@@ -1,10 +1,13 @@
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
-let controls: Controls;
 let fontFreckleFace: p5.Font;
 let fontSansita: p5.Font;
-// let menuFont;
+let gameMusic: p5.SoundFile;
+let gameOver: p5.SoundFile;
+let keySound: p5.SoundFile;
+let frozenSound: p5.SoundFile;
+let powerupsSound: p5.SoundFile;
 
 interface Images {
   wallblock: p5.Image;
@@ -28,6 +31,7 @@ interface Images {
   purpleMonsterSingle: p5.Image;
   monsterBlue: p5.Image;
   fallingsnow: p5.Image;
+  trophy: p5.Image;
 }
 
 let images: Images;
@@ -40,6 +44,11 @@ let images: Images;
 function preload() {
   fontFreckleFace = loadFont("/assets/fonts/FreckleFace.ttf");
   fontSansita = loadFont("/assets/fonts/Sansita.ttf");
+  gameMusic = loadSound("/assets/sounds/gamemusic.mp3");
+  gameOver = loadSound("/assets/sounds/gameOver.mp3");
+  keySound = loadSound("/assets/sounds/key.mp3");
+  frozenSound = loadSound("/assets/sounds/frozen.mp3");
+  powerupsSound = loadSound("/assets/sounds/powerups.mp3");
 
   images = {
     wallblock: loadImage("/assets/images/wallblock.png"),
@@ -63,14 +72,9 @@ function preload() {
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
     monsterBlue: loadImage("/assets/images/monsterBlue.png"),
-  
-  }
+    trophy: loadImage("/assets/images/trophy.gif"),
   };
-  // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
-  // menuFont = loadFont(
-  //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
-  // );
-
+}
 
 /**
  * Built in setup function in P5
@@ -81,8 +85,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-  gameFrame = new GameFrame(false);
-  
+  gameFrame = new GameFrame();
 }
 
 /**

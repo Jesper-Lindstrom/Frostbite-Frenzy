@@ -4,7 +4,6 @@ class StartPage extends MenuPage {
   public menu: Menu;
   private characters: p5.Image;
   // private fallingsnow: p5.Image;
-  // private currentOption: number = 0;
   private options: string[] = ["New Game", "Objectives", "Game Controls"];
   private buttons: p5.Element[] = [];
 
@@ -12,7 +11,7 @@ class StartPage extends MenuPage {
     super();
     this.menu = menu;
     this.characters = images.characters;
-    //this.fallingsnow = images.fallingsnow;
+    // this.fallingsnow = images.fallingsnow;
     this.drawShapes();
     removeElements();
     this.drawButtons();
@@ -29,12 +28,15 @@ class StartPage extends MenuPage {
   }
 
   // Creates the buttons with a for loop based on the options array length
-   private drawButtons() {
+  private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
       button.size(this.width * 0.25, this.height * 0.08);
       button.center("horizontal");
-      button.position(this.x + this.width / 2.7, this.y + this.height / 4.2 + (i * 60));
+      button.position(
+        this.x + this.width / 2.7,
+        this.y + this.height / 4.2 + i * 60
+      );
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
@@ -43,7 +45,6 @@ class StartPage extends MenuPage {
       button.style("background-color: #D2ECF3");
 
       button.mouseOver(() => {
-        // this.currentOption = i;
         this.buttons[i].style("color", "rgb(255, 255, 255)");
         this.buttons[i].style("background-color", "rgb(15, 82, 186");
       });
@@ -68,7 +69,7 @@ class StartPage extends MenuPage {
       });
       this.buttons.push(button);
     }
-  } 
+  }
 
   public drawText() {
     push(); // save current styles and transformations
@@ -76,15 +77,25 @@ class StartPage extends MenuPage {
     fill(255);
     textSize(60);
     textAlign(CENTER, CENTER);
-    text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 6.5);
+    text(
+      "Frostbite Frenzy",
+      this.x + this.width / 2,
+      this.y + this.height / 6.5
+    );
     stroke(255, 204, 0);
     pop(); // restore previous styles and transformations
   }
 
   public drawImages(): void {
     let imageWidth = this.width;
-    let imageHeight = (imageWidth / this.characters.width) * this.characters.height;
-    image(this.characters, (this.x + this.width * 0.5) - (imageWidth / 2), this.y + this.height - imageHeight, imageWidth, imageHeight);
+    let imageHeight =
+      (imageWidth / this.characters.width) * this.characters.height;
+    image(
+      this.characters,
+      this.x + this.width * 0.5 - imageWidth / 2,
+      this.y + this.height - imageHeight,
+      imageWidth,
+      imageHeight
+    );
   }
-  
 }
