@@ -2,7 +2,6 @@ class Game {
   private mapSize: number;
   private players: Player[];
   private entities: GameEntity[];
-
   private timer: Timer;
   private scoreTable: ScoreTable;
   /**
@@ -10,6 +9,7 @@ class Game {
    */
   private spawnController: SpawnController;
   private purpleMonsterSpawned: boolean;
+  private powerupsHaveStartedSpawning: boolean;
 
   constructor() {
     this.mapSize = height * 0.9;
@@ -17,7 +17,7 @@ class Game {
       [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+        [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
@@ -33,7 +33,7 @@ class Game {
         [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+        [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       ],
@@ -44,6 +44,7 @@ class Game {
     this.timer = new Timer(this.mapSize);
     this.scoreTable = new ScoreTable(this.mapSize);
     this.purpleMonsterSpawned = false;
+    this.powerupsHaveStartedSpawning = false;
   }
 
   public update() {
@@ -116,7 +117,7 @@ class Game {
     if (entity instanceof WallBlock) {
       player.wallCollision();
     }
-    if (entity instanceof Monster) {
+    if (entity instanceof Monster && player.isImmortal != true) {
       player.freeze();
       frozenSound.play();
       frozenSound.setVolume(0.1);
@@ -127,13 +128,33 @@ class Game {
       keySound.setVolume(0.1);
     }
     if (entity instanceof InvertKeys) {
-      player.invertControls();
+      let filteredPlayerArray: Player[] = this.players.filter(function (obj) {
+        return obj !== player;
+      });
+      let filteredPlayer = filteredPlayerArray[0];
+      powerupsSound.play();
+      powerupsSound.setVolume(0.1);
+      filteredPlayer.invertControls();
+      this.removeEntity(entity);
     }
     if (entity instanceof Immortal) {
       player.makeImmortal();
+      this.removeEntity(entity);
+      powerupsSound.play();
+      powerupsSound.setVolume(0.1);
     }
-    if (entity instanceof SlowOpponent) {
+    if (entity instanceof SpeedUp) {
+      player.speedUp();
+      this.removeEntity(entity);
+      powerupsSound.play();
+      powerupsSound.setVolume(0.1);
     }
+  }
+
+  private removeEntity(entity: GameEntity) {
+    this.entities = this.entities.filter(function (obj) {
+      return obj !== entity;
+    });
   }
 
   /**
@@ -162,13 +183,20 @@ class Game {
    */
   timeCheck() {
     const remainingTime = this.timer.getTime();
+    let randomNum;
+    if (remainingTime <= 115 && this.powerupsHaveStartedSpawning === false) {
+      this.powerupsHaveStartedSpawning = true;
+      setInterval(() => {
+        randomNum = Math.floor(Math.random() * 4) + 1;
+        this.entities.push(
+          this.spawnController.spawnPowerUpFromRandomNumber(randomNum)
+        );
+      }, 15000);
+    }
     if (remainingTime <= 60 && this.purpleMonsterSpawned === false) {
       this.purpleMonsterSpawned = true;
+
       this.entities.push(this.spawnController.createPurpleMonster());
-      console.log("Nu finns jag!");
-    }
-    if (remainingTime === 0) {
-      this.gameEnd();
     }
   }
 }

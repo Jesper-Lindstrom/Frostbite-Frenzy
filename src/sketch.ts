@@ -10,6 +10,7 @@ let frozenSound: p5.SoundFile;
 let powerupsSound: p5.SoundFile;
 
 interface Images {
+  wallblock: p5.Image;
   iceUpper: p5.Image;
   iceLower: p5.Image;
   wsadButtons: p5.Image;
@@ -50,6 +51,7 @@ function preload() {
   powerupsSound = loadSound("/assets/sounds/powerups.mp3");
 
   images = {
+    wallblock: loadImage("/assets/images/wallblock.png"),
     iceUpper: loadImage("/assets/images/ice1.png"),
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
