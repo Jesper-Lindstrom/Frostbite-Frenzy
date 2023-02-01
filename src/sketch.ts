@@ -17,13 +17,17 @@ interface Images {
   blueMonster: p5.Image;
   purplemonster: p5.Image;
   characters: p5.Image;
-  snowflakes: p5.Image;
   key: p5.Image;
+  key2: p5.Image;
+  key3: p5.Image;
+  key4: p5.Image;
   monsterdescriptions: p5.Image;
   watch: p5.Image;
   advantagessnowflake: p5.Image;
   invertarrows: p5.Image;
-  backarrow: p5.Image;
+  purpleMonsterSingle: p5.Image;
+  monsterBlue: p5.Image;
+  fallingsnow: p5.Image;
 }
 
 let images: Images;
@@ -48,19 +52,25 @@ function preload() {
     blueMonster: loadImage("/assets/images/bluemonster.png"),
     purplemonster: loadImage("/assets/images/purplemonster.png"),
     characters: loadImage("/assets/images/characters.png"),
-    snowflakes: loadImage("/assets/images/snowflakes.png"),
+    fallingsnow: loadImage("/assets/images/fallingsnow.gif"),
     key: loadImage("/assets/images/key.png"),
+    key2: loadImage("/assets/images/key2.png"),
+    key3: loadImage("/assets/images/key3.png"),
+    key4: loadImage("/assets/images/key4.png"),
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
     invertarrows: loadImage("/assets/images/invertarrows.png"),
-    backarrow: loadImage("/assets/images/backarrow.png"),
+    purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
+    monsterBlue: loadImage("/assets/images/monsterBlue.png"),
+  
+  }
   };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
   //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
   // );
-}
+
 
 /**
  * Built in setup function in P5
@@ -72,6 +82,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   gameFrame = new GameFrame(false);
+  
 }
 
 /**

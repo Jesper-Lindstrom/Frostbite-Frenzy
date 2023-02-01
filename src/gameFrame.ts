@@ -6,7 +6,7 @@ class GameFrame {
 
   public constructor(musicPlaying: boolean) {
     // The menu constructor will need to take an argument in the future to describe which page to open. When gameOver, we will need to send player score.
-    this.activeState = new Menu();
+    this.activeState = new Menu({1: 1, 2: 2});
     this.musicPlaying = musicPlaying;
   }
 
@@ -24,5 +24,9 @@ class GameFrame {
      this.activeState = new Game();
      removeElements();
      loop();
+   }
+
+   public gameOver(scores: Scores) {
+    this.activeState = new Menu(scores);
    }
 }
