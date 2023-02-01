@@ -34,14 +34,14 @@ class Objectives extends MenuPage {
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("Objectives", this.x + this.width / 2, this.y + this.height / 4);
+    text("Objectives", this.x + this.width / 2, this.y + this.height / 2 - 150);
     pop(); // restore previous styles and transformations
 
     push();
     textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(31);
-    text("Collect keys", this.x + (this.width / 2) * 0.5, this.y + this.height / 2.7);
+    text("Collect keys", this.x + (this.width / 2) - 200, this.y + (this.height / 2) - 75);
     pop();
 
     push();
@@ -51,9 +51,9 @@ class Objectives extends MenuPage {
     textWrap(WORD);
     text(
       "The player with most keys when the time runs out wins!",
-      this.x + (this.width / 2) * 0.5,
-      this.y + this.height / 2.4,
-      this.width - (this.width / 2) * 1.3
+      this.x + (this.width / 2) - 200,
+      this.y + (this.height / 2) - 50,
+      this.width - (this.width / 2) - 100
     );
     pop();
 
@@ -61,7 +61,7 @@ class Objectives extends MenuPage {
     textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(29);
-    text("Don't Get Caught", this.x + (this.width / 2) * 0.5, this.y + this.height / 1.9);
+    text("Don't Get Caught", this.x + (this.width / 2) - 200, this.y + (this.height / 2) + 20);
     pop();
 
     push();
@@ -71,9 +71,9 @@ class Objectives extends MenuPage {
     textWrap(WORD);
     text(
       "Watch out for monsters - they will freeze you!",
-      this.x + (this.width / 2) * 0.5,
-      this.y + this.height / 1.75,
-      this.width - (this.width / 2) * 1.3
+      this.x + (this.width / 2) - 200,
+      this.y + (this.height / 2) + 45,
+      this.width - (this.width / 2) - 100
     );
     pop();
 
@@ -81,7 +81,7 @@ class Objectives extends MenuPage {
     textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(29);
-    text("Get Advantages", this.x + (this.width / 2) * 0.5, this.y + (this.height / 1.48));
+    text("Get Advantages", this.x + (this.width / 2) - 200, this.y + (this.height / 2) + 115);
     pop();
 
     push();
@@ -91,8 +91,8 @@ class Objectives extends MenuPage {
     textWrap(WORD);
     text(
       "Pick up special items to get those keys quicker than your opponent!",
-      this.x + (this.width / 2) * 0.5,
-      this.y + (this.height / 1.38),
+      this.x + (this.width / 2) - 200,
+      this.y + (this.height / 2) + 140,
       this.width * 0.3
     );
     pop();
@@ -102,14 +102,14 @@ class Objectives extends MenuPage {
     fill(255);
     textSize(22);
     textWrap(WORD);
-    text("Faster than the blue one!", this.x + (this.width * 0.6), this.y + (this.height / 1.68), this.width * 0.2);
+    text("Faster than the blue one!", this.x + (this.width / 2) + 175, this.y + (this.height / 2) + 120, this.width * 0.2);
     pop();
   } 
 
   protected createBackButton() {
     let button = createButton("Back");
-    button.position(width / 2 - 315, height / 2 - -225);
-    button.size(150, 40);
+    button.position(this.x + (this.width / 2) - 370, this.y + (this.height / 2) + 200);
+    button.size(100, 40);
     button.style("color: #FFFFFF");
     button.style("border-radius: 1rem");
     button.style("border-style: none");
@@ -142,7 +142,7 @@ class Objectives extends MenuPage {
 
   protected ReadMore() {
     let button = createButton("Read More");
-    button.position(width / 2 - 20, height / 2 - -210);
+    button.position(this.x + (this.width / 2) + 50, this.y + (this.height / 2) + 130);
     button.size(60, 60);
 
     button.style("color: #FFFFFF");
@@ -178,15 +178,11 @@ class Objectives extends MenuPage {
 
    public drawImages() {
       image(this.img1, this.width * 0.33, this.height / 2 - this.img1.height * 1.5, this.width * 1.03, this.img1.height);
-      image(this.img, this.width * 0.33, this.height / 2 + this.img.height * 3.25, this.width * 1.03, this.img.height);
   
-    image(this.key, width / 2 - -190, height / 2 - 90, 80, 40);
+    image(this.key, this.x + (this.width / 2) + 175, this.y + (this.height / 2) - 60, 80, 40);
     image(
       this.monsterdescriptions,
-      width / 2 - -165,
-      height / 2 - 15,
-      115,
-      105
-    );
+      this.x + (this.width / 2) + 175,
+      this.y + (this.height / 2), 115, 105);
   } 
 }

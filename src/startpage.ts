@@ -30,9 +30,9 @@ class StartPage extends MenuPage {
    private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.size(this.width * 0.25, this.height * 0.08);
+      button.size(150, 40);
       button.center("horizontal");
-      button.position(this.x + this.width / 2.7, this.y + this.height / 4.2 + (i * this.height * 0.1));
+      button.position(this.x + (this.width - 150) / 2, this.y + (this.height - 300) / 2 + (i * 50));
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
@@ -74,7 +74,7 @@ class StartPage extends MenuPage {
     fill(255);
     textSize(60);
     textAlign(CENTER, CENTER);
-    text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 6.5);
+    text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 2 - 200);
     stroke(255, 204, 0);
     pop(); // restore previous styles and transformations
   }
