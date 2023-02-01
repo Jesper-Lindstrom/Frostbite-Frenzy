@@ -57,6 +57,9 @@ class SpawnController {
           j * this.cellSize + this.mapPosition.x,
           i * this.cellSize + this.mapPosition.y
         )
+        if (cell === 0 || cell === 2) {
+          entities.push(new Path(position, this.cellSize))
+        }
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
         }
@@ -71,6 +74,7 @@ class SpawnController {
     for (let i = 0; i < 2; i++) {
       entities.push(this.createKey());
     }
+    
     return entities;
   }
 
