@@ -7,6 +7,7 @@ let gameMusic: p5.SoundFile;
 let gameOver: p5.SoundFile;
 let keySound: p5.SoundFile;
 let frozenSound: p5.SoundFile;
+let powerupsSound: p5.SoundFile;
 
 interface Images {
   iceUpper: p5.Image;
@@ -46,6 +47,7 @@ function preload() {
   gameOver = loadSound("/assets/sounds/gameOver.mp3");
   keySound = loadSound("/assets/sounds/key.mp3");
   frozenSound = loadSound("/assets/sounds/frozen.mp3");
+  powerupsSound = loadSound("/assets/sounds/powerups.mp3");
 
   images = {
     iceUpper: loadImage("/assets/images/ice1.png"),
