@@ -1,6 +1,8 @@
 class WallBlock extends GameEntity {
+  private image: p5.Image
   
   public constructor(
+   
     position: p5.Vector,
     cellSize: number
   ) {
@@ -8,28 +10,20 @@ class WallBlock extends GameEntity {
       cellSize,
       cellSize
     ));
+    this.image = images.wallblock;
   }
 
-  
-  
   public draw() {
     push();
-    colorMode(RGB);
-    
-    let from = color(255, 255, 255);
-    let to = color(173, 216, 230);
-    let gradient = lerpColor(from, to, 0.1);
-    fill(gradient);
-    stroke(gradient);
+    stroke('white'); 
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    image(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.size.x, 
+      this.size.y 
+      );
     pop();
   }
-
-  // public draw() {
-  //   push();
-  //   fill(230, 247, 255)
-  //   stroke(230, 247, 255)
-  //   rect(this.position.x, this.position.y, this.size.x, this.size.y);
-  //   pop();
-  // }
 }
