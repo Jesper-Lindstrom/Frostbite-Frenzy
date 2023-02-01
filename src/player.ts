@@ -9,7 +9,8 @@ class Player extends MovingEntity {
   /**
    * Properties that control powerups.
    */
-  private isFrozen: boolean;
+  public activePowerup: boolean;
+  public isFrozen: boolean;
   private freezeTimer: number;
   private invertedTimer: number;
   public isImmortal: boolean;
@@ -35,11 +36,13 @@ class Player extends MovingEntity {
     playerNumber: number
   ) {
     super(position, new p5.Vector(cellSize * 0.6, cellSize * 0.6), 7);
-    this.position.x += cellSize * 0.15;
-    this.position.y += cellSize * 0.15;
+    this.position.x += cellSize * 0.2;
+    this.position.y += cellSize * 0.2;
     this.playerNumber = playerNumber;
     this.name = "";
     this.image = this.getImages();
+
+    this.activePowerup = false;
     this.isFrozen = false;
     this.freezeTimer = 0;
     this.isImmortal = false;
@@ -100,6 +103,15 @@ class Player extends MovingEntity {
     if (this.isFrozen) {
       tint(0, 153, 204, 126);
     }
+    if (this.isImmortal) {
+      tint(250, 250, 50);
+    }
+    if (this.isSpedUp) {
+      tint(95, 255, 108);
+    }
+    if (this.isInverted) {
+      tint(242, 58, 58);
+    }
     image(
       this.image,
       this.position.x - this.size.x * 0.1,
@@ -125,19 +137,22 @@ class Player extends MovingEntity {
         this.invertedTimer -= deltaTime;
         if (this.invertedTimer <= 0) {
           this.isInverted = false;
+          this.activePowerup = false;
         }
         break;
       case this.isImmortal:
         this.immortalTimer -= deltaTime;
         if (this.immortalTimer <= 0) {
           this.isImmortal = false;
+          this.activePowerup = false;
         }
         break;
       case this.isSpedUp:
         this.speedUpTimer -= deltaTime;
         if (this.speedUpTimer <= 0) {
           this.speed = this.speed * 0.66666666666;
-          this.isSpedUp = false
+          this.isSpedUp = false;
+          this.activePowerup = false;
         }
         break;
     }
@@ -177,10 +192,18 @@ class Player extends MovingEntity {
       }
   }
 
+  /**
+   * Adds wallblocks with with collision has been detected to wallBlocksCollided[]
+   * @param wallBock
+   */
   public registerWallCollision(wallBock: WallBlock) {
     this.wallBlocksCollided.push(wallBock);
   }
 
+  /**
+   * Checks how many wall blocks player has collided with.
+   * Calls right resolution logic.
+   */
   public resolveWallCollision() {
     if (this.wallBlocksCollided.length === 1) {
       this.singleWallCollision();
@@ -192,6 +215,10 @@ class Player extends MovingEntity {
     this.wallBlocksCollided = [];
   }
 
+  /**
+   * Resolves collisions with an individual wall block.
+   * Allows for 'sliding'.
+   */
   private singleWallCollision() {
     const wall = this.wallBlocksCollided[0];
 
@@ -256,6 +283,10 @@ class Player extends MovingEntity {
     }
   }
 
+  /**
+   * Resolves collisions with two wall blocks.
+   * Allows for sliding.
+   */
   private doubleWallCollision() {
     if (
       this.wallBlocksCollided[0].bounds.left ===
@@ -271,22 +302,16 @@ class Player extends MovingEntity {
     }
   }
 
-  public invertControls() {
-    if (!this.isInverted) {
-      this.invertedTimer = 15000;
-      this.isInverted = true;
-    }
-  }
-
   /**
    * Sets player to frozen, sets time limit.
    * Called by collisionHandler.
    */
   public freeze() {
-    if (!this.isFrozen) {
-      this.freezeTimer = 3000;
-      this.isFrozen = true;
-    }
+    this.isSpedUp = false;
+    this.isInverted = false;
+    this.activePowerup = false;
+    this.freezeTimer = 3000;
+    this.isFrozen = true;
   }
 
   /**
@@ -294,11 +319,12 @@ class Player extends MovingEntity {
    * Called by collisionHandler.
    */
   public speedUp() {
-    if (!this.isSpedUp) {
+    if (!this.activePowerup) {
+      this.speedUpTimer = 10000;
       this.speed = this.speed * 1.5;
       this.isSpedUp = true;
+      this.activePowerup = true;
     }
-    this.speedUpTimer = 10000;
   }
 
   /**
@@ -306,9 +332,22 @@ class Player extends MovingEntity {
    * Called by collisionHandler.
    */
   public makeImmortal() {
-    if (!this.isImmortal) {
+    if (!this.activePowerup) {
       this.immortalTimer = 15000;
       this.isImmortal = true;
+      this.activePowerup = true;
+    }
+  }
+
+  /**
+   * Temporarily reverts the movement keys.
+   * Called by collisionHandler.
+   */
+  public invertControls() {
+    if (!this.activePowerup) {
+      this.invertedTimer = 15000;
+      this.isInverted = true;
+      this.activePowerup = true;
     }
   }
 }

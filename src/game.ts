@@ -93,9 +93,12 @@ class Game {
    * Checks the positions off all game entities against player positions and compares them in order to detect collisions.
    * Calls collisionHandler sending which entities have collided as arguments.
    */
-  public checkCollision() {
+  private checkCollision() {
     for (const player of this.players) {
+      if (!player.isFrozen)
       for (const entity of this.entities) {
+        const distance = Math.abs(player.bounds.left - entity.bounds.left);
+        if (distance <= this.spawnController.cellSize)
         if (
           player.bounds.left > entity.bounds.right ||
           player.bounds.right < entity.bounds.left ||

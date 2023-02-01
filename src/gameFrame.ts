@@ -20,10 +20,10 @@ class GameFrame {
   // This function starts a new game
   public newGame() {
     this.activeState = new Game();
-    gameMusic.play();
-    gameMusic.setVolume(0.1);
+    // gameMusic.play();
+    // gameMusic.setVolume(0.1);
     removeElements();
-    loop();
+    // loop();
   }
 
   public gameOver(scores: Scores) {
