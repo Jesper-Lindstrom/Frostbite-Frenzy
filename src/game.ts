@@ -51,6 +51,7 @@ class Game {
     this.updatePlayers();
     this.updateEntities();
     this.checkCollision();
+    this.resolveWallCollisions();
     this.timer.update();
     this.timeCheck();
   }
@@ -115,7 +116,7 @@ class Game {
 
   private collisionHandler(player: Player, entity: GameEntity) {
     if (entity instanceof WallBlock) {
-      player.wallCollision();
+      player.registerWallCollision(entity);
     }
     if (entity instanceof Monster && player.isImmortal != true) {
       player.freeze();
@@ -157,6 +158,12 @@ class Game {
     });
   }
 
+  private resolveWallCollisions() {
+    for (const player of this.players) {
+      player.resolveWallCollision();
+    }
+  }
+
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
    * This function will also need to send the players' scores to the GameOver constructor.
@@ -171,9 +178,7 @@ class Game {
    * Calls functions that spawn a new key (in spawnController) and that update the player's score (in scoreTable).
    */
   private keyCollision(player: Player, key: Key) {
-    this.entities = this.entities.filter(function (obj) {
-      return obj !== key;
-    });
+    this.removeEntity(key);
     this.entities.push(this.spawnController.createKey());
     this.scoreTable.givePoint(player.playerNumber);
   }
