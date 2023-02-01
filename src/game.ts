@@ -111,20 +111,22 @@ class Game {
     if (entity instanceof WallBlock) {
       player.wallCollision();
     }
-    if (entity instanceof Monster && !(player.isImmortal = true)) {
+    if (entity instanceof Monster && (player.isImmortal != true)) {
       player.freeze();
     }
     if (entity instanceof Key) {
       this.keyCollision(player, entity);
     }
     if (entity instanceof InvertKeys) {
-      player.invertControls()
+      let filteredPlayerArray: Player[] = this.players.filter(function(obj) {
+        return obj !== player
+      })
+      let filteredPlayer = filteredPlayerArray[0];
+      filteredPlayer.invertControls();
+  
     }
     if (entity instanceof Immortal) {
-      player.makeImmortal()
-    }
-    if (entity instanceof SlowOpponent) {
-      
+      player.makeImmortal();
     }
   };
 

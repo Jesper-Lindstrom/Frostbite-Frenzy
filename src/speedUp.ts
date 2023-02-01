@@ -26,6 +26,5 @@ class speedUp extends GameEntity {
       );
     }
     public update() {}
-
    
 }
