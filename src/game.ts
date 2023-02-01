@@ -162,7 +162,7 @@ class Game {
       
         this.purpleMonsterSpawned = true;
         this.entities.push(this.spawnController.createPurpleMonster());
-        this.entities.push(this.spawnController.createPurpleMonster());
+        
         
     
     }
