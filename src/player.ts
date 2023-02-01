@@ -4,18 +4,18 @@
 
 class Player extends MovingEntity {
   public playerNumber: number;
+  public name: string;
   private image: p5.Image;
   private isFrozen: boolean;
   private freezeTimer: number;
   private invertedTimer: number;
-  private isImmortal: boolean;
+  public isImmortal: boolean;
   private immortalTimer: number;
   private isInverted: boolean;
   private playerScore: number;
-  private isSpedUp: boolean;
   private speedUpTimer: number;
   /**
-   * Keeps track of the time that a player powerup has been active.
+   * Timers Keeps track of the time that a player powerup has been active.
    * Counts downwards in milliseconds.
    */
   private powerupTimer: number;
@@ -38,6 +38,7 @@ class Player extends MovingEntity {
     this.position.x += cellSize * 0.15;
     this.position.y += cellSize * 0.15;
     this.playerNumber = playerNumber;
+    this.name = "";
     this.image = this.getImages();
     this.isFrozen = false;
     this.freezeTimer = 0;
@@ -47,7 +48,6 @@ class Player extends MovingEntity {
     this.invertedTimer = 0;
     this.powerupTimer = 0;
     this.playerScore = 0;
-    this.isSpedUp = false;
     this.speedUpTimer = 0;
 
     this.keyCodes = this.getKeyCodes();
@@ -134,10 +134,10 @@ updateState() {
         this.isImmortal = false;
       }
       break;
-    case this.isSpedUp:
+    case this.speedUpTimer > 0:
       this.speedUpTimer -= deltaTime;
       if (this.speedUpTimer <= 0) {
-        this.isSpedUp = false;
+        this.speed = this.speed / 2
       }
       break;
   }
@@ -259,7 +259,7 @@ updateState() {
 
   public invertControls(){
     if(!this.isInverted)
-    this.invertedTimer = 3000;
+    this.invertedTimer = 15000;
     this.isInverted = true;
   }
 
@@ -279,23 +279,20 @@ updateState() {
    * Called by collisionHandler.
    */
   public speedUp() {
-    if (!this.isSpedUp){
-      this.speedUpTimer = 3000;
-      this.isSpedUp = true;
+      this.speedUpTimer = 15000;
+      this.speed = this.speed * 2;
     }
-  }
+  
 
   /**
    * Set isImmortal to true for a limited time.
    * Called by collisionHandler.
    */
   public makeImmortal() {
+    if (!this.isImmortal){
+      this.immortalTimer = 15000;
+      this.isImmortal = true
+    }
     
   }
-
-  /**
-   * Sets key controls to opposite sides during limited time.
-   * Called by collisionHandler.
-   */
-  public invertKeys() {}
 }

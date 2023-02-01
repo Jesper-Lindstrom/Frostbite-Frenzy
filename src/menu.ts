@@ -1,8 +1,12 @@
 class Menu {
   private activePage: MenuPage;
 
-  public constructor() {
-    this.activePage = new StartPage(this);
+  public constructor(scores: Scores | undefined) {  
+    if (scores) {
+      this.activePage = new Gameover(scores)
+    } else {
+      this.activePage = new StartPage(this)
+    }
   }
 
   public update(): void {}
@@ -10,8 +14,7 @@ class Menu {
   public draw(): void {
     this.activePage.draw();
   }
-
-  public openPage(newPage: any): void {
-    this.activePage = newPage;
-  }
+   public openPage(page: MenuPage) {
+    this.activePage = page;
+   }
 }
