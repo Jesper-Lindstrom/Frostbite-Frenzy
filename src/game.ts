@@ -2,7 +2,6 @@ class Game {
     private mapSize: number;
     private players: Player[];
     private entities: GameEntity[];
-
     private timer: Timer;
     private scoreTable: ScoreTable;
     /**
@@ -10,6 +9,7 @@ class Game {
      */
     private spawnController: SpawnController;
     private purpleMonsterSpawned: boolean;
+    private powerupsHaveStartedSpawning: boolean;
 
   constructor() {
     this.mapSize = height * 0.9;
@@ -41,6 +41,7 @@ class Game {
     this.timer = new Timer(this.mapSize);
     this.scoreTable = new ScoreTable(this.mapSize);
     this.purpleMonsterSpawned = false;
+    this.powerupsHaveStartedSpawning = false;
   }
 
   public update() {
@@ -112,22 +113,35 @@ class Game {
     if (entity instanceof WallBlock) {
       player.wallCollision();
     }
-    if (entity instanceof Monster) {
+    if (entity instanceof Monster && (player.isImmortal != true)) {
       player.freeze();
     }
     if (entity instanceof Key) {
       this.keyCollision(player, entity);
     }
     if (entity instanceof InvertKeys) {
-      player.invertControls()
+      let filteredPlayerArray: Player[] = this.players.filter(function(obj) {
+        return obj !== player
+      })
+      let filteredPlayer = filteredPlayerArray[0];
+      filteredPlayer.invertControls();
+      this.removeEntity(entity);
     }
     if (entity instanceof Immortal) {
-      player.makeImmortal()
+      player.makeImmortal();
+      this.removeEntity(entity);
     }
-    if (entity instanceof SlowOpponent) {
-
+    if (entity instanceof SpeedUp) {
+      player.speedUp();
+      this.removeEntity(entity);
     }
   };
+
+  private removeEntity(entity: GameEntity) { 
+    this.entities = this.entities.filter(function(obj) {
+      return obj !== entity
+    })
+  }
 
   /**
    * Opens the Game Over screen by loading a new Menu object as activeState in gameFrame with GameOver as the active page.
@@ -157,15 +171,19 @@ class Game {
    */
   timeCheck() {
     const remainingTime = this.timer.getTime()
+    let randomNum;
+    if (remainingTime <= 115 && this.powerupsHaveStartedSpawning === false) {
+      this.powerupsHaveStartedSpawning = true;
+      setInterval(() => {
+        randomNum = Math.floor(Math.random() * 4) + 1;
+        this.entities.push(this.spawnController.spawnPowerUpFromRandomNumber(randomNum));
+      }, 15000);
+
+    }
     if (remainingTime <= 60 && this.purpleMonsterSpawned === false) {
       
         this.purpleMonsterSpawned = true;
-        this.entities.push(this.spawnController.createPurpleMonster());
-        console.log('Nu finns jag!')
-      
-    }
-    if (remainingTime === 0) {
-      this.gameEnd();
-    }
+        this.entities.push(this.spawnController.createPurpleMonster());      
+    } 
   };
 }

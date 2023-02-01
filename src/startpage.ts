@@ -1,3 +1,5 @@
+/// <reference path="menupage.ts" />
+
 class StartPage extends MenuPage {
   public menu: Menu;
   private characters: p5.Image;
