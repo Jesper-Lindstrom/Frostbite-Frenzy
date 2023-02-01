@@ -6,11 +6,11 @@ class Menu {
   }
 
   private setActivePage(firstPage: string, scores?: Scores): MenuPage {
-    let activePage: MenuPage = new StartPage(this);
-    if (firstPage === "startpage") {
-      this.activePage = new StartPage(this);
-    } else if (firstPage === "gameover" && scores) {
-      this.activePage = new Gameover(this, scores);
+    let activePage: MenuPage;
+    if (firstPage === "gameover" && scores) {
+      activePage = new Gameover(this, scores);
+    } else {
+      activePage = new StartPage(this);
     }
     return activePage;
   }

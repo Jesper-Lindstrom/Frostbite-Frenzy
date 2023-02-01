@@ -71,10 +71,6 @@ function preload() {
     trophy: loadImage("/assets/images/trophy.gif"),
   };
 }
-// sound: p5.SoundFile = loadSound('../assets/mySound.wav');
-// menuFont = loadFont(
-//   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
-// );
 
 /**
  * Built in setup function in P5

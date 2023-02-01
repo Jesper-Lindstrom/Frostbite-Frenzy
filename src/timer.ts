@@ -11,8 +11,8 @@ class Timer {
   private y: number;
 
   public constructor(mapSize: number) {
-    this.minutes = 0;
-    this.seconds = 20;
+    this.minutes = 2;
+    this.seconds = 0;
     this.timerRunning = true;
     this.deltaSecond = 0;
 
