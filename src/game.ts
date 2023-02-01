@@ -143,6 +143,7 @@ class Game {
       return obj !== entity
     })
   }
+
   private resolveWallCollisions() {
     for (const player of this.players) {
       player.resolveWallCollision();
@@ -164,9 +165,7 @@ class Game {
    */
   private keyCollision(player: Player, key: Key) {
     
-    this.entities = this.entities.filter(function(obj) {
-      return obj !== key
-    });
+    this.removeEntity(key);
     this.entities.push(this.spawnController.createKey());
     this.scoreTable.givePoint(player.playerNumber);
     

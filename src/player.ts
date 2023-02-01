@@ -1,27 +1,27 @@
 /// <reference path="movingEntity.ts"/>
 /// <reference path="key.ts"/>
 
-
 class Player extends MovingEntity {
   public playerNumber: number;
   public name: string;
   private image: p5.Image;
+
+  /**
+   * Properties that control powerups.
+   */
   private isFrozen: boolean;
   private freezeTimer: number;
   private invertedTimer: number;
   public isImmortal: boolean;
   private immortalTimer: number;
   private isInverted: boolean;
-  private playerScore: number;
+  private isSpedUp: boolean;
   private speedUpTimer: number;
+
   /**
-   * Timers Keeps track of the time that a player powerup has been active.
-   * Counts downwards in milliseconds.
+   * Properties for setting movement controls.
    */
-  private powerupTimer: number;
-
   private keyCodes: number[];
-
   private leftButton: number;
   private rightButton: number;
   private upButton: number;
@@ -46,8 +46,7 @@ class Player extends MovingEntity {
     this.immortalTimer = 0;
     this.isInverted = false;
     this.invertedTimer = 0;
-    this.powerupTimer = 0;
-    this.playerScore = 0;
+    this.isSpedUp = false;
     this.speedUpTimer = 0;
 
     this.keyCodes = this.getKeyCodes();
@@ -86,8 +85,6 @@ class Player extends MovingEntity {
   }
 
   public update() {
-
-    
     /**
      * Here we record the player's starting position at each frame in order to
      * reset the new position on collision with a wall.
@@ -109,144 +106,148 @@ class Player extends MovingEntity {
       this.position.y - this.size.y * 0.7,
       this.size.x * 1.2,
       this.size.y * 1.7
-      );
-      pop();
+    );
+    pop();
   }
 
-
-updateState() {
-  switch (true) {
-    case this.isFrozen:
-      this.freezeTimer -= deltaTime;
-      if (this.freezeTimer <= 0) {
-        this.isFrozen = false;
-      }
-      break;
-    case this.isInverted:
-      this.invertedTimer -= deltaTime;
-      if (this.invertedTimer <= 0) {
-        this.isInverted = false;
-      }
-      break;
-    case this.isImmortal:
-      this.immortalTimer -= deltaTime;
-      if (this.immortalTimer <= 0) {
-        this.isImmortal = false;
-      }
-      break;
-    case this.speedUpTimer > 0:
-      this.speedUpTimer -= deltaTime;
-      if (this.speedUpTimer <= 0) {
-        this.speed = this.speed / 2
-      }
-      break;
+  /**
+   * Controls player's active powerups and freezing.
+   */
+  private updateState() {
+    switch (true) {
+      case this.isFrozen:
+        this.freezeTimer -= deltaTime;
+        if (this.freezeTimer <= 0) {
+          this.isFrozen = false;
+        }
+        break;
+      case this.isInverted:
+        this.invertedTimer -= deltaTime;
+        if (this.invertedTimer <= 0) {
+          this.isInverted = false;
+        }
+        break;
+      case this.isImmortal:
+        this.immortalTimer -= deltaTime;
+        if (this.immortalTimer <= 0) {
+          this.isImmortal = false;
+        }
+        break;
+      case this.isSpedUp:
+        this.speedUpTimer -= deltaTime;
+        if (this.speedUpTimer <= 0) {
+          this.speed = this.speed * 0.66666666666;
+          this.isSpedUp = false
+        }
+        break;
+    }
   }
-}
 
   /**
    * Called from update. Checks keyboard input.
    */
   private checkUserInput() {
     if (!this.isFrozen)
-    if (this.isInverted) {
-      if (keyIsDown(this.leftButton)) {
-        this.position.x += this.speed;
+      if (this.isInverted) {
+        if (keyIsDown(this.leftButton)) {
+          this.position.x += this.speed;
+        }
+        if (keyIsDown(this.rightButton)) {
+          this.position.x -= this.speed;
+        }
+        if (keyIsDown(this.upButton)) {
+          this.position.y += this.speed;
+        }
+        if (keyIsDown(this.downButton)) {
+          this.position.y -= this.speed;
+        }
+      } else {
+        if (keyIsDown(this.leftButton)) {
+          this.position.x -= this.speed;
+        }
+        if (keyIsDown(this.rightButton)) {
+          this.position.x += this.speed;
+        }
+        if (keyIsDown(this.upButton)) {
+          this.position.y -= this.speed;
+        }
+        if (keyIsDown(this.downButton)) {
+          this.position.y += this.speed;
+        }
       }
-      if (keyIsDown(this.rightButton)) {
-        this.position.x -= this.speed;
-      }
-      if (keyIsDown(this.upButton)) {
-        this.position.y += this.speed;
-      }
-      if (keyIsDown(this.downButton)) {
-        this.position.y -= this.speed;
-      }
-    }
-  else{
-    if (keyIsDown(this.leftButton)) {
-      this.position.x -= this.speed;
-    }
-    if (keyIsDown(this.rightButton)) {
-      this.position.x += this.speed;
-    }
-    if (keyIsDown(this.upButton)) {
-      this.position.y -= this.speed;
-    }
-    if (keyIsDown(this.downButton)) {
-      this.position.y += this.speed;
-    }
-  }
   }
 
   public registerWallCollision(wallBock: WallBlock) {
-    this.wallBlocksCollided.push(wallBock)
+    this.wallBlocksCollided.push(wallBock);
   }
 
   public resolveWallCollision() {
-      if (this.wallBlocksCollided.length === 1) {
-        this.singleWallCollision();
-      } else if (this.wallBlocksCollided.length === 2) {
-        if (this.wallBlocksCollided[0].bounds.left === this.wallBlocksCollided[1].bounds.left) {
-          this.position.x = this.previousPosition.x;
-        }
-        if (this.wallBlocksCollided[0].bounds.top === this.wallBlocksCollided[1].bounds.top) {
-          this.position.y = this.previousPosition.y
-        }
-      } else if (this.wallBlocksCollided.length === 3) {
-        this.position = this.previousPosition;
-      }
-      this.wallBlocksCollided = [];
-    
+    if (this.wallBlocksCollided.length === 1) {
+      this.singleWallCollision();
+    } else if (this.wallBlocksCollided.length === 2) {
+      this.doubleWallCollision();
+    } else if (this.wallBlocksCollided.length === 3) {
+      this.position = this.previousPosition;
+    }
+    this.wallBlocksCollided = [];
   }
 
   private singleWallCollision() {
     const wall = this.wallBlocksCollided[0];
-    if (this.position.x !== this.previousPosition.x && this.position.y !== this.previousPosition.y) {
-    let previousBottom: number = this.previousPosition.y + this.size.x;
-    let previousRight: number = this.previousPosition.x + this.size.y;
-    let previousBounds : bounds = {
-      top: this.previousPosition.y,
-      bottom: previousBottom,
-      left: this.previousPosition.x,
-      right: previousRight
-    }
 
-    // Check new position vs old position
-    // If both x and y are different
-      // Which direction is the wall in?
-      // Is the diffrence biggest between x or y?
-      // Which sides are the closest?
-      // Subtract relative bounds to find smallest difference.
-      // Cancel movement in direction of smallest difference. Or in case of 0?
-      let topDistance: number = Math.abs(previousBounds.top - wall.bounds.bottom);
-      let bottomDistance: number = Math.abs(previousBounds.bottom - wall.bounds.top);
-      let leftDistance: number = Math.abs(previousBounds.left - wall.bounds.right);
-      let rightDistance: number = Math.abs(previousBounds.right - wall.bounds.left);
+    /**
+     * This if statement contains code for sliding along the edge of single blocks.
+     */
+    if (
+      this.position.x !== this.previousPosition.x &&
+      this.position.y !== this.previousPosition.y
+    ) {
+      let previousBottom: number = this.previousPosition.y + this.size.x;
+      let previousRight: number = this.previousPosition.x + this.size.y;
+      let previousBounds: bounds = {
+        top: this.previousPosition.y,
+        bottom: previousBottom,
+        left: this.previousPosition.x,
+        right: previousRight,
+      };
 
-      let collisionSide: number = Math.min(topDistance, bottomDistance, leftDistance, rightDistance);
-      // console.log('Top dist:' + topDistance, 'Bot dist: ' + bottomDistance, 'Left dist:' + leftDistance, 'Right dist: ' + rightDistance, 'Collision side: ' + collisionSide);
+      let topDistance: number = Math.abs(
+        previousBounds.top - wall.bounds.bottom
+      );
+      let bottomDistance: number = Math.abs(
+        previousBounds.bottom - wall.bounds.top
+      );
+      let leftDistance: number = Math.abs(
+        previousBounds.left - wall.bounds.right
+      );
+      let rightDistance: number = Math.abs(
+        previousBounds.right - wall.bounds.left
+      );
 
-      // Update new position without travel towards wall but with travel in other direction.
+      let collisionSide: number = Math.min(
+        topDistance,
+        bottomDistance,
+        leftDistance,
+        rightDistance
+      );
 
       switch (collisionSide) {
         case topDistance:
-          this.position.y = this.previousPosition.y
+          this.position.y = this.previousPosition.y;
           break;
 
-          case bottomDistance:
-            this.position.y = this.previousPosition.y
-            break;
+        case bottomDistance:
+          this.position.y = this.previousPosition.y;
+          break;
 
-          case leftDistance :
-            this.position.x = this.previousPosition.x
-            break;
+        case leftDistance:
+          this.position.x = this.previousPosition.x;
+          break;
 
-            case rightDistance:
-              this.position.x = this.previousPosition.x
-              break;
+        case rightDistance:
+          this.position.x = this.previousPosition.x;
+          break;
 
-             
-      
         default:
           break;
       }
@@ -255,12 +256,26 @@ updateState() {
     }
   }
 
+  private doubleWallCollision() {
+    if (
+      this.wallBlocksCollided[0].bounds.left ===
+      this.wallBlocksCollided[1].bounds.left
+    ) {
+      this.position.x = this.previousPosition.x;
+    }
+    if (
+      this.wallBlocksCollided[0].bounds.top ===
+      this.wallBlocksCollided[1].bounds.top
+    ) {
+      this.position.y = this.previousPosition.y;
+    }
+  }
 
-
-  public invertControls(){
-    if(!this.isInverted)
-    this.invertedTimer = 15000;
-    this.isInverted = true;
+  public invertControls() {
+    if (!this.isInverted) {
+      this.invertedTimer = 15000;
+      this.isInverted = true;
+    }
   }
 
   /**
@@ -269,8 +284,8 @@ updateState() {
    */
   public freeze() {
     if (!this.isFrozen) {
-    this.freezeTimer = 3000;
-    this.isFrozen = true;
+      this.freezeTimer = 3000;
+      this.isFrozen = true;
     }
   }
 
@@ -279,20 +294,21 @@ updateState() {
    * Called by collisionHandler.
    */
   public speedUp() {
-      this.speedUpTimer = 15000;
-      this.speed = this.speed * 2;
+    if (!this.isSpedUp) {
+      this.speed = this.speed * 1.5;
+      this.isSpedUp = true;
     }
-  
+    this.speedUpTimer = 10000;
+  }
 
   /**
    * Set isImmortal to true for a limited time.
    * Called by collisionHandler.
    */
   public makeImmortal() {
-    if (!this.isImmortal){
+    if (!this.isImmortal) {
       this.immortalTimer = 15000;
-      this.isImmortal = true
+      this.isImmortal = true;
     }
-    
   }
 }
