@@ -5,6 +5,8 @@ class Monster extends MovingEntity {
   private mapPosition: p5.Vector;
   private cellSize: number;
 
+  private image: p5.Image;
+
   private stepCounter: number;
   private cellSteps: number;
 
@@ -14,24 +16,27 @@ class Monster extends MovingEntity {
     position: p5.Vector,
     cellSize: number,
     mapArray: number[][],
-    mapPosition: p5.Vector
+    mapPosition: p5.Vector,
+    image: p5.Image,
+    speed: number,
   ) {
     super(
       new p5.Vector(position.x + cellSize * 0.1, position.y + cellSize * 0.1),
       new p5.Vector(cellSize * 0.8, cellSize * 0.8),
-      cellSize / 20
+      cellSize / speed
     );
     this.mapArray = mapArray;
     this.mapPosition = mapPosition;
     this.cellSize = cellSize;
+    this.image = image;
     this.stepCounter = 0;
-    this.cellSteps = 20;
+    this.cellSteps = speed;
     this.direction = this.setDirection(this.getDirections());
   }
 
   draw(): void {
     push();
-    image(images.blueMonster, this.position.x, this.position.y - this.size.y * 0.2, this.size.x, this.size.y * 1.2);
+    image(this.image, this.position.x, this.position.y - this.size.y * 0.2, this.size.x, this.size.y * 1.2);
     pop();
   }
 

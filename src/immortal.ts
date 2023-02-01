@@ -1,4 +1,4 @@
-class InvertKeys extends GameEntity {
+class Immortal extends GameEntity {
     private image: p5.Image;
   //ärver   protected position: p5.Vector;
   // protected size: p5.Vector;
@@ -9,10 +9,8 @@ class InvertKeys extends GameEntity {
         cellSize, 
         cellSize
         ));
-      this.image = images.invertarrows;
-    }
-
-   
+      this.image = images.advantagessnowflake;
+}
 
     public draw() {
       push();
