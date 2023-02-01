@@ -198,5 +198,8 @@ class Game {
 
       this.entities.push(this.spawnController.createPurpleMonster());
     }
+    if (remainingTime <= 0) {
+      this.gameEnd();
+    }
   }
 }
