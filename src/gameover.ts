@@ -1,12 +1,12 @@
 class Gameover extends MenuPage {
+  private menu: Menu;
   private key: p5.Image;
   private key2: p5.Image;
   private key3: p5.Image;
   private key4: p5.Image;
   private monsterPurple: p5.Image;
   private monsterBlue: p5.Image;
-  private currentOption: number = 0;
-  private options: string[] = ["New Game"];
+  private options: string[] = ["New Game", "Back to Menu"];
   private buttons: p5.Element[] = [];
 
   private winnerImage: p5.Image;
@@ -15,9 +15,9 @@ class Gameover extends MenuPage {
   private loserScore: number;
   private trophy: p5.Image;
 
-
-  public constructor(scores: Scores) {
-    super()
+  public constructor(menu: Menu, scores: Scores) {
+    super();
+    this.menu = menu;
     this.monsterPurple = images.purpleMonsterSingle;
     this.monsterBlue = images.monsterBlue;
     this.trophy = images.trophy;
@@ -40,20 +40,17 @@ class Gameover extends MenuPage {
     }
   }
 
-
-
   public drawShapes() {
     push();
     strokeWeight(5); // frame thickness
     stroke(255, 255, 255); // set the "frame" color
     fill(47, 78, 107);
     rect(this.x, this.y, this.width, this.height); // "frame"
-    line(this.x, height / 2, this.width + this.x, height /2);
+    line(this.x, height / 2, this.width + this.x, height / 2);
     pop(); // restore previous styles and transformations
   }
 
   protected drawText() {
-
     push(); // save current styles and transformations
     textFont("Freckle Face");
     fill(255);
@@ -71,30 +68,92 @@ class Gameover extends MenuPage {
     text("Defeated!", width / 2, this.y + this.height * 0.55);
     text(this.loserScore, width / 2, this.y + this.height * 0.95);
     pop(); // restore previous styles and transformations
+  }
 
-}
-
-public drawImages() {
-  push();
-  imageMode(CENTER);
-  image(this.winnerImage, width / 2, this.y + this.height * 0.25, this.width * 0.12, this.width * 0.20);
-  image(this.loserImage, width / 2, this.y + this.height * 0.75,  this.width * 0.12, this.width * 0.20);
-  image(this.key, this.x + this.width * 0.1, this.y + this.height * 0.1, this.width * 0.1, this.width * 0.05);
-  image(this.key2, this.x + this.width * 0.2, this.y + this.height * 0.2, this.width * 0.1, this.width * 0.05);
-  image(this.trophy, this.x + this.width * 0.2, this.y + this.height * 0.37, this.width * 0.2, this.width * 0.2);
-  image(this.trophy, this.x + this.width * 0.8, this.y + this.height * 0.37, this.width * 0.2, this.width * 0.2);
-  image(this.key3, this.x + this.width * 0.8, this.y + this.height * 0.2, this.width * 0.1, this.width * 0.05);
-  image(this.key4, this.x + this.width * 0.9, this.y + this.height * 0.1, this.width * 0.1, this.width * 0.05);
-  image(this.monsterPurple, this.x + this.width * 0.25, height / 2 + this.height * 0.1, this.width * 0.1, this.width * 0.12);
-  image(this.monsterBlue, this.x + this.width * 0.75, height / 2 + this.height * 0.1, this.width * 0.1, this.width * 0.12);
-  pop();
-}
+  public drawImages() {
+    push();
+    imageMode(CENTER);
+    image(
+      this.winnerImage,
+      width / 2,
+      this.y + this.height * 0.25,
+      this.width * 0.12,
+      this.width * 0.2
+    );
+    image(
+      this.loserImage,
+      width / 2,
+      this.y + this.height * 0.75,
+      this.width * 0.12,
+      this.width * 0.2
+    );
+    image(
+      this.key,
+      this.x + this.width * 0.1,
+      this.y + this.height * 0.1,
+      this.width * 0.1,
+      this.width * 0.05
+    );
+    image(
+      this.key2,
+      this.x + this.width * 0.2,
+      this.y + this.height * 0.2,
+      this.width * 0.1,
+      this.width * 0.05
+    );
+    image(
+      this.trophy,
+      this.x + this.width * 0.2,
+      this.y + this.height * 0.37,
+      this.width * 0.2,
+      this.width * 0.2
+    );
+    image(
+      this.trophy,
+      this.x + this.width * 0.8,
+      this.y + this.height * 0.37,
+      this.width * 0.2,
+      this.width * 0.2
+    );
+    image(
+      this.key3,
+      this.x + this.width * 0.8,
+      this.y + this.height * 0.2,
+      this.width * 0.1,
+      this.width * 0.05
+    );
+    image(
+      this.key4,
+      this.x + this.width * 0.9,
+      this.y + this.height * 0.1,
+      this.width * 0.1,
+      this.width * 0.05
+    );
+    image(
+      this.monsterPurple,
+      this.x + this.width * 0.25,
+      height / 2 + this.height * 0.1,
+      this.width * 0.1,
+      this.width * 0.12
+    );
+    image(
+      this.monsterBlue,
+      this.x + this.width * 0.75,
+      height / 2 + this.height * 0.1,
+      this.width * 0.1,
+      this.width * 0.12
+    );
+    pop();
+  }
 
   // Creates the buttons with a for loop based on the options array length
   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.position(this.x + this.width - 170, this.y + this.height - 110 + (i + 1) * 50);
+      button.position(
+        this.x + this.width - 170,
+        this.y + this.height - 110 + (i - 0.5) * 50
+      );
       button.size(150, 40);
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
@@ -118,12 +177,10 @@ public drawImages() {
         if (i === 0) {
           gameFrame.newGame();
         } else if (i === 1) {
-        } else if (i === 2) { 
+          this.menu.openPage(new StartPage(this.menu));
         }
       });
       this.buttons.push(button);
     }
   }
-
 }
-

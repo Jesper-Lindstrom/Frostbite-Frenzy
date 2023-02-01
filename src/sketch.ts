@@ -5,6 +5,8 @@ let fontFreckleFace: p5.Font;
 let fontSansita: p5.Font;
 let gameMusic: p5.SoundFile;
 let gameOver: p5.SoundFile;
+let keySound: p5.SoundFile;
+let frozenSound: p5.SoundFile;
 
 interface Images {
   iceUpper: p5.Image;
@@ -42,6 +44,8 @@ function preload() {
   fontSansita = loadFont("/assets/fonts/Sansita.ttf");
   gameMusic = loadSound("/assets/sounds/gamemusic.mp3");
   gameOver = loadSound("/assets/sounds/gameOver.mp3");
+  keySound = loadSound("/assets/sounds/key.mp3");
+  frozenSound = loadSound("/assets/sounds/frozen.mp3");
 
   images = {
     iceUpper: loadImage("/assets/images/ice1.png"),
@@ -65,14 +69,12 @@ function preload() {
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
     monsterBlue: loadImage("/assets/images/monsterBlue.png"),
     trophy: loadImage("/assets/images/trophy.gif"),
-  
-  }
   };
-  // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
-  // menuFont = loadFont(
-  //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
-  // );
-
+}
+// sound: p5.SoundFile = loadSound('../assets/mySound.wav');
+// menuFont = loadFont(
+//   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
+// );
 
 /**
  * Built in setup function in P5
@@ -83,8 +85,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-  gameFrame = new GameFrame(false);
-  
+  gameFrame = new GameFrame();
 }
 
 /**
