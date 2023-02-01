@@ -104,15 +104,34 @@ public createPurpleMonster() {
 
 }
 
-
-
 public createKey(): Key {
     let key = new Key (this.randomValidSpawnpoint(), this.cellSize, this.keysSpawned);
     this.keysSpawned ++;
     return key;
-  }
 }
 
+  
+
+public spawnPowerUpFromRandomNumber(randomNum: number): GameEntity{
+  let position: p5.Vector = this.randomValidSpawnpoint();
+  let newPowerUp: GameEntity = new InvertKeys(position, this.cellSize);
+  if (randomNum === 1) {
+    newPowerUp =  new SpeedUp(position, this.cellSize)
+  } else if (randomNum === 2) {
+    newPowerUp =  new Immortal(position, this.cellSize)
+  } else if (randomNum === 3) {
+    newPowerUp = new InvertKeys(position, this.cellSize)
+  }
+  return newPowerUp;
+}
+
+//Ta emot siffra från RandomNumber
+//If sats 1-4 skapa ny powerup beroende på siffran
+//hämta koordinater från randomValidSpawnpoint
+//rendera ut powerup objekt på RandomValidSpawnpoint
+
+
+}
 
 
 interface Coordinates {
