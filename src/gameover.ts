@@ -1,14 +1,10 @@
 class Gameover extends MenuPage {
   private menu: Menu;
   private key: p5.Image;
-  private key2: p5.Image;
-  private key3: p5.Image;
-  private key4: p5.Image;
   private monsterPurple: p5.Image;
   private monsterBlue: p5.Image;
   private options: string[] = ["New Game", "Back to Menu"];
   private buttons: p5.Element[] = [];
-
   private winnerImage: p5.Image;
   private loserImage: p5.Image;
   private winnerScore: number;
@@ -22,9 +18,6 @@ class Gameover extends MenuPage {
     this.monsterBlue = images.monsterBlue;
     this.trophy = images.trophy;
     this.key = images.key;
-    this.key2 = images.key2;
-    this.key3 = images.key3;
-    this.key4 = images.key4;
     this.drawButtons();
 
     if (scores[1] > scores[2]) {
@@ -40,37 +33,37 @@ class Gameover extends MenuPage {
     }
   }
 
-  public drawShapes() {
+  protected drawShapes() {
     push();
-    strokeWeight(5); // frame thickness
-    stroke(255, 255, 255); // set the "frame" color
+    strokeWeight(5); 
+    stroke(255, 255, 255); 
     fill(47, 78, 107);
     rect((windowWidth - this.rectWidth) / 2, (windowHeight - this.rectHeight) / 2, this.rectWidth, this.rectHeight);
     line(this.elementX, height / 2, this.rectWidth + this.elementX, height / 2);
-    pop(); // restore previous styles and transformations
+    pop(); 
   }
 
-  public drawText() {
-    push(); // save current styles and transformations
+  protected drawText() {
+    push(); 
     textFont("Freckle Face");
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
     text("The winner!!", width / 2, this.elementY + this.rectHeight * 0.05);
     text(this.winnerScore, width / 2, this.elementY + this.rectHeight * 0.45);
-    pop(); // restore previous styles and transformations
+    pop(); 
 
-    push(); // save current styles and transformations
+    push(); 
     textFont("Freckle Face");
     fill(255, 0, 0);
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Defeated!", width / 2, this.elementY + this.rectHeight * 0.55);
     text(this.loserScore, width / 2, this.elementY + this.rectHeight * 0.95);
-    pop(); // restore previous styles and transformations
+    pop(); 
   }
 
-  public drawImages() {
+  protected drawImages() {
     push();
     imageMode(CENTER);
     image(
@@ -95,7 +88,7 @@ class Gameover extends MenuPage {
       this.rectWidth * 0.05
     );
     image(
-      this.key2,
+      this.key,
       this.elementX + this.rectWidth * 0.2,
       this.elementY + this.rectHeight * 0.2,
       this.rectWidth * 0.1,
@@ -116,14 +109,14 @@ class Gameover extends MenuPage {
       this.rectWidth * 0.2
     );
     image(
-      this.key3,
+      this.key,
       this.elementX + this.rectWidth * 0.8,
       this.elementY + this.rectHeight * 0.2,
       this.rectWidth * 0.1,
       this.rectWidth * 0.05
     );
     image(
-      this.key4,
+      this.key,
       this.elementX + this.rectWidth * 0.9,
       this.elementY + this.rectHeight * 0.1,
       this.rectWidth * 0.1,
@@ -146,7 +139,6 @@ class Gameover extends MenuPage {
     pop();
   }
 
-  // Creates the buttons with a for loop based on the options array length
   private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
@@ -166,14 +158,12 @@ class Gameover extends MenuPage {
         this.buttons[i].style("color", "rgb(255, 255, 255)");
         this.buttons[i].style("background-color", "rgb(15, 82, 186");
       });
-
       button.mouseOut(() => {
         this.buttons[i].style("background: #D2ECF3");
         this.buttons[i].style("color: #4A7AA7");
       });
 
       button.mousePressed(() => {
-        // callback function to call when the button is clicked
         if (i === 0) {
           gameFrame.newGame();
         } else if (i === 1) {
