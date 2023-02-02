@@ -1,5 +1,5 @@
 class StartPage extends MenuPage {
-  public menu: IMenu;
+  private menu: IMenu;
   private characters: p5.Image;
   private options: string[] = ["New Game", "Objectives", "Controls"];
   private buttons: p5.Element[] = [];
