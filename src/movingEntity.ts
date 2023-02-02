@@ -21,7 +21,3 @@ abstract class MovingEntity extends GameEntity {
     }
 }
 
-
-// Delta = Förändring i ett värde
-// Delta Y = Förändring i Y värde. 
-

@@ -1,19 +1,18 @@
 abstract class MenuPage {
-  protected x: number;
-  protected y: number;
-  protected width: number;
-  protected height: number;
+  protected rectWidth: number;
+  protected rectHeight: number;
+  protected elementX: number;
+  protected elementY: number;
 
   public constructor() {
-    this.width = windowWidth * 0.6;
-    this.height = windowHeight * 0.9;
-    this.x = (windowWidth - this.width) / 2;
-    this.y = (windowHeight - this.height) / 2;
+    this.rectWidth = windowWidth * 0.6;
+    this.rectHeight = windowHeight * 0.8;
+    this.elementX = (windowWidth - this.rectWidth) / 2;
+    this.elementY = (windowHeight - this.rectHeight) / 2;
   }
-
-  public drawImages(): void {}
-  protected abstract drawText(): void
-  public drawShapes(): void {}
+  protected abstract drawImages(): void 
+  protected abstract drawText(): void 
+  protected abstract drawShapes(): void 
 
   public draw(): void {
     this.drawShapes();

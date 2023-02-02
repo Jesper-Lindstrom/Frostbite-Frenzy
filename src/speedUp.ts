@@ -1,9 +1,5 @@
 class SpeedUp extends GameEntity {
     private image: p5.Image;
-  //ärver   protected position: p5.Vector;
-  // protected size: p5.Vector;
-  // public bounds: bounds;
-  // public constructor()
     public constructor(position: p5.Vector,cellSize: number) {
       super(position, new p5.Vector(
         cellSize, 

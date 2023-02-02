@@ -350,7 +350,7 @@ class Player extends MovingEntity {
     if (this.isImmortal) {
       this.immortalTimer = 10000;
     } else {
-      this.resetPowerups;
+      this.resetPowerups();
       this.immortalTimer = 10000;
       this.isImmortal = true;
     }

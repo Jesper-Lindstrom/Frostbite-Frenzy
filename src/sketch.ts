@@ -1,5 +1,4 @@
 //---- GLOBAL VARIABLES ----//
-// let sound: p5.SoundFile
 let gameFrame: GameFrame;
 let fontFreckleFace: p5.Font;
 let fontSansita: p5.Font;
@@ -11,8 +10,6 @@ let powerupsSound: p5.SoundFile;
 
 interface Images {
   wallblock: p5.Image;
-  iceUpper: p5.Image;
-  iceLower: p5.Image;
   wsadButtons: p5.Image;
   arrowButtons: p5.Image;
   yellowSnowman: p5.Image;
@@ -21,17 +18,16 @@ interface Images {
   purplemonster: p5.Image;
   characters: p5.Image;
   key: p5.Image;
-  key2: p5.Image;
-  key3: p5.Image;
-  key4: p5.Image;
   monsterdescriptions: p5.Image;
   watch: p5.Image;
-  advantagessnowflake: p5.Image;
+  snowflake: p5.Image;
   invertarrows: p5.Image;
   purpleMonsterSingle: p5.Image;
   monsterBlue: p5.Image;
   fallingsnow: p5.Image;
   trophy: p5.Image;
+  ice: p5.Image;
+  movement: p5.Image;
 }
 
 let images: Images;
@@ -52,8 +48,6 @@ function preload() {
 
   images = {
     wallblock: loadImage("/assets/images/wallblock.png"),
-    iceUpper: loadImage("/assets/images/ice1.png"),
-    iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
     arrowButtons: loadImage("/assets/images/arrowbuttons.png"),
     yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
@@ -63,16 +57,15 @@ function preload() {
     characters: loadImage("/assets/images/characters.png"),
     fallingsnow: loadImage("/assets/images/fallingsnow.gif"),
     key: loadImage("/assets/images/key.png"),
-    key2: loadImage("/assets/images/key2.png"),
-    key3: loadImage("/assets/images/key3.png"),
-    key4: loadImage("/assets/images/key4.png"),
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
-    advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
+    snowflake: loadImage("/assets/images/advantagessnowflake.png"),
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
     monsterBlue: loadImage("/assets/images/monsterBlue.png"),
     trophy: loadImage("/assets/images/trophy.gif"),
+    ice: loadImage("assets/images/ice.png"),
+    movement: loadImage("assets/images/movement.png"),
   };
 }
 

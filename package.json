@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "run-p build serve",
     "build": "tsc --watch",
+    "buildOnce": "tsc",
     "serve": "vite --port=5500 --open"
   },
   "devDependencies": {

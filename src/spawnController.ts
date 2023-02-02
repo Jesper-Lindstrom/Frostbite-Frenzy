@@ -1,3 +1,8 @@
+interface Coordinates {
+  x: number,
+  y: number
+}
+
 class SpawnController {
   private mapSize: number;
   private mapPosition: p5.Vector;
@@ -127,21 +132,5 @@ public spawnPowerUpFromRandomNumber(randomNum: number): GameEntity{
   return newPowerUp;
 }
 
-//Ta emot siffra från RandomNumber
-//If sats 1-4 skapa ny powerup beroende på siffran
-//hämta koordinater från randomValidSpawnpoint
-//rendera ut powerup objekt på RandomValidSpawnpoint
-
 
 }
-
-
-interface Coordinates {
-  x: number,
-  y: number
-}
-
-// RandomValidSpawnpoint picks out a random index of the zeroes in mapArray
-// RandomValidSpawnpoint needs to save the coordinates of that 0,
-// spawnEntity recieves those coordinates and initiates spawning of an entity depending on time/how many monsters have spawned/etc.
-// Calls to create new object as needed, which will update/draw itself.
