@@ -1,4 +1,4 @@
-class MenuPage {
+abstract class MenuPage {
   protected rectWidth: number;
   protected rectHeight: number;
   protected elementX: number;
@@ -10,9 +10,9 @@ class MenuPage {
     this.elementX = (windowWidth - this.rectWidth) / 2;
     this.elementY = (windowHeight - this.rectHeight) / 2;
   }
-  public drawImages(): void {}
-  public drawText(): void {}
-  public drawShapes(): void {}
+  protected abstract drawImages(): void 
+  protected abstract drawText(): void 
+  protected abstract drawShapes(): void 
 
   public draw(): void {
     this.drawShapes();

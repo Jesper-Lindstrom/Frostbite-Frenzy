@@ -1,35 +1,28 @@
 /// <reference path="menupage.ts" />
 
 class Controls extends MenuPage {
-  public menu: Menu;
-  private img: p5.Image;
-  private img1: p5.Image;
-  private img2: p5.Image;
-  private img3: p5.Image;
-  private img4: p5.Image;
-  private img5: p5.Image;
+  private menu: Menu;
+  private wsadButtonsImage: p5.Image;
+  private arrowButtonsImage: p5.Image;
+  private iceImage: p5.Image;
+  private movementTextImage: p5.Image;
 
   public constructor(menu: Menu) {
     super();
     this.menu = menu;
-    this.img = images.iceLower;
-    this.img1 = images.iceUpper;
-    this.img2 = images.wsadButtons;
-    this.img3 = images.arrowButtons;
-    this.img4 = images.ice;
-    this.img5 = images.movement;
-    this.drawShapes();
-    this.drawText();
-    this.drawImages();
+    this.wsadButtonsImage = images.wsadButtons;
+    this.arrowButtonsImage = images.arrowButtons;
+    this.iceImage = images.ice;
+    this.movementTextImage = images.movement;
     this.createBackButton();
   }
 
-  public drawShapes() {
+  protected drawShapes() {
     fill(47, 78, 107);
-    rect((windowWidth - this.rectWidth) / 2, (windowHeight - this.rectHeight) / 2, this.rectWidth, this.rectHeight); // larger rect
+    rect((windowWidth - this.rectWidth) / 2, (windowHeight - this.rectHeight) / 2, this.rectWidth, this.rectHeight);
   }
 
-  protected createBackButton() {
+  private createBackButton() {
     let button = createButton("Back");
     button.size(this.rectWidth * 0.2, this.rectHeight * 0.1);
     button.position(this.elementX + this.rectWidth * 0.05, this.elementY + this.rectHeight - this.rectHeight * 0.11);
@@ -55,22 +48,21 @@ class Controls extends MenuPage {
     });
   }
 
-
-  public drawText() {
-    push(); // save current styles and transformations
+  protected drawText() {
+    push();
     fill(255);
     textFont(fontSansita);
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Controls", this.elementX + this.rectWidth / 2, this.elementY + this.rectHeight * 0.15);
-    pop(); // restore previous styles and transformations
+    pop();
 
     push();
     fill(255);
     textSize(20);
     text("Player1", this.elementX + this.rectWidth * 0.18, this.elementY + this.rectHeight * 0.35);
     textSize(20);
-    text("Movement",this.elementX + this.rectWidth * 0.16, this.elementY + this.rectHeight * 0.73);
+    text("Movement", this.elementX + this.rectWidth * 0.16, this.elementY + this.rectHeight * 0.73);
     textFont(fontSansita);
 
     pop();
@@ -85,31 +77,28 @@ class Controls extends MenuPage {
 
   }
 
-  public drawImages() {
+  protected drawImages() {
     let imageWidth = this.rectWidth;
-    let imageHeight = (imageWidth / this.img4.width) * this.img4.height;
-    image(this.img4, (this.elementX + this.rectWidth * 0.5) - (imageWidth / 2), this.elementY, imageWidth, imageHeight);
-    
-    image(this.img2,
-      this.elementX + this.rectWidth * 0.10,
+    let imageHeight = (imageWidth / this.iceImage.width) * this.iceImage.height;
+    image(this.iceImage, (this.elementX + this.rectWidth * 0.5) - (imageWidth / 2), this.elementY, imageWidth, imageHeight);
+
+    image(this.wsadButtonsImage,
+      this.elementX + this.rectWidth * 0.1,
       this.elementY + this.rectHeight / 2.5,
       0.25 * this.rectWidth,
       0.25 * this.rectHeight
-      );
-    
-    image(this.img3,
+    );
+
+    image(this.arrowButtonsImage,
       this.elementX + this.rectWidth * 0.90 - 0.25 * this.rectWidth,
       this.elementY + this.rectHeight / 2.5,
       0.25 * this.rectWidth,
       0.25 * this.rectHeight
-      );
-    
-    
-    image(this.img5, this.elementX + this.rectWidth * 0.35, this.elementY + this.rectHeight * 0.75);
-      
-      
-      
-      
-      
+    );
+
+    image(this.movementTextImage,
+      this.elementX + this.rectWidth * 0.35,
+      this.elementY + this.rectHeight * 0.75
+    );
   }
 }
