@@ -157,12 +157,15 @@ class Player extends MovingEntity {
   }
 
   private tintBlink() {
-    if (this.isInverted || this.isSpedUp || this.isImmortal && !this.isFrozen) {
+    if (
+      (this.isInverted || this.isSpedUp || this.isImmortal) &&
+      !this.isFrozen
+    ) {
       this.tintTimer -= deltaTime;
       if (this.tintTimer > 500) {
-        this.tintOn = true
+        this.tintOn = true;
       } else {
-        this.tintOn = false
+        this.tintOn = false;
       }
       if (this.tintTimer <= 0) {
         this.tintTimer = 1000;
@@ -358,7 +361,7 @@ class Player extends MovingEntity {
    */
   public invertControls() {
     this.resetPowerups();
-    this.invertedTimer = 15000;
+    this.invertedTimer = 10000;
     this.isInverted = true;
   }
 

@@ -1,42 +1,48 @@
-# Slutprojektet
+# Frostbite Frenzy
 
-Välkommen till den förinställda kodbasen för slutprojektet.
-Se filen [Sketch](./src/sketch.ts) och [Game](./src/game.ts) filerna för hur ni bör börja skriva er kod!
+Under detta projekt i kursen JavaScript har vi, sex studenter från Medieinstitutet i Göteborg, skapat ett spel i TypeScript och P5.
 
-Kom ihåg att använda git!
+Vi hoppas att detta spel kan leda till en nostalgisk känsla till en tid där man fortfarande satt två personer vid samma tangentbord och körde multiplayer på det viset.
 
-## Dokument & Artifakter
+Länk: [Testa Frostbite Frenzy](https://main--stellular-brioche-80ac61.netlify.app).
 
-All dokument skall finnas i projektet som faktiska filer vid inlämningen. Det finns en mapp `./documents` som alla dokumenten skall sparas i. [Läs vidare här](./documents/README.md)!
+Spelet skapat av:
+Nathanael Blackbourn, Jesper Lindström, Linus Hammarberg, Hampus Isebring, Edvin Djulic och Jessica Rodriguez
 
-## Utveckling
+## Dokument
+
+Alla dokument vi tagit fram och bearbetat under detta projekt finns i [denna mapp](./documents)!
+
+## Spelbeskrivning
+
+Frostbite Frenzy går ut på att 2 spelare i en labyrint under 2 minuter ska samla så många nycklar som möjligt. I labyrinten finns det monster att undvika. Blir du träffad blir du fryst i 3 sekunder, och din motståndare kan hinna plocka upp en nyckel före dig.
+Det finns alltid två nycklar i labyrinten, när en nyckel plockas upp dyker en ny nyckel upp på en annan plats i labyrinten.
+Till din hjälp finns det två powerups och en powerdown till förfogande, dessa är följande:
+
+### **Klocka**
+
+Om du plockar upp en klocka blir din karaktär snabbare i 10 sekunder. Nyttja dessa sekunder väl då det ger dig möjlighet att plocka fler nycklar!
+
+### **Snöflinga**
+
+När du plockar upp en snöflinga blir din snögubbe immun mot monstrens frysningar i 10 sekunder. Du behöver därmed inte oroa dig för att bli träffad, och har chansen att ta farligare vägar i labyrinten!
+
+### **Invertera motståndarens kontroll**
+
+Om du plockar upp pilarna inverteras motståndarens kontroller i 10 sekunder. Detta innebär att din motståndare nu navigerar sin karaktär tvärtom vilket kan skapa förvirring. Detta ger dig chansen att dra iväg med poängen!
+
+## Vidareutveckling
 
 ### Installation
 
-Först behöver ni köra kommandot `npm install` för att installera nödvändiga moduler (p5, typescript, etc).
+Om du vill arbeta i koden behöver du först köra kommandot `npm install` för att installera nödvändiga moduler (p5, typescript, etc som vi använt oss av).
 
 ### Starta projektet
 
-Kör kommandot `npm run dev` för att starta projektet och se det live i din webbläsare!
+Kommandot `npm run dev` används för att starta Vite och se projektet live i din webbläsare.
 
-### Debugger
+## Musik och ljudeffekter
 
-Det är starkt rekomenderat att ni använder debug-verktyget i VSCode för att hitta och lösa problem. Metoden vi primärt har använt tidigare är att skriva `console.log` men vi kan bli mer effektiva!
+Ljudeffekter hämtade från: https://www.pixabay.com.
 
-Debuggern låter er stanna programmet och stega rad för rad samtidigt som ni kan titta på vad variablerna innehåller. Det är speciellt användbart när ni arbetar med funktioner som anropas 60 gånger per sekund - console overload otherwise... 🤯
-
-#### Starta Debuggern
-
-För att starta debuggern tycker du på `F5` eller via play-knappen i "ActionBaren", se dock till att du har startat projektet innan (`npm run dev`). Ett nytt fönster kommer att öppnas som behöver användas för att få koden att stanna vid utsatta debugg-punkter.
-
-### Potentiella problem
-
-Versionen av p5.js är 1.5.0 medan senaste version av p5 typerna endast är uppdaterad till 1.4.3. Detta skulle kunna orsaka problem och det kan vara så att ni hittar något i p5's dokumention som inte finns tillgängligt i detta projektet - dock osannolikt.
-
-Typings för de globala variablerna relaterat till p5.sound fungerar tyvärr inte - exempel finns för hur ni kan kringå detta. Se [loadSound funktionen](global.d.ts) för hur det kan göras.
-
-## TODO
-
-Lägg till ytterliggare information som är specifikt för ert projekt!
-
-**LYCKA TILL!**
+“Music from https://www.zapsplat.com".
