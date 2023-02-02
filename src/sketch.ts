@@ -23,6 +23,7 @@ interface Images {
   backarrow: p5.Image;
   fallingsnow: p5.Image;
   ice: p5.Image;
+  movement: p5.Image;
 }
 
 let images: Images;
@@ -53,6 +54,7 @@ function preload() {
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     backarrow: loadImage("/assets/images/backarrow.png"),
     ice: loadImage("assets/images/ice.png"),
+    movement: loadImage("assets/images/movement.png"),
   };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(

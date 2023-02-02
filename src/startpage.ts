@@ -7,7 +7,7 @@ class StartPage extends MenuPage {
   private characters: p5.Image;
   // private fallingsnow: p5.Image;
   // private currentOption: number = 0;
-  private options: string[] = ["New Game", "Objectives", "Game Controls"];
+  private options: string[] = ["New Game", "Objectives", "Controls"];
   private buttons: p5.Element[] = [];
 
   public constructor(menu: Menu) {

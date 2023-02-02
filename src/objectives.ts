@@ -1,4 +1,4 @@
- /// <reference path="menupage.ts" />
+/// <reference path="menupage.ts" />
 
 class Objectives extends MenuPage {
   private rectWidth: number;
