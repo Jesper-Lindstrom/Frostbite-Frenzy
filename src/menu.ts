@@ -1,4 +1,8 @@
-class Menu {
+interface IMenu {
+  openPage(page: MenuPage): void;
+}
+
+class Menu implements IMenu {
   private activePage: MenuPage;
 
   public constructor(firstPage: string, scores?: Scores) {

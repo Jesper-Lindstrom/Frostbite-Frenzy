@@ -1,5 +1,5 @@
 class Gameover extends MenuPage {
-  private menu: Menu;
+  private menu: IMenu;
   private key: p5.Image;
   private monsterPurple: p5.Image;
   private monsterBlue: p5.Image;
@@ -11,7 +11,7 @@ class Gameover extends MenuPage {
   private loserScore: number;
   private trophy: p5.Image;
 
-  public constructor(menu: Menu, scores: Scores) {
+  public constructor(menu: IMenu, scores: Scores) {
     super();
     this.menu = menu;
     this.monsterPurple = images.purpleMonsterSingle;

@@ -1,10 +1,10 @@
 class Objectives extends MenuPage {
-  private menu: Menu;
+  private menu: IMenu;
   private iceImage: p5.Image;
   private key: p5.Image;
   private monsterdescriptions: p5.Image;
 
-  public constructor(menu: Menu) {
+  public constructor(menu: IMenu) {
     super();
     this.menu = menu;
     this.iceImage = images.ice;

@@ -1,13 +1,13 @@
 /// <reference path="menupage.ts" />
 
 class Controls extends MenuPage {
-  private menu: Menu;
+  private menu: IMenu;
   private wsadButtonsImage: p5.Image;
   private arrowButtonsImage: p5.Image;
   private iceImage: p5.Image;
   private movementTextImage: p5.Image;
 
-  public constructor(menu: Menu) {
+  public constructor(menu: IMenu) {
     super();
     this.menu = menu;
     this.wsadButtonsImage = images.wsadButtons;

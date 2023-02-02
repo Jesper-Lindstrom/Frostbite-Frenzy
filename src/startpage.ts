@@ -1,10 +1,10 @@
 class StartPage extends MenuPage {
-  public menu: Menu;
+  private menu: IMenu;
   private characters: p5.Image;
   private options: string[] = ["New Game", "Objectives", "Controls"];
   private buttons: p5.Element[] = [];
 
-  public constructor(menu: Menu) {
+  public constructor(menu: IMenu) {
     super();
     this.menu = menu;
     this.characters = images.characters;
