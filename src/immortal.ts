@@ -9,7 +9,7 @@ class Immortal extends GameEntity {
         cellSize, 
         cellSize
         ));
-      this.image = images.advantagessnowflake;
+      this.image = images.snowflake;
 }
 
     public draw() {
