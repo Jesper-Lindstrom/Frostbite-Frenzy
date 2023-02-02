@@ -1,13 +1,13 @@
 /// <reference path="menupage.ts" />
 
 class Advantages extends MenuPage {
-  private menu: Menu;
+  private menu: IMenu;
   private iceImage: p5.Image;
   private watchImage: p5.Image;
   private snowflakeImage: p5.Image;
   private invertarrowsImage: p5.Image;
 
-  public constructor(menu: Menu) {
+  public constructor(menu: IMenu) {
     super();
     this.menu = menu;
     this.iceImage = images.ice;
