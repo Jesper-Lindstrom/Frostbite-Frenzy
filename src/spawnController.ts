@@ -3,8 +3,7 @@ class SpawnController {
   private mapPosition: p5.Vector;
   private mapArray: number[][];
   private gridCols: number;
-  private gridRows: number;
-  private cellSize: number;
+  public cellSize: number;
   private keysSpawned: number;
   
   
@@ -18,7 +17,6 @@ class SpawnController {
     this.mapPosition = new p5.Vector(startX, startY);
 
     this.mapArray = mapArray;
-    this.gridRows = this.mapArray.length;
     this.gridCols = this.mapArray[0].length;
     this.cellSize = this.mapSize / this.gridCols;
 

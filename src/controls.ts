@@ -21,14 +21,14 @@ class Controls extends MenuPage {
   }
 
   public drawShapes() {
-    push(); // save current styles and transformations
+    push();
     rectMode(CENTER);
-    rect(width / 2, height / 2, 700, 600); // larger rect
+    rect(width / 2, height / 2, 700, 600);
     pop();
 
     push();
-    strokeWeight(5); // frame thickness
-    stroke(255, 255, 255); // set the "frame" color
+    strokeWeight(5);
+    stroke(255, 255, 255);
     fill(47, 78, 107);
     rectMode(CENTER);
     rect(width / 2, height / 2, 700, 600); // "frame"
