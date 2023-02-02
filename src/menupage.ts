@@ -8,6 +8,4 @@ class MenuPage {
     this.drawImages();
     this.drawText();
   }
-
-  public openPage(): void {}
 }

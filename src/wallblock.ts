@@ -1,6 +1,8 @@
 class WallBlock extends GameEntity {
+  private image: p5.Image
   
   public constructor(
+   
     position: p5.Vector,
     cellSize: number
   ) {
@@ -8,14 +10,20 @@ class WallBlock extends GameEntity {
       cellSize,
       cellSize
     ));
+    this.image = images.wallblock;
   }
 
-  
-  
   public draw() {
     push();
-    fill("red");
+    stroke('white'); 
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    image(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.size.x, 
+      this.size.y 
+      );
     pop();
   }
 }

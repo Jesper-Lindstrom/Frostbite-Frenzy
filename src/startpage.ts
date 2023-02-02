@@ -1,3 +1,5 @@
+/// <reference path="menupage.ts" />
+
 class StartPage extends MenuPage {
   private rectWidth: number;
   private rectHeight: number;
@@ -18,7 +20,7 @@ class StartPage extends MenuPage {
     this.elementY = (windowHeight - this.rectHeight) / 2;
     this.menu = menu;
     this.characters = images.characters;
-    //this.fallingsnow = images.fallingsnow;
+    // this.fallingsnow = images.fallingsnow;
     this.drawShapes();
     removeElements();
     this.drawButtons();
@@ -49,7 +51,6 @@ class StartPage extends MenuPage {
       button.style("background-color: #D2ECF3");
 
       button.mouseOver(() => {
-        // this.currentOption = i;
         this.buttons[i].style("color", "rgb(255, 255, 255)");
         this.buttons[i].style("background-color", "rgb(15, 82, 186");
       });

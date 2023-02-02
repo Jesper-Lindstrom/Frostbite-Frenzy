@@ -3,9 +3,9 @@ class SpawnController {
   private mapPosition: p5.Vector;
   private mapArray: number[][];
   private gridCols: number;
-  private gridRows: number;
-  private cellSize: number;
+  public cellSize: number;
   private keysSpawned: number;
+  
   
   constructor(mapArray: number[][], mapSize: number){
 
@@ -17,11 +17,11 @@ class SpawnController {
     this.mapPosition = new p5.Vector(startX, startY);
 
     this.mapArray = mapArray;
-    this.gridRows = this.mapArray.length;
     this.gridCols = this.mapArray[0].length;
     this.cellSize = this.mapSize / this.gridCols;
 
     this.keysSpawned = 0;
+    
   }
 
   /**
@@ -55,6 +55,9 @@ class SpawnController {
           j * this.cellSize + this.mapPosition.x,
           i * this.cellSize + this.mapPosition.y
         )
+        if (cell === 0 || cell === 2) {
+          entities.push(new Path(position, this.cellSize))
+        }
         if (cell === 1) {
           entities.push(new WallBlock(position, this.cellSize));
         }
@@ -63,9 +66,13 @@ class SpawnController {
     for (let i = 0; i < 4; i++) {
       entities.push(this.createMonster());
     }
+    // for (let i = 0; i < 1; i++) {
+    //   entities.push(this.createPurpleMonster())
+    // }
     for (let i = 0; i < 2; i++) {
       entities.push(this.createKey());
     }
+    
     return entities;
   }
 
@@ -91,16 +98,42 @@ class SpawnController {
 
 public createMonster(): Monster {
     const spawnPos = this.randomValidSpawnpoint();
-    return new Monster(spawnPos, this.cellSize, this.mapArray, this.mapPosition);
+    return new BlueMonster(spawnPos, this.cellSize, this.mapArray, this.mapPosition );
   }
+
+public createPurpleMonster() {
+    return new PurpleMonster(this.randomValidSpawnpoint(), this.cellSize, this.mapArray, this.mapPosition);
+
+}
 
 public createKey(): Key {
     let key = new Key (this.randomValidSpawnpoint(), this.cellSize, this.keysSpawned);
     this.keysSpawned ++;
     return key;
-  }
 }
 
+  
+
+public spawnPowerUpFromRandomNumber(randomNum: number): GameEntity{
+  let position: p5.Vector = this.randomValidSpawnpoint();
+  let newPowerUp: GameEntity = new InvertKeys(position, this.cellSize);
+  if (randomNum === 1) {
+    newPowerUp =  new SpeedUp(position, this.cellSize)
+  } else if (randomNum === 2) {
+    newPowerUp =  new Immortal(position, this.cellSize)
+  } else if (randomNum === 3) {
+    newPowerUp = new InvertKeys(position, this.cellSize)
+  }
+  return newPowerUp;
+}
+
+//Ta emot siffra från RandomNumber
+//If sats 1-4 skapa ny powerup beroende på siffran
+//hämta koordinater från randomValidSpawnpoint
+//rendera ut powerup objekt på RandomValidSpawnpoint
+
+
+}
 
 
 interface Coordinates {

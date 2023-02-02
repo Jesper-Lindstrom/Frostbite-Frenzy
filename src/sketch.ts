@@ -1,12 +1,16 @@
 //---- GLOBAL VARIABLES ----//
 // let sound: p5.SoundFile
 let gameFrame: GameFrame;
-let controls: Controls;
 let fontFreckleFace: p5.Font;
 let fontSansita: p5.Font;
-// let menuFont;
+let gameMusic: p5.SoundFile;
+let gameOver: p5.SoundFile;
+let keySound: p5.SoundFile;
+let frozenSound: p5.SoundFile;
+let powerupsSound: p5.SoundFile;
 
 interface Images {
+  wallblock: p5.Image;
   iceUpper: p5.Image;
   iceLower: p5.Image;
   wsadButtons: p5.Image;
@@ -14,14 +18,20 @@ interface Images {
   yellowSnowman: p5.Image;
   greenSnowman: p5.Image;
   blueMonster: p5.Image;
+  purplemonster: p5.Image;
   characters: p5.Image;
   key: p5.Image;
+  key2: p5.Image;
+  key3: p5.Image;
+  key4: p5.Image;
   monsterdescriptions: p5.Image;
   watch: p5.Image;
   advantagessnowflake: p5.Image;
   invertarrows: p5.Image;
-  backarrow: p5.Image;
+  purpleMonsterSingle: p5.Image;
+  monsterBlue: p5.Image;
   fallingsnow: p5.Image;
+  trophy: p5.Image;
   ice: p5.Image;
   movement: p5.Image;
 }
@@ -36,8 +46,14 @@ let images: Images;
 function preload() {
   fontFreckleFace = loadFont("/assets/fonts/FreckleFace.ttf");
   fontSansita = loadFont("/assets/fonts/Sansita.ttf");
+  gameMusic = loadSound("/assets/sounds/gamemusic.mp3");
+  gameOver = loadSound("/assets/sounds/gameOver.mp3");
+  keySound = loadSound("/assets/sounds/key.mp3");
+  frozenSound = loadSound("/assets/sounds/frozen.mp3");
+  powerupsSound = loadSound("/assets/sounds/powerups.mp3");
 
   images = {
+    wallblock: loadImage("/assets/images/wallblock.png"),
     iceUpper: loadImage("/assets/images/ice1.png"),
     iceLower: loadImage("/assets/images/ice2.png"),
     wsadButtons: loadImage("/assets/images/wsadbuttons.png"),
@@ -45,21 +61,23 @@ function preload() {
     yellowSnowman: loadImage("/assets/images/yellowsnowman.png"),
     greenSnowman: loadImage("/assets/images/greensnowman.png"),
     blueMonster: loadImage("/assets/images/bluemonster.png"),
+    purplemonster: loadImage("/assets/images/purplemonster.png"),
     characters: loadImage("/assets/images/characters.png"),
     fallingsnow: loadImage("/assets/images/fallingsnow.gif"),
     key: loadImage("/assets/images/key.png"),
+    key2: loadImage("/assets/images/key2.png"),
+    key3: loadImage("/assets/images/key3.png"),
+    key4: loadImage("/assets/images/key4.png"),
     monsterdescriptions: loadImage("/assets/images/monsterdescriptions.png"),
     watch: loadImage("/assets/images/watch.png"),
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
     invertarrows: loadImage("/assets/images/invertarrows.png"),
-    backarrow: loadImage("/assets/images/backarrow.png"),
+    purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
+    monsterBlue: loadImage("/assets/images/monsterBlue.png"),
+    trophy: loadImage("/assets/images/trophy.gif"),
     ice: loadImage("assets/images/ice.png"),
     movement: loadImage("assets/images/movement.png"),
   };
-  // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
-  // menuFont = loadFont(
-  //   "https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;1,400&display=swap"
-  // );
 }
 
 /**
@@ -71,7 +89,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
-  gameFrame = new GameFrame(false);
+  gameFrame = new GameFrame();
 }
 
 /**
