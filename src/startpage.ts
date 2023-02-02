@@ -1,4 +1,8 @@
 class StartPage extends MenuPage {
+  private rectWidth: number;
+  private rectHeight: number;
+  private elementX: number;
+  private elementY: number;
   public menu: Menu;
   private characters: p5.Image;
   // private fallingsnow: p5.Image;
@@ -8,6 +12,10 @@ class StartPage extends MenuPage {
 
   public constructor(menu: Menu) {
     super();
+    this.rectWidth = windowWidth * 0.6;
+    this.rectHeight = windowHeight * 0.8;
+    this.elementX = (windowWidth - this.rectWidth) / 2;
+    this.elementY = (windowHeight - this.rectHeight) / 2;
     this.menu = menu;
     this.characters = images.characters;
     //this.fallingsnow = images.fallingsnow;
@@ -22,17 +30,17 @@ class StartPage extends MenuPage {
   public drawShapes() {
     push(); // save current styles and transformations
     fill(47, 78, 107);
-    rect(this.x, this.y, this.width, this.height); // larger rect
+    rect((windowWidth - this.rectWidth) / 2, (windowHeight - this.rectHeight) / 2, this.rectWidth, this.rectHeight); // larger rect
     pop(); // restore previous styles and transformations
   }
 
-  // Creates the buttons with a for loop based on the options array length
-   private drawButtons() {
+   // Creates the buttons with a for loop based on the options array length
+    private drawButtons() {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
-      button.size(150, 40);
+      button.size(this.rectWidth * 0.2, this.rectHeight * 0.1);
       button.center("horizontal");
-      button.position(this.x + (this.width - 150) / 2, this.y + (this.height - 300) / 2 + (i * 50));
+      button.position(this.elementX + this.rectWidth / 2 - (this.rectWidth * 0.2) / 2, this.elementY + this.rectHeight / 2 - (this.rectHeight * 0.6) / 2 + (i * this.rectHeight * 0.14));
       button.style("color: #4A7AA7");
       button.style("border-radius: 1rem");
       button.style("border-style: none");
@@ -66,7 +74,7 @@ class StartPage extends MenuPage {
       });
       this.buttons.push(button);
     }
-  } 
+  }  
 
   public drawText() {
     push(); // save current styles and transformations
@@ -74,15 +82,14 @@ class StartPage extends MenuPage {
     fill(255);
     textSize(60);
     textAlign(CENTER, CENTER);
-    text("Frostbite Frenzy", this.x + this.width / 2, this.y + this.height / 2 - 200);
+    text("Frostbite Frenzy", this.elementX + this.rectWidth / 2, this.elementY + this.rectHeight * 0.1);
     stroke(255, 204, 0);
     pop(); // restore previous styles and transformations
   }
 
   public drawImages(): void {
-    let imageWidth = this.width;
+    let imageWidth = this.rectWidth;
     let imageHeight = (imageWidth / this.characters.width) * this.characters.height;
-    image(this.characters, (this.x + this.width * 0.5) - (imageWidth / 2), this.y + this.height - imageHeight, imageWidth, imageHeight);
+    image(this.characters, (this.elementX + this.rectWidth * 0.5) - (imageWidth / 2), this.elementY + this.rectHeight - imageHeight, imageWidth, imageHeight);
   }
-  
 }

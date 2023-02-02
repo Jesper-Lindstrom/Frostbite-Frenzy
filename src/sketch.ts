@@ -22,6 +22,7 @@ interface Images {
   invertarrows: p5.Image;
   backarrow: p5.Image;
   fallingsnow: p5.Image;
+  ice: p5.Image;
 }
 
 let images: Images;
@@ -51,6 +52,7 @@ function preload() {
     advantagessnowflake: loadImage("/assets/images/advantagessnowflake.png"),
     invertarrows: loadImage("/assets/images/invertarrows.png"),
     backarrow: loadImage("/assets/images/backarrow.png"),
+    ice: loadImage("assets/images/ice.png"),
   };
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   // menuFont = loadFont(
