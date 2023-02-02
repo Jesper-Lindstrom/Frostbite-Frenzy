@@ -45,19 +45,19 @@ class Gameover extends MenuPage {
     strokeWeight(5); // frame thickness
     stroke(255, 255, 255); // set the "frame" color
     fill(47, 78, 107);
-    rect(this.x, this.y, this.width, this.height); // "frame"
-    line(this.x, height / 2, this.width + this.x, height / 2);
+    rect((windowWidth - this.rectWidth) / 2, (windowHeight - this.rectHeight) / 2, this.rectWidth, this.rectHeight);
+    line(this.elementX, height / 2, this.rectWidth + this.elementX, height / 2);
     pop(); // restore previous styles and transformations
   }
 
-  protected drawText() {
+  public drawText() {
     push(); // save current styles and transformations
     textFont("Freckle Face");
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("The winner!!", width / 2, this.y + this.height * 0.05);
-    text(this.winnerScore, width / 2, this.y + this.height * 0.45);
+    text("The winner!!", width / 2, this.elementY + this.rectHeight * 0.05);
+    text(this.winnerScore, width / 2, this.elementY + this.rectHeight * 0.45);
     pop(); // restore previous styles and transformations
 
     push(); // save current styles and transformations
@@ -65,8 +65,8 @@ class Gameover extends MenuPage {
     fill(255, 0, 0);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("Defeated!", width / 2, this.y + this.height * 0.55);
-    text(this.loserScore, width / 2, this.y + this.height * 0.95);
+    text("Defeated!", width / 2, this.elementY + this.rectHeight * 0.55);
+    text(this.loserScore, width / 2, this.elementY + this.rectHeight * 0.95);
     pop(); // restore previous styles and transformations
   }
 
@@ -76,72 +76,72 @@ class Gameover extends MenuPage {
     image(
       this.winnerImage,
       width / 2,
-      this.y + this.height * 0.25,
-      this.width * 0.12,
-      this.width * 0.2
+      this.elementY + this.rectHeight * 0.25,
+      this.rectWidth * 0.12,
+      this.rectWidth * 0.2
     );
     image(
       this.loserImage,
       width / 2,
-      this.y + this.height * 0.75,
-      this.width * 0.12,
-      this.width * 0.2
+      this.elementY + this.rectHeight * 0.75,
+      this.rectWidth * 0.12,
+      this.rectWidth * 0.2
     );
     image(
       this.key,
-      this.x + this.width * 0.1,
-      this.y + this.height * 0.1,
-      this.width * 0.1,
-      this.width * 0.05
+      this.elementX + this.rectWidth * 0.1,
+      this.elementY + this.rectHeight * 0.1,
+      this.rectWidth * 0.1,
+      this.rectWidth * 0.05
     );
     image(
       this.key2,
-      this.x + this.width * 0.2,
-      this.y + this.height * 0.2,
-      this.width * 0.1,
-      this.width * 0.05
+      this.elementX + this.rectWidth * 0.2,
+      this.elementY + this.rectHeight * 0.2,
+      this.rectWidth * 0.1,
+      this.rectWidth * 0.05
     );
     image(
       this.trophy,
-      this.x + this.width * 0.2,
-      this.y + this.height * 0.37,
-      this.width * 0.2,
-      this.width * 0.2
+      this.elementX + this.rectWidth * 0.2,
+      this.elementY + this.rectHeight * 0.37,
+      this.rectWidth * 0.2,
+      this.rectWidth * 0.2
     );
     image(
       this.trophy,
-      this.x + this.width * 0.8,
-      this.y + this.height * 0.37,
-      this.width * 0.2,
-      this.width * 0.2
+      this.elementX + this.rectWidth * 0.8,
+      this.elementY + this.rectHeight * 0.37,
+      this.rectWidth * 0.2,
+      this.rectWidth * 0.2
     );
     image(
       this.key3,
-      this.x + this.width * 0.8,
-      this.y + this.height * 0.2,
-      this.width * 0.1,
-      this.width * 0.05
+      this.elementX + this.rectWidth * 0.8,
+      this.elementY + this.rectHeight * 0.2,
+      this.rectWidth * 0.1,
+      this.rectWidth * 0.05
     );
     image(
       this.key4,
-      this.x + this.width * 0.9,
-      this.y + this.height * 0.1,
-      this.width * 0.1,
-      this.width * 0.05
+      this.elementX + this.rectWidth * 0.9,
+      this.elementY + this.rectHeight * 0.1,
+      this.rectWidth * 0.1,
+      this.rectWidth * 0.05
     );
     image(
       this.monsterPurple,
-      this.x + this.width * 0.25,
-      height / 2 + this.height * 0.1,
-      this.width * 0.1,
-      this.width * 0.12
+      this.elementX + this.rectWidth * 0.25,
+      height / 2 + this.rectHeight * 0.1,
+      this.rectWidth * 0.1,
+      this.rectWidth * 0.12
     );
     image(
       this.monsterBlue,
-      this.x + this.width * 0.75,
-      height / 2 + this.height * 0.1,
-      this.width * 0.1,
-      this.width * 0.12
+      this.elementX + this.rectWidth * 0.75,
+      height / 2 + this.rectHeight * 0.1,
+      this.rectWidth * 0.1,
+      this.rectWidth * 0.12
     );
     pop();
   }
@@ -151,8 +151,8 @@ class Gameover extends MenuPage {
     for (let i = 0; i < this.options.length; i++) {
       let button = createButton(this.options[i]);
       button.position(
-        this.x + this.width - 170,
-        this.y + this.height - 110 + (i - 0.5) * 50
+        this.elementX + this.rectWidth - 170,
+        this.elementY + this.rectHeight - 110 + (i - 0.5) * 50
       );
       button.size(150, 40);
       button.style("color: #4A7AA7");

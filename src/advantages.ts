@@ -3,6 +3,7 @@ class Advantages extends MenuPage {
   public menu: Menu;
   private img: p5.Image;
   private img1: p5.Image;
+  private img2: p5.Image;
   private watch: p5.Image;
   private advantagessnowflake: p5.Image;
   private invertarrows: p5.Image;
@@ -12,6 +13,7 @@ class Advantages extends MenuPage {
     this.menu = menu;
     this.img = images.iceLower;
     this.img1 = images.iceUpper;
+    this.img2 = images.ice;
     this.watch = images.watch;
     this.advantagessnowflake = images.advantagessnowflake;
     this.invertarrows = images.invertarrows;
@@ -22,19 +24,8 @@ class Advantages extends MenuPage {
   }
 
   public drawShapes() {
-    push(); // save current styles and transformations
-    rectMode(CENTER);
     fill(47, 78, 107);
-    rect(width / 2, height / 2, 700, 600); // larger rect
-    pop(); // restore previous styles and transformations
-
-    push();
-    strokeWeight(5); // frame thickness
-    stroke(255, 255, 255); // set the "frame" color
-    fill(47, 78, 107);
-    rectMode(CENTER);
-    rect(width / 2, height / 2, 700, 600); // "frame"
-    pop(); // restore previous styles and transformations
+    rect((windowWidth - this.rectWidth) / 2, (windowHeight - this.rectHeight) / 2, this.rectWidth, this.rectHeight); // larger rect
   }
 
   public drawText() {
@@ -43,110 +34,120 @@ class Advantages extends MenuPage {
     fill(255);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("Advantages", width / 2, height / 3.5);
+    text("Advantages", this.elementX + this.rectWidth / 2, this.elementY + this.rectHeight * 0.15);
     pop(); // restore previous styles and transformations
 
     push();
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(31);
-    text("Get Faster", (width / 2) * 0.7, height / 2.6);
+    text("Get faster", this.elementX + this.rectWidth * 0.30, this.elementY + this.rectHeight * 0.3);
     pop();
 
     push();
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(255);
     textSize(22);
     textWrap(WORD);
     text(
-      "Grab a clock to become faster!",
-      (width / 2) * 0.7,
-      height / 2.5,
-      150
+      "Grab a clock and outrun your opponent!",
+      this.elementX + (this.rectWidth * 0.30),
+      this.elementY + this.rectHeight * 0.35,
+      this.rectWidth * 0.4
     );
     pop();
 
     push();
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(29);
-    text("Get Stronger", (width / 2) * 0.7, height / 2);
+    text("Get stronger",  this.elementX + this.rectWidth * 0.30, this.elementY + this.rectHeight * 0.5);
     pop();
 
     push();
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(255);
     textSize(22);
     textWrap(WORD);
     text(
       "Grab a snowflake to be able to walk through the monsters!",
-      (width / 2) * 0.7,
-      height / 1.94,
-      285
+      this.elementX + (this.rectWidth * 0.30),
+      this.elementY + this.rectHeight * 0.55,
+      this.rectWidth * 0.4
     );
     pop();
 
     push();
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(173, 202, 220);
     textSize(29);
-    textWrap(WORD);
-    text("Mess With The Other Player", (width / 2) * 0.7, height / 1.7, 180);
+    text("Mess with the other player", this.elementX + this.rectWidth * 0.30, this.elementY + this.rectHeight * 0.7);
     pop();
 
     push();
-    textFont("Freckle Face");
+    textFont(fontFreckleFace);
     fill(255);
     textSize(22);
     textWrap(WORD);
     text(
-      "Grab the arrows to invert the other player's controls!",
-      (width / 2) * 0.7,
-      height / 1.51,
-      280
+      "Grab the arrows to invert your opponent's controls!",
+      this.elementX + (this.rectWidth * 0.30),
+      this.elementY + this.rectHeight * 0.75,
+      this.rectWidth * 0.45
     );
     pop();
   }
 
   protected createBackButton() {
     let button = createButton("Back");
-    button.position(width / 2 - 315, height / 2 - -225);
-    button.size(150, 40);
-    button.style("color: #FFFFFF");
+    button.size(this.rectWidth * 0.2, this.rectHeight * 0.1);
+    button.position(this.elementX + this.rectWidth * 0.05, this.elementY + this.rectHeight - this.rectHeight * 0.11);
+    button.style("color: #4A7AA7");
     button.style("border-radius: 1rem");
     button.style("border-style: none");
-    button.style("font-size: 19px");
+    button.style("font-size: 22px");
     button.style("font-family: Freckle Face");
-    button.style("background: rgb(0,137,162)");
-    button.style(
-      "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
-    );
+    button.style("background-color: #D2ECF3");
+
     button.mousePressed(() => {
       this.menu.openPage(new Objectives(this.menu));
     });
+
     button.mouseOver(() => {
-      button.style("background: rgb(1,108,129);");
-      button.style(
-        "background: linear-gradient(90deg, rgba(1,108,129,1) 7%, rgba(55,120,189,1) 41%, rgba(11,110,184,1) 81%, rgba(0,48,158,1) 99%);"
-      );
-      button.style(
-        "box-shadow: rgb(230,230,250) 0px 0px 0px 3px, rgb(0,191,255) 0px 0px 0px 6px, rgb(50, 217, 250) 0px 0px 0px 9px, rgb(100,149,237) 0px 0px 0px 12px, rgb(240,248,255) 0px 0px 0px 15px"
-      );
+      button.style("color", "rgb(255, 255, 255)");
+      button.style("background-color", "rgb(15, 82, 186");
     });
+
     button.mouseOut(() => {
-      button.style("background: rgb(0,137,162)");
-      button.style(
-        "background: linear-gradient(90deg, rgba(0,137,162,1) 6%, rgba(124,172,222,1) 41%, rgba(14,141,235,1) 81%, rgba(9,70,209,1) 99%);"
-      );
-      button.style("box-shadow: none");
+      button.style("background: #D2ECF3");
+      button.style("color: #4A7AA7");
     });
   }
 
-  public drawImages() {
-    image(this.img1, width / 2 - 360, height / 2 - 330, 730, 130);
-    image(this.img, width / 2 - 355, height / 2 - -283, 710, 65);
-    image(this.watch, width / 2 - -180, height / 2 - 120, 90, 70);
-    image(this.advantagessnowflake, width / 2 - -180, height / 2 - -12, 90, 70);
-    image(this.invertarrows, width / 2 - -180, height / 2 - -150, 85, 70);
-  }
+   public drawImages() {
+    let imageWidth = this.rectWidth;
+    let imageHeight = (imageWidth / this.img2.width) * this.img2.height;
+    image(this.img2, (this.elementX + this.rectWidth * 0.5) - (imageWidth / 2), this.elementY, imageWidth, imageHeight);
+     
+    image(this.watch, 
+      this.elementX + this.rectWidth * 0.75, 
+      this.elementY + this.rectHeight * 0.3, 
+      0.1 * this.rectWidth, 
+      0.1 * this.rectHeight
+      );
+    image(
+      this.advantagessnowflake,
+      this.elementX + this.rectWidth * 0.75,
+      this.elementY + this.rectHeight * 0.5, 
+      0.1 * this.rectWidth, 
+      0.1 * this.rectHeight
+      );
+    image(
+      this.invertarrows, 
+      this.elementX + this.rectWidth * 0.75,
+      this.elementY + this.rectHeight * 0.70, 
+      0.1 * this.rectWidth, 
+      0.1 * this.rectHeight
+      ); 
+  } 
 }

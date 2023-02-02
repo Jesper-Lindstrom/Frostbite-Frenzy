@@ -10,7 +10,7 @@ class Menu {
     if (firstPage === "gameover" && scores) {
       activePage = new Gameover(this, scores);
     } else {
-      activePage = new StartPage(this);
+      activePage = new Gameover(this, {1: 1, 2: 2});
     }
     return activePage;
   }

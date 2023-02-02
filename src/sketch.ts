@@ -32,6 +32,8 @@ interface Images {
   monsterBlue: p5.Image;
   fallingsnow: p5.Image;
   trophy: p5.Image;
+  ice: p5.Image;
+  movement: p5.Image;
 }
 
 let images: Images;
@@ -73,6 +75,8 @@ function preload() {
     purpleMonsterSingle: loadImage("/assets/images/purpleMonsterSingle.png"),
     monsterBlue: loadImage("/assets/images/monsterBlue.png"),
     trophy: loadImage("/assets/images/trophy.gif"),
+    ice: loadImage("assets/images/ice.png"),
+    movement: loadImage("assets/images/movement.png"),
   };
 }
 
