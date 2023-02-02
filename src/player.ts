@@ -158,9 +158,8 @@ class Player extends MovingEntity {
 
   private tintBlink() {
     if (
-      this.isInverted ||
-      this.isSpedUp ||
-      (this.isImmortal && !this.isFrozen)
+      (this.isInverted || this.isSpedUp || this.isImmortal) &&
+      !this.isFrozen
     ) {
       this.tintTimer -= deltaTime;
       if (this.tintTimer > 500) {
