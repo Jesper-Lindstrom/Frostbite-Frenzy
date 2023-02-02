@@ -1,10 +1,6 @@
 /// <reference path="menupage.ts" />
 
 class StartPage extends MenuPage {
-  private rectWidth: number;
-  private rectHeight: number;
-  private elementX: number;
-  private elementY: number;
   public menu: Menu;
   private characters: p5.Image;
   // private fallingsnow: p5.Image;
@@ -14,10 +10,6 @@ class StartPage extends MenuPage {
 
   public constructor(menu: Menu) {
     super();
-    this.rectWidth = windowWidth * 0.6;
-    this.rectHeight = windowHeight * 0.8;
-    this.elementX = (windowWidth - this.rectWidth) / 2;
-    this.elementY = (windowHeight - this.rectHeight) / 2;
     this.menu = menu;
     this.characters = images.characters;
     // this.fallingsnow = images.fallingsnow;
