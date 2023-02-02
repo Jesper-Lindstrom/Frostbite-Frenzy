@@ -4,6 +4,8 @@ Under detta projekt i kursen JavaScript har vi, sex studenter från Medieinstitu
 
 Vi hoppas att detta spel kan leda till en nostalgisk känsla till en tid där man fortfarande satt två personer vid samma tangentbord och körde multiplayer på det viset.
 
+Länk: [Testa Frostbite Frenzy](https://main--stellular-brioche-80ac61.netlify.app).
+
 Spelet skapat av:
 Nathanael Blackbourn, Jesper Lindström, Linus Hammarberg, Hampus Isebring, Edvin Djulic och Jessica Rodriguez
 
